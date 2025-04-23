@@ -1,6 +1,3 @@
-// This file is just being used to test the creation of a new NSG and VNet in the Spain Central region.
-// This will be added into the main file later.
-
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
