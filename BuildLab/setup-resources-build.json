@@ -1,0 +1,88 @@
+// Main ARM template file for setting up the resources needed for the build lab. 
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    },
+    "variables": {
+        "location": "[resourceGroup().location]",
+        "vnetLocation": "spaincentral",
+        "vnetName": "spaincentral-vnet",
+        "vnetAddressPrefixes": "10.4.0.0/16",
+        "subnetName": "spaincentral-subnet",
+        "subnetAddressPrefixes": "10.4.0.0/24",
+        "devcenterName": "myDevCenter",
+        "userAssignedIdentityName": "myUserAssignedIdentity",
+        "projectName": "myProject"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+            "apiVersion": "2024-11-30",
+            "name": "[variables('userAssignedIdentityName')]",
+            "location": "[variables('location')]"
+        },
+        {
+            "type": "Microsoft.DevCenter/devcenters",
+            "apiVersion": "2025-02-01",
+            "name": "[variables('devcenterName')]",
+            "location": "[variables('location')]",
+            "identity": {
+                "type": "UserAssigned",
+                "userAssignedIdentities": {
+                    "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/', variables('userAssignedIdentityName'))]": {}
+                }
+            },
+            "properties": {
+                "projectCatalogSettings": {
+                    "catalogItemSyncEnableStatus": "Enabled"
+                },
+                "networkSettings": {
+                    "microsoftHostedNetworkEnableStatus": "Enabled"
+                },
+                "devBoxProvisioningSettings": {
+                    "installAzureMonitorAgentEnableStatus": "Enabled"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DevCenter/projects",
+            "apiVersion": "2024-02-01",
+            "name": "[variables('projectName')]",
+            "location": "[variables('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DevCenter/devcenters', variables('devcenterName'))]"
+            ],
+            "identity": {
+                "type": "UserAssigned",
+                "userAssignedIdentities": {
+                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]": {}
+                }
+            },
+            "properties": {
+                "devCenterId": "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2024-05-01",
+            "name": "[variables('vnetName')]",
+            "location": "[variables('vnetLocation')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('vnetAddressPrefixes')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnetAddressPrefixes')]"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
