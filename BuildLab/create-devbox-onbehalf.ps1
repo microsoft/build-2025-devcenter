@@ -1,8 +1,8 @@
-# This is just a testing script in progress.
+# This is just a testing script in progress to create a dev box on behalf of the lab user.
 
-$resourceGroupName = 'myResourceGroup-buildlab'
+$resourceGroupName = 'onBehalfResourceGroup-buildlab'
 $location = 'EastUS'
-$keyVaultName = 'myKeyVault-buidlab'
+$userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the cloudslice-app
 
 # Ensure you are logged into your Azure account
 Connect-AzAccount
@@ -13,11 +13,8 @@ if (-not $resourceGroup) {
     New-AzResourceGroup -Name $resourceGroupName -Location $location
 }
 
-# Create the Key Vault
-New-AzKeyVault -ResourceGroupName $resourceGroupName -VaultName $keyVaultName -Location $location
-
 # Create a devcenter for the user
-$devCenterName = 'myDevCenter'
+$devCenterName = 'onBehalfDevCenter'
 New-AzDevCenter -ResourceGroupName $resourceGroupName -Name $devCenterName -Location $location
 
 # Create a Dev Box definition
@@ -36,14 +33,14 @@ New-AzDevBoxDefinition -ResourceGroupName $resourceGroupName `
     -Description "Windows 11 with VS Code and Hibernate support"
 
 # Add a project in the resource group
-$projectName = 'myProject'
+$projectName = 'obBehalfProject'
 New-AzDevCenterProject -ResourceGroupName $resourceGroupName `
     -DevCenterName $devCenterName `
     -Name $projectName `
     -Location $location
 
 # Create a new pool in the project using Microsoft-hosted network in WestUS3
-$poolName = 'myPool'
+$poolName = 'onBehalfPool'
 New-AzDevCenterPool -ResourceGroupName $resourceGroupName `
     -DevCenterName $devCenterName `
     -ProjectName $projectName `
@@ -51,3 +48,13 @@ New-AzDevCenterPool -ResourceGroupName $resourceGroupName `
     -DevBoxDefinitionName $devBoxDefinitionName `
     -NetworkConnectionType 'MicrosoftHostedNetwork' `
     -Location 'WestUS3'
+
+# Create a new dev box in the pool
+$devBoxName = 'onBehalfDevBox'
+New-AzDevCenterDevBox -ResourceGroupName $resourceGroupName `
+    -DevCenterName $devCenterName `
+    -ProjectName $projectName `
+    -PoolName $poolName `
+    -Name $devBoxName `
+    -Description "Dev Box for testing on behalf of the lab user" `
+    -UserId $userID 
