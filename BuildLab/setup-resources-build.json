@@ -11,11 +11,6 @@
         }
     },
     "variables": {
-        "vnetLocation": "spaincentral",
-        "vnetName": "spaincentral-vnet",
-        "vnetAddressPrefixes": "10.4.0.0/16",
-        "subnetName": "spaincentral-subnet",
-        "subnetAddressPrefixes": "10.4.0.0/24",
         "devcenterName": "myDevCenter",
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject"
