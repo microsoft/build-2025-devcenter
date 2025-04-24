@@ -21,7 +21,7 @@
         },
         "catalogRepositoryUrl": {
             "type": "string",
-            "defaultValue": "https://github.com/xnkevinnguyen/devbox-configuration"
+            "defaultValue": "https://github.com/microsoft/build-2025-devcenter.git"
         }
     },
     "variables": {
@@ -137,8 +137,8 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "build2024",
-                            "path": ".devcenter/ImageDefinition",
+                            "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
+                            "path": "./BuildLabCatalogs",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
                         "syncType": "Scheduled"
@@ -149,9 +149,9 @@
                     ]
                 },
                 {
-                    "type": "Microsoft.DevCenter/projects/catalogs/imageDefinitions", // this doesn't do anything..
+                    "type": "Microsoft.DevCenter/projects/catalogs/imageDefinitions",
                     "apiVersion": "2025-02-01",
-                    "name": "imageDefinition", // some example, this might need to already exist projects/ally-canada-project/catalogs/ally-image-def/imageDefinitions/clone-repo
+                    "name": "imageDefinition",
                     "dependsOn": [
                         "[resourceId('Microsoft.DevCenter/projects/catalogs', 'baseCatalog')]",
                         "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]"
