@@ -1,16 +1,16 @@
-// Main ARM template file for setting up the resources needed for the build lab. 
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "locaiton": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        }
     },
     "variables": {
-        "location": "[resourceGroup().location]",
-        "vnetLocation": "spaincentral",
-        "vnetName": "spaincentral-vnet",
-        "vnetAddressPrefixes": "10.4.0.0/16",
-        "subnetName": "spaincentral-subnet",
-        "subnetAddressPrefixes": "10.4.0.0/24",
         "devcenterName": "myDevCenter",
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject"
@@ -20,13 +20,13 @@
             "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
             "apiVersion": "2024-11-30",
             "name": "[variables('userAssignedIdentityName')]",
-            "location": "[variables('location')]"
+            "location": "[parameters('locaiton')]"
         },
         {
             "type": "Microsoft.DevCenter/devcenters",
             "apiVersion": "2025-02-01",
             "name": "[variables('devcenterName')]",
-            "location": "[variables('location')]",
+            "location": "[parameters('locaiton')]",
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
@@ -49,7 +49,7 @@
             "type": "Microsoft.DevCenter/projects",
             "apiVersion": "2024-02-01",
             "name": "[variables('projectName')]",
-            "location": "[variables('location')]",
+            "location": "[parameters('locaiton')]",
             "dependsOn": [
                 "[resourceId('Microsoft.DevCenter/devcenters', variables('devcenterName'))]"
             ],
@@ -61,27 +61,6 @@
             },
             "properties": {
                 "devCenterId": "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]"
-            }
-        },
-        {
-            "type": "Microsoft.Network/virtualNetworks",
-            "apiVersion": "2024-05-01",
-            "name": "[variables('vnetName')]",
-            "location": "[variables('vnetLocation')]",
-            "properties": {
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "[variables('vnetAddressPrefixes')]"
-                    ]
-                },
-                "subnets": [
-                    {
-                        "name": "[variables('subnetName')]",
-                        "properties": {
-                            "addressPrefix": "[variables('subnetAddressPrefixes')]"
-                        }
-                    }
-                ]
             }
         }
     ]
