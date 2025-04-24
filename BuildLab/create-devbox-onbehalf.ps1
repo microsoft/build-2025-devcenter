@@ -13,12 +13,20 @@ if (-not $resourceGroup) {
     New-AzResourceGroup -Name $resourceGroupName -Location $location
 }
 
+# Create a log analytics workspace for the dev center
+$laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
+
 # Create a devcenter for the user
 $devCenterName = 'onBehalfDevCenter' 
- az devcenter admin devcenter create 
+$devcenter = az devcenter admin devcenter create 
     -Name $devCenterName
     -ResourceGroupName $resourceGroupName 
     -Location $location
+
+# Create a diagnostic setting on the devcenter
+$laworkspaceid = ($laworkspace | ConvertFrom-Json).id
+$devcenterid = ($devcenter | ConvertFrom-Json).id
+az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
 
 # Create a Dev Box definition
 $devBoxDefinitionName = 'VSCodeWin11WithHibernate-devboxdefinition'
