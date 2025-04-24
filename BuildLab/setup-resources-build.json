@@ -88,6 +88,10 @@
             "apiVersion": "2025-02-01",
             "name": "[variables('devcenterName')]",
             "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
+            ],
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
@@ -130,12 +134,12 @@
                 {
                     "type": "catalogs",
                     "apiVersion": "2024-10-01-preview",
-                    "name": "baseCatalog",
+                    "name": "baseCatalog", // can also set it up with project/projName/catalogs/baseCatalog ...
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
                             "branch": "build2024",
-                            "path": ".devcenter/catalog/image-definitions/contoso-base",
+                            "path": ".devcenter/ImageDefinition",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
                         "syncType": "Scheduled"
@@ -144,8 +148,25 @@
                         "[variables('projectName')]",
                         "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
                     ]
+                },
+                {
+                    "type": "Microsoft.DevCenter/projects/catalogs/imageDefinitions", // this doesn't do anything..
+                    "apiVersion": "2025-02-01",
+                    "name": "imageDefinition", // some example, this might need to already exist projects/ally-canada-project/catalogs/ally-image-def/imageDefinitions/clone-repo
+                    "dependsOn": [
+                        "[resourceId('Microsoft.DevCenter/projects/catalogs', 'baseCatalog')]",
+                        "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]"
+                    ]
                 }
             ]
+        },
+        {
+            "type": "Microsoft.DevCenter/projects/pools",
+            "apiVersion": "2024-10-01-preview",
+            "name": "string",
+            "location": "string",
+            "properties": {
+            }
         }
     ]
 }
