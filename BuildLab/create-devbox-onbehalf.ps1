@@ -19,9 +19,9 @@ $laworkspace = az monitor log-analytics workspace create --resource-group $resou
 # Create a devcenter for the user
 $devCenterName = 'onBehalfDevCenter' 
 $devcenter = az devcenter admin devcenter create 
-    -Name $devCenterName
-    -ResourceGroupName $resourceGroupName 
-    -Location $location
+    -n $devCenterName
+    -g $resourceGroupName 
+    -l $location
 
 # Create a diagnostic setting on the devcenter
 $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
