@@ -30,7 +30,7 @@
     },
     "variables": {
         "devcenterName": "myBuildDevCenter",
-        "keyVaultName": "myBuild456KeyVault", // name might need to be changed.
+        "keyVaultName": "myBuildTestKeyVault", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
