@@ -26,11 +26,6 @@
         "currentTime": {
             "type": "string",
             "defaultValue": "[utcNow('d')]"
-        },
-        "imageDefinitionName": {
-            "type": "string",
-            "defaultValue": "imagedefintion"
-
         }
     },
     "variables": {
@@ -38,10 +33,10 @@
         "keyVaultName": "myBuild123KeyVault",
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
-        "catalog1Name": "frontendCatalog",
-        "catalog2Name": "backendCatalog",
-        "defaultcatalogcName": "defaultCatalog",
-        "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('catalog1Name'), '~', parameters('imageDefinitionName'))]"
+        "contosoCatalogName": "contosoCatalog",
+        "imageDefinitionName": "imagedefintion",
+        "defaultCatalogcName": "defaultCatalog",
+        "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('defaultCatalogcName'), '~', variables('imageDefinitionName'))]"
     },
     "resources": [
         {
@@ -151,7 +146,7 @@
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
                             "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
-                            "path": "catalog/image-definitions/default-image",
+                            "path": "default-catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
                         "syncType": "Scheduled"
@@ -164,12 +159,12 @@
                 {
                     "type": "catalogs",
                     "apiVersion": "2024-10-01-preview",
-                    "name": "baseCatalog",
+                    "name": "[variables('contosoCatalogName')]",
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
                             "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
-                            "path": "catalog/image-definitions/contoso-base", //".devcenter/catalog/image-definitions/contoso-base",
+                            "path": "catalog/image-definitions", //".devcenter/catalog/image-definitions/contoso-base",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
                         "syncType": "Scheduled"
@@ -177,81 +172,9 @@
                     "dependsOn": [
                         "[variables('projectName')]",
                         "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
-                    ]
-                },
-                {
-                    "type": "catalogs",
-                    "apiVersion": "2024-10-01-preview",
-                    "name": "[variables('catalog1Name')]",
-                    "properties": {
-                        "gitHub": {
-                            "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
-                            "path": "catalog/image-definitions/frontend", //".devcenter/catalog/image-definitions/frontend",
-                            "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
-                        },
-                        "syncType": "Scheduled"
-                    },
-                    "dependsOn": [
-                        "[variables('projectName')]",
-                        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]",
-                        "[resourceId('Microsoft.DevCenter/projects/catalogs', variables('projectName'), 'baseCatalog')]"
-                    ]
-                },
-                {
-                    "type": "catalogs",
-                    "apiVersion": "2024-10-01-preview",
-                    "name": "[variables('catalog2Name')]",
-                    "properties": {
-                        "gitHub": {
-                            "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
-                            "path": "catalog/image-definitions/backend",
-                            "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
-                        },
-                        "syncType": "Scheduled"
-                    },
-                    "dependsOn": [
-                        "[variables('projectName')]",
-                        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]",
-                        "[resourceId('Microsoft.DevCenter/projects/catalogs', variables('projectName'), 'baseCatalog')]",
-                        "[resourceId('Microsoft.DevCenter/projects/catalogs', variables('projectName'), variables('catalog1Name'))]"
                     ]
                 }
             ]
-        },
-         {
-            "type": "Microsoft.DevCenter/projects/pools",
-            "apiVersion": "2024-10-01-preview",
-            "name": "[concat(variables('projectName'), '/default-image-managed-pool')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.DevCenter/projects/catalogs', variables('projectName'), variables('defaultcatalogcName'))]"
-            ],
-            "properties": {
-                "devBoxDefinitionType": "Value",
-                "devBoxDefinitionName": "[variables('devBoxDefinitionName')]",
-                "devBoxDefinition": {
-                    "imageReference": {
-                    "id": "[concat(resourceId('Microsoft.DevCenter/projects', variables('projectName')), variables('devBoxDefinitionName'))]"
-                    },
-                    "sku": {
-                        "name": "general_i_16c64gb2048ssd_v2"
-                    }
-                },
-                "networkConnectionName": "managedNetwork",
-                "licenseType": "Windows_Client",
-                "localAdministrator": "Enabled",
-                "stopOnDisconnect": {
-                    "status": "Enabled",
-                    "gracePeriodMinutes": 60
-                },
-                "singleSignOnStatus": "Disabled",
-                "virtualNetworkType": "Managed",
-                "managedVirtualNetworkRegions": [
-                    "[parameters('location')]"
-                ]
-            }
         },
         {
             "type": "Microsoft.Resources/deploymentScripts", // HACK: only added this to provide time for the catalog to complete syncing.
@@ -281,7 +204,7 @@
             ],
             "properties": {
                 "devBoxDefinitionType": "Value",
-                "devBoxDefinitionName": "[variables('devBoxDefinitionName')]",
+                "devBoxDefinitionName": "[variables('devBoxDefinitionName')]", // this pool uses the default catalog image definition.
                 "devBoxDefinition": {
                     "imageReference": {
                     "id": "[concat(resourceId('Microsoft.DevCenter/projects', variables('projectName')), variables('devBoxDefinitionName'))]"
