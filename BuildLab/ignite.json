@@ -22,13 +22,24 @@
         "catalogRepositoryUrl": {
             "type": "string",
             "defaultValue": "https://github.com/microsoft/build-2025-devcenter.git"
+        },
+        "currentTime": {
+            "type": "string",
+            "defaultValue": "[utcNow('d')]"
+        },
+        "imageDefinitionName": {
+            "type": "string",
+            "defaultValue": "imagedefintion"
+
         }
     },
     "variables": {
         "devcenterName": "myBuildDevCenter",
         "keyVaultName": "myBuildKeyVault",
         "userAssignedIdentityName": "myUserAssignedIdentity",
-        "projectName": "myProject"
+        "projectName": "myProject",
+        "catalogName": "frontendCatalog",
+        "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('catalogName'), '~', parameters('imageDefinitionName'))]"
     },
     "resources": [
         {
@@ -115,47 +126,110 @@
             "name": "[variables('projectName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DevCenter/devcenters', variables('devcenterName'))]"
+                "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]"
             ],
             "identity": {
-                "type": "UserAssigned",
-                "userAssignedIdentities": {
-                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]": {}
-                }
+            "type": "UserAssigned",
+            "userAssignedIdentities": {
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]": {}
+            }
             },
             "properties": {
                 "devCenterId": "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]",
                 "catalogSettings": {
                     "catalogItemSyncTypes": ["ImageDefinition"]
                 }
+            },
+            "resources": [
+            {
+                "type": "catalogs",
+                "apiVersion": "2024-10-01-preview",
+                "name": "baseCatalog",
+                "properties": {
+                    "gitHub": {
+                        "uri": "[parameters('catalogRepositoryUrl')]",
+                        "branch": "ignite2024",
+                        "path": ".devcenter/catalog/image-definitions/contoso-base",
+                        "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
+                    },
+                    "syncType": "Scheduled"
+                },
+                "dependsOn": [
+                    "[variables('projectName')]",
+                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
+                ]
+            },
+            {
+                "type": "catalogs",
+                "apiVersion": "2024-10-01-preview",
+                "name": "[variables('catalogName')]",
+                "properties": {
+                    "gitHub": {
+                        "uri": "[parameters('catalogRepositoryUrl')]",
+                        "branch": "ignite2024",
+                        "path": ".devcenter/catalog/image-definitions/frontend",
+                        "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
+                    },
+                    "syncType": "Scheduled"
+                },
+                "dependsOn": [
+                    "[variables('projectName')]",
+                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]",
+                    "[resourceId('Microsoft.DevCenter/projects/catalogs', variables('projectName'), 'baseCatalog')]"
+                ]
             }
+            ]
         },
         {
-            "type": "Microsoft.DevCenter/projects/catalogs",
-            "apiVersion": "2024-10-01-preview",
-            "name": "[format('{0}/baseCatalog', variables('projectName'))]",
+            "type": "Microsoft.Resources/deploymentScripts", // HACK: only added this to provide time for the catalog to complete syncing.
+            "apiVersion": "2023-08-01",
+            "name": "GetUserPrincipalIdScript",
+            "location": "[parameters('location')]",
+            "kind": "AzureCLI",
             "dependsOn": [
-                "[variables('projectName')]",
-                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
+                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]"
             ],
             "properties": {
-                "gitHub": {
-                    "uri": "[parameters('catalogRepositoryUrl')]",
-                    "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
-                    "path": "./BuildLabCatalogs",
-                    "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
-                },
-                "syncType": "Scheduled"
+            "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
+            "azCliVersion": "2.45.0",
+            "scriptContent": "#!\/bin\/bash\r\nsleep 10",
+            "timeout": "PT5M",
+            "cleanupPreference": "Always",
+            "retentionInterval": "P1D"
             }
         },
         {
-            "type": "Microsoft.DevCenter/projects/catalogs/imageDefinitions",
-            "apiVersion": "2025-02-01",
-            "name": "baseCatalog/imageDefinition",
+            "type": "Microsoft.DevCenter/projects/pools",
+            "apiVersion": "2024-10-01-preview",
+            "name": "[concat(variables('projectName'), '/WestS3Pool')]",
+            "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DevCenter/projects/catalogs', 'baseCatalog')]",
-                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]"
-            ]
-        }
+                "[resourceId('Microsoft.Resources/deploymentScripts', 'GetUserPrincipalIdScript')]"
+            ],
+            "properties": {
+                "devBoxDefinitionType": "Value",
+                "devBoxDefinitionName": "[variables('devBoxDefinitionName')]",
+                "devBoxDefinition": {
+                    "imageReference": {
+                    "id": "[concat(resourceId('Microsoft.DevCenter/projects', variables('projectName')), variables('devBoxDefinitionName'))]"
+                    },
+                    "sku": {
+                        "name": "general_i_16c64gb2048ssd_v2"
+                    }
+                },
+                "networkConnectionName": "managedNetwork",
+                "licenseType": "Windows_Client",
+                "localAdministrator": "Enabled",
+                "stopOnDisconnect": {
+                    "status": "Enabled",
+                    "gracePeriodMinutes": 60
+                },
+                "singleSignOnStatus": "Disabled",
+                "virtualNetworkType": "Managed",
+                "managedVirtualNetworkRegions": [
+                    "[parameters('location')]"
+                ]
+            }
+        } 
     ]
 }
