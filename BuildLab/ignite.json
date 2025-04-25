@@ -29,14 +29,14 @@
         }
     },
     "variables": {
-        "devcenterName": "myBuildDevCenter",
-        "keyVaultName": "myBuildTestKeyVault", // name might need to be changed.
+        "devcenterName": "myBuildDevCenter20",
+        "keyVaultName": "myBuildTest20KeyVault", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
         "imageDefinitionName": "imagedefintion",
-        "defaultCatalogcName": "defaultCatalog",
-        "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('defaultCatalogcName'), '~', variables('imageDefinitionName'))]"
+        "defaultCatalogName": "defaultCatalog",
+        "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('defaultCatalogName'), '~', variables('imageDefinitionName'))]"
     },
     "resources": [
         {
@@ -141,7 +141,7 @@
                 {
                     "type": "catalogs",
                     "apiVersion": "2024-10-01-preview",
-                    "name": "[variables('defaultcatalogcName')]",
+                    "name": "[variables('defaultcatalogName')]",
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
@@ -197,7 +197,7 @@
         {
             "type": "Microsoft.DevCenter/projects/pools",
             "apiVersion": "2024-10-01-preview",
-            "name": "[concat(variables('projectName'), '/Pool')]",
+            "name": "[concat(variables('projectName'), '/basic-image-pool')]",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deploymentScripts', 'GetUserPrincipalIdScript')]"
