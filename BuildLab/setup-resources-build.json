@@ -2,31 +2,103 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "locaiton": {
+        "location": {
             "type": "string",
-            "defaultValue": "[resourceGroup().location]",
+            "defaultValue": "westus3", //"[resourceGroup().location]", lab does not have westus3 option and keeps defaulting to westus2.
             "metadata": {
                 "description": "Location for all resources."
             }
+        },
+        "secretName": {
+            "type": "string",
+            "defaultValue": "GitHubPAT"
+        },
+        "secretValue": {
+            "type": "securestring",
+            "metadata": {
+            "description": "GitHub Personal Access Token for Project Catalog"
+            }
+        },
+        "catalogRepositoryUrl": {
+            "type": "string",
+            "defaultValue": "https://github.com/microsoft/build-2025-devcenter.git"
+        },
+        "currentTime": {
+            "type": "string",
+            "defaultValue": "[utcNow('d')]"
         }
     },
     "variables": {
-        "devcenterName": "myDevCenter",
+        "devcenterName": "myBuild25DevCenter", // name might need to be changed.
+        "keyVaultName": "myBuildTest25KeyVault", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
-        "projectName": "myProject"
+        "projectName": "myProject",
+        "contosoCatalogName": "contosoCatalog",
+        "imageDefinitionName": "imagedefintion",
+        "defaultCatalogName": "defaultCatalog",
+        "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('defaultCatalogName'), '~', variables('imageDefinitionName'))]"
     },
     "resources": [
         {
             "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
             "apiVersion": "2024-11-30",
             "name": "[variables('userAssignedIdentityName')]",
-            "location": "[parameters('locaiton')]"
+            "location": "[parameters('location')]"
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2024-04-01-preview",
+            "name": "[variables('keyVaultName')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+            "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
+            ],
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "standard"
+                },
+                "tenantId": "[subscription().tenantId]",
+                "enableRbacAuthorization": true
+            },
+            "resources": [
+                {
+                    "type": "secrets",
+                    "apiVersion": "2024-04-01-preview",
+                    "name": "[parameters('secretName')]",
+                    "dependsOn": [
+                            "[variables('keyVaultName')]"
+                        ],
+                    "properties": {
+                    "value": "[parameters('secretValue')]"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/providers/roleAssignments",
+            "apiVersion": "2022-04-01",
+            "name": "[concat(variables('keyVaultName'), '/Microsoft.Authorization/', guid(resourceGroup().id, variables('keyVaultName'), variables('userAssignedIdentityName'), 'keyVaultSecretUser'))]",
+            "properties": {
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')]",
+                "principalId": "[reference(variables('userAssignedIdentityName'), '2023-01-31').principalId]",
+                "scope": "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
+                "principalType": "ServicePrincipal"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
+            ]
         },
         {
             "type": "Microsoft.DevCenter/devcenters",
             "apiVersion": "2025-02-01",
             "name": "[variables('devcenterName')]",
-            "location": "[parameters('locaiton')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
+            ],
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
@@ -47,21 +119,113 @@
         },
         {
             "type": "Microsoft.DevCenter/projects",
-            "apiVersion": "2024-02-01",
+            "apiVersion": "2024-10-01-preview",
             "name": "[variables('projectName')]",
-            "location": "[parameters('locaiton')]",
+            "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DevCenter/devcenters', variables('devcenterName'))]"
+                "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]"
             ],
             "identity": {
-                "type": "UserAssigned",
-                "userAssignedIdentities": {
-                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]": {}
-                }
+            "type": "UserAssigned",
+            "userAssignedIdentities": {
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]": {}
+            }
             },
             "properties": {
-                "devCenterId": "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]"
+                "devCenterId": "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]",
+                "catalogSettings": {
+                    "catalogItemSyncTypes": ["ImageDefinition"]
+                }
+            },
+            "resources": [
+                {
+                    "type": "catalogs",
+                    "apiVersion": "2024-10-01-preview",
+                    "name": "[variables('defaultcatalogName')]",
+                    "properties": {
+                        "gitHub": {
+                            "uri": "[parameters('catalogRepositoryUrl')]",
+                            "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
+                            "path": "default-catalog/image-definitions",
+                            "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
+                        },
+                        "syncType": "Scheduled"
+                    },
+                    "dependsOn": [
+                        "[variables('projectName')]",
+                        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
+                    ]
+                },
+                {
+                    "type": "catalogs",
+                    "apiVersion": "2024-10-01-preview",
+                    "name": "[variables('contosoCatalogName')]",
+                    "properties": {
+                        "gitHub": {
+                            "uri": "[parameters('catalogRepositoryUrl')]",
+                            "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
+                            "path": "catalog/image-definitions", //".devcenter/catalog/image-definitions/contoso-base",
+                            "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
+                        },
+                        "syncType": "Scheduled"
+                    },
+                    "dependsOn": [
+                        "[variables('projectName')]",
+                        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Microsoft.Resources/deploymentScripts", // HACK: only added this to provide time for the catalog to complete syncing.
+            "apiVersion": "2023-08-01",
+            "name": "GetUserPrincipalIdScript",
+            "location": "[parameters('location')]",
+            "kind": "AzureCLI",
+            "dependsOn": [
+                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]"
+            ],
+            "properties": {
+            "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
+            "azCliVersion": "2.45.0",
+            "scriptContent": "#!\/bin\/bash\r\nsleep 10",
+            "timeout": "PT5M",
+            "cleanupPreference": "Always",
+            "retentionInterval": "P1D"
             }
-        }
+        },
+        {
+            "type": "Microsoft.DevCenter/projects/pools",
+            "apiVersion": "2024-10-01-preview",
+            "name": "[concat(variables('projectName'), '/basic-image-pool')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deploymentScripts', 'GetUserPrincipalIdScript')]"
+            ],
+            "properties": {
+                "devBoxDefinitionType": "Value",
+                "devBoxDefinitionName": "[variables('devBoxDefinitionName')]", // this pool uses the default catalog image definition.
+                "devBoxDefinition": {
+                    "imageReference": {
+                    "id": "[concat(resourceId('Microsoft.DevCenter/projects', variables('projectName')), variables('devBoxDefinitionName'))]"
+                    },
+                    "sku": {
+                        "name": "general_i_16c64gb2048ssd_v2"
+                    }
+                },
+                "networkConnectionName": "managedNetwork",
+                "licenseType": "Windows_Client",
+                "localAdministrator": "Enabled",
+                "stopOnDisconnect": {
+                    "status": "Enabled",
+                    "gracePeriodMinutes": 60
+                },
+                "singleSignOnStatus": "Disabled",
+                "virtualNetworkType": "Managed",
+                "managedVirtualNetworkRegions": [
+                    "[parameters('location')]"
+                ]
+            }
+        } 
     ]
 }
