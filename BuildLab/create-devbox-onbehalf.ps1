@@ -8,10 +8,11 @@ az extension add --name devcenter
 
 # Variables
 $resourceGroupName = 'Build-2025'
-$devCenterName = 'myBuildDevCenter2025' 
+$devCenterName = 'myBuildDevCenter-test-123'
+$location = 'westus3' 
 
 # Login to Azure account
-az login
+# az login, no need for login 
 
 
 # Create a log analytics workspace for the dev center
