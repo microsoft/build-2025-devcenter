@@ -145,7 +145,7 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
+                            "branch": "jyotilama/fix-pool", // this is the testing branch, can be updated later, just dont link the main branch.
                             "path": "default-catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
@@ -163,7 +163,7 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "jyotilama/test-project-catalog", // this is the testing branch, can be updated later, just dont link the main branch.
+                            "branch": "jyotilama/fix-pool", // this is the testing branch, can be updated later, just dont link the main branch.
                             "path": "catalog/image-definitions", //".devcenter/catalog/image-definitions/contoso-base",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
