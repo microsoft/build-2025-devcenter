@@ -25,7 +25,8 @@ $devcenter = az devcenter admin devcenter create
 
 # Create a diagnostic setting on the devcenter
 $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
-$devcenterid = ($devcenter | ConvertFrom-Json).id
+$devcenters = (az devcenter admin devcenter list | ConvertFrom-Json) | Where-Object { $_.name.ToLower() -like "*build*" }
+$devcenterid = $devcenters.id
 az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
 
 # Create a Dev Box definition
