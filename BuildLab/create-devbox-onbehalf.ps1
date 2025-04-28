@@ -14,16 +14,11 @@ az group create -l $location -n $resourceGroupName
 
 # Variables
 $devboxRGName = 'Build-2025'
-$resourceGroupLocaiton = 'westus2'
-$devCenterName = 'myBuildDevCenter-test-123' 
-
-# Login to Azure account
-# az login, no need for login 
+$devCenterName = 'myBuildDevCenter-test123' 
 
 
-# Create a log analytics workspace for the dev center
-$laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location $resourceGroupLocaiton
-
+# Create a log analytics workspace for the dev center. Log analytics team is still rolling out must use westus2 for now.
+$laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
 
 # Create a diagnostic setting on the devcenter
 $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
