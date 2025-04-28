@@ -29,8 +29,8 @@
         }
     },
     "variables": {
-        "devcenterName": "myBuild85DevCenter", // name might need to be changed.
-        "keyVaultName": "myBuildTest85KeyVault", // name might need to be changed.
+        "devcenterName": "myBuildDevCenter2025", // name might need to be changed.
+        "keyVaultName": "myBuildTestKeyVault2025", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
@@ -145,7 +145,7 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "jyotilama/fix-pool", // this is the testing branch, can be updated later, just dont link the main branch.
+                            "branch": "main",
                             "path": "default-catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
@@ -163,8 +163,8 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "jyotilama/fix-pool", // this is the testing branch, can be updated later, just dont link the main branch.
-                            "path": "catalog/image-definitions", //".devcenter/catalog/image-definitions/contoso-base",
+                            "branch": "main",
+                            "path": "catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
                         "syncType": "Scheduled"
