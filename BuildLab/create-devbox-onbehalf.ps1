@@ -1,22 +1,28 @@
 # This is just a testing script in progress to create a dev box on behalf of the lab user.
 
-# Set up
-az monitor
+# Don't need az login
 
 # Add the Devcenter extension
 az extension add --name devcenter
 
+$resourceGroupName = 'onBehalfResourceGroup-buildlab'
+$location = 'westus3'
+$userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the cloudslice-app
+
+# Create the resource group
+az group create -l $location -n $resourceGroupName
+
 # Variables
-$resourceGroupName = 'Build-2025'
-$devCenterName = 'myBuildDevCenter-test-123'
-$location = 'westus3' 
+$devboxRGName = 'Build-2025'
+$resourceGroupLocaiton = 'westus2'
+$devCenterName = 'myBuildDevCenter-test-123' 
 
 # Login to Azure account
 # az login, no need for login 
 
 
 # Create a log analytics workspace for the dev center
-$laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
+$laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location $resourceGroupLocaiton
 
 
 # Create a diagnostic setting on the devcenter
