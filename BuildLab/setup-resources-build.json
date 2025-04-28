@@ -29,8 +29,8 @@
         }
     },
     "variables": {
-        "devcenterName": "[concat('buildDevcenter-', substring(resourceGroup().subscriptionId, 0, 6))]", // name might need to be changed.
-        "keyVaultName": "[concat('buildKeyvault-', substring(resourceGroup().subscriptionId, 0, 6))]", // name might need to be changed.
+        "devcenterName": "[concat('buildDevcenter-', substring(subscription().subscriptionId, 0, 6))]", // name might need to be changed.
+        "keyVaultName": "[concat('buildKeyvault-', substring(subscription().subscriptionId, 0, 6))]", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
