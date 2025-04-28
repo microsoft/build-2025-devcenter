@@ -34,8 +34,8 @@
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
-        "imageDefinitionName": "imagedefintion",
-        "defaultCatalogName": "defaultCatalog",
+        "imageDefinitionName": "image-defintions",
+        "defaultCatalogName": "default-catalog",
         "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('defaultCatalogName'), '~', variables('imageDefinitionName'))]"
     },
     "resources": [
@@ -226,6 +226,6 @@
                     "[parameters('location')]"
                 ]
             }
-        } 
+        }
     ]
 }
