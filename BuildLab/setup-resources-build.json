@@ -29,13 +29,13 @@
         }
     },
     "variables": {
-        "devcenterName": "myBuild5DevCenter", // name might need to be changed.
-        "keyVaultName": "myBuildTest75KeyVault", // name might need to be changed.
+        "devcenterName": "myBuild85DevCenter", // name might need to be changed.
+        "keyVaultName": "myBuildTest85KeyVault", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
-        "imageDefinitionName": "image-defintions",
         "defaultCatalogName": "default-catalog",
+        "imageDefinitionName": "simple-image",
         "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('defaultCatalogName'), '~', variables('imageDefinitionName'))]"
     },
     "resources": [
