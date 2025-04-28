@@ -145,7 +145,7 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "main",
+                            "branch": "jyotilama/fix-script-syntax", // changed for testing purposes.
                             "path": "default-catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
@@ -163,7 +163,7 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "main",
+                            "branch": "jyotilama/fix-script-syntax", // changed for testing purposes.
                             "path": "catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
