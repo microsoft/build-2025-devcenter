@@ -12,6 +12,7 @@ tasks:
       command: |
         $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') 
   
-  - name: git-clone
-    parameters:
-      repositoryUrl: https://github.com/contoso-co/eShop.git
+  # temporaryly disable git clone task since it is not working as expected
+  #- name: git-clone
+  #  parameters:
+  #    repositoryUrl: https://github.com/contoso-co/eShop.git
