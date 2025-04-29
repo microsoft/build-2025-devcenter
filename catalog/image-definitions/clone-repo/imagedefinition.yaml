@@ -13,5 +13,5 @@ tasks:
         $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') 
   
   - name: git-clone
-      parameters:
-        repositoryUrl: https://github.com/contoso-co/eShop.git
+    parameters:
+      repositoryUrl: https://github.com/contoso-co/eShop.git
