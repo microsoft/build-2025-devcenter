@@ -77,9 +77,9 @@ For more information on the WSL development experience, please refer to the [Rem
 
 ---
 
-## Open a Developer MCP Server and enable Dark Mode for your Dev Box
+## TODO: Open a Developer MCP Server and enable Dark Mode for your Dev Box
 
-# Part 2: Customize your Dev Box 
+# TODO Part 2: Customize your Dev Box 
 
 # Part 3: Explore dev box troubleshooting capabilities
 *Take a snapshot of your dev box to (later) restore*
