@@ -79,7 +79,94 @@ For more information on the WSL development experience, please refer to the [Rem
 
 ## TODO: Open a Developer MCP Server and enable Dark Mode for your Dev Box
 
-# TODO Part 2: Customize your Dev Box 
+# TODO Part 2: Customize your Dev Box
+
+### *Create a custom network connection*
+
+*Create custom network connection resources to leverage firewalls or connect to [on-premise](#) resources.  
+For the sake of time, we have created a VNET.*
+
+1. Follow the steps to finish creating a Network Connection
+
+    a. Search for ‘Network Connections’ in the search bar of the Azure portal. Click ‘Create’ to start network connection creation.  
+    b. Name your network connection. Select the Virtual Network we have provided in our new region Spain Central. Click on ‘Create’.
+
+### *Configure a custom image definition using AI*
+
+**Create an image definition to customize dev boxes to the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes**
+
+1. Open Visual Studio Code  
+2. Go to Extensions (`Ctrl+Shift+X`) and verify that the Dev Box extension is installed  
+    a. If not installed, search for "Dev Box" and install it  
+3. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box. If not, clone the repository  
+4. Open the cloned repository in VS Code  
+
+#### *Experience in Dev Box VS Code Extension*
+
+5. Create a new `imagedefinition.yaml` file  
+6. Copy the contents from the [sample imagedefinition.yaml file](#)  
+7. For example, to configure pre-installation of VS Code and configure environment variables, add the following to the `imagedefinition.yaml` file:
+
+    ```yaml
+    - name: '~/winget'
+      description: Install Visual Studio Code
+      parameters:
+        package: Microsoft.VisualStudioCode
+
+    - name: '~/powershell'
+      parameters:
+        command: |
+          $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+    ```
+
+8. As you like, you could continue the process to configure more packages and tools
+
+---
+
+### *Experience using agentic workflow in VS Code*  
+To further simplify the experience of authoring the customization file, you can leverage the agentic workflow to directly generate an `imagedefinition.yaml` file through prompts and conversations
+
+9. Open Copilot Chat  
+    a. Ensure Dev Box tools are pre-selected under Select Tools  
+    b. Select Agent mode and choose the model Claude 3.5 Sonnet  
+
+10. In the chat, enter:  
+    `"Help me configure a dev box to work on this repo"`  
+    a. The agent will scan the repository to identify the application type and components (Web, API, Blazor, etc.)  
+
+11. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
+    a. `imagedefinition.yaml` will include git cloning the specific repository onto the dev box  
+
+12. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
+13. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
+14. Copy and run the validation command in the Terminal  
+15. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
+
+---
+
+### *To save time in uploading your `imageDefinition.yaml`*  
+We have already pre-created an `imageDefinition.yaml` in a specific repo that you can use.
+
+1. After clicking on your Dev Center in the Azure Portal, click on the blue button 'Create Project' and create a front-end project for the Dev Center. Select that “Contoso-lod50664841” Dev Center. Name it ‘front-end-project’.  
+2. Follow the steps to finish creating your project.  
+    a. On the ‘Dev box management’ tab for the project creation flow, you can set a limit for the number of dev boxes developers can own in the project. For example, I can [limit](#) to 2 dev boxes. Please set this field to 2 or larger. After this step, click ‘Next’  
+    b. On the ‘Catalogs’ tab, do not change any defaults. Click ‘Next’  
+    c. On the ‘Tags’ tab, no need to select any tags. Click ‘Next’  
+    d. On the ‘Review + Create’ page, [Click](#) ‘Create’  
+    e. Once your project is created, click on "Go to Resource" to see your project  
+
+3. You can create a catalog for the specific project:  
+    a. Expand the 'Settings' section, select 'Identity', then 'User Assigned' tab on the blade, then ‘+Add’, and click the 'ignite-msi' option. Then, add the ignite-msi identity.  
+
+4. To create the catalog, click 'Catalogs', Select ‘Sync settings’ and enable the use of ‘Image definitions’.  
+5. Select ‘+Add’ and finish creating your project catalog by adding a name (‘MyCatalog’), selecting ‘GitHub’ as your catalog source, then select ‘Personal access token’. This will use a repository we prepared for this lab. Fill in the following:  
+    a. **Repository**: `https://github.com/microsoft/build-2025-devcenter.git`  
+    b. **Branch**: `main`  
+    c. **Folder path**: `catalog/image-definitions`  
+    d. **Secret Identifier**: `https://kv-ignite-lod50664841.vault.azure.net/secrets/PolyRepoPAT`  
+
+6. Once the Catalog attach and sync are complete, select ‘image definitions’ and you can see image definitions imported  
+    a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings
 
 # Part 3: Explore dev box troubleshooting capabilities
 *Take a snapshot of your dev box to (later) restore*
