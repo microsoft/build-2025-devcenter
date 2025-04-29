@@ -29,8 +29,8 @@
         }
     },
     "variables": {
-        "devcenterName": "myBuildDevCenter2025", // name might need to be changed.
-        "keyVaultName": "myBuildTestKeyVault2025", // name might need to be changed.
+        "devcenterName":  "[concat('build-', substring(subscription().subscriptionId, 0, 6), '-dc')]", // name might need to be changed.
+        "keyVaultName": "[concat('keyVault-', substring(subscription().subscriptionId, 0, 6))]", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
