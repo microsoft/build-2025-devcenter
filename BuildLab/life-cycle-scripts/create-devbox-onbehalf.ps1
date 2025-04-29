@@ -33,7 +33,7 @@ $userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the 
 
 # send request to create dev box
 # Define the necessary variables
-$subscriptionId = "<Your Subscription ID>"
+$subscriptionId = "<Your Subscription ID>" # how can we get this ahead of time? 
 $resourceGroupName = "<Your Resource Group Name>"
 $location = "centraluseuap"
 $token = "<Your Azure AD Token>"
@@ -47,7 +47,7 @@ $requestBody = @{
 $jsonBody = $requestBody | ConvertTo-Json
 
 # Define the API endpoint
-$apiUrl = "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/projects/$projectName/users/me/devboxes/$devBoxName?api-version=2025-02-01"
+$apiUrl = "https://$subscriptionId-contosodevcenter.centralus.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/$devBoxName?api-version=2025-02-01"
 
 # Send the web request to create the Dev Box
 $response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
