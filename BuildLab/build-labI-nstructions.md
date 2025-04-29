@@ -82,12 +82,29 @@ For more information on the WSL development experience, please refer to the [Rem
 # Part 2: Customize your Dev Box 
 
 # Part 3: Explore dev box troubleshooting capabilities
+*Take a snapshot of your dev box to (later) restore*
+
+To access the self-serve + use the **Snapshot** and Restore feature, follow these steps:
+
+1. Log in to the Developer Portal.
+2. Navigate to the Dev Box section.
+3. Select the Dev Box environment you wish to take a **snapshot** of.
+4. Click on "Take **Snapshot**."
+5. A dialog will appear showing the timestamp of the manual **snapshot**.
+6. Confirm the **snapshot** in the dialog.
+7. Your **snapshot** will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
 
 # Part 4: Add additional governance to your dev box setup
 
 # Part 5: Manage your dev box in scale
 
 # Part 6: Give yourself project access 
+*Admins normally provide Dev Box user access to developers. Today, we will give ourselves access!*
+
+1. In your project, [navigate to](#) the 'Access Control (IAM)' blade.
+2. Click on '+Add', and add a role assignment.
+3. Search for 'DevCenter Dev Box User' role. On the next page, pick '+Select [members](#)'.  
+   Add your username, select the account, hit 'Select', then click on 'Review + assign' twice.
 
 # Part 7: Testing out dev box in the future - what should you do? 
 1.	Search for ‘Microsoft Dev Box’ in the azure portal to navigate to the Dev Box service. 
@@ -96,4 +113,14 @@ o	NOTE: Make sure you are using unique names for each of your resources
 3.	Go to devportal.microsoft.com. From here click on ‘New Dev Box’ and follow the steps for Dev Box creation.  
 
 
-# Part 8: BONUS: Monitoring your dev box with Azure Monitor
+# Part 8: Restore your dev box!
+*We can now complete step 8 in part 2 to restore your Dev Box!* 
+1. Go to devportal.microsoft.com
+2. Select the Dev Box environment you wish to restore.
+3. Click on "Restore."
+4. Choose the desired [restore](#) point from the list of available **snapshots**.
+5. Confirm the restoration process.
+6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
+
+
+# Part 9: BONUS: Monitoring your dev box with Azure Monitor
