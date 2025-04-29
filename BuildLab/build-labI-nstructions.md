@@ -96,7 +96,59 @@ To access the self-serve + use the **Snapshot** and Restore feature, follow thes
 
 # Part 4: Add additional governance to your dev box setup
 
+*We are going to edit your existing project and create a new pool to use the custom definition you previously created along with the custom network. We will add additional governance capabilities to that project + pool setup for utmost security and easiest management.*
+
+## Configure your existing project for additional governance
+
+1. [Navigate to](#) your existing project. Select ‘Dev Box [Settings](#)’ in the side menu.
+
+## Apply Tunnels to allow developers to connect remotely to their dev box from other clients.
+
+2. Select the check box to enable Dev Box tunnels.
+
+## Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a [cost](#) control.
+
+3. Select the check box to ‘Apply [limits](#)’. Set the limit field to 2 or larger.
+4. Click on ‘Apply’ to apply [all](#) of these project edits.
+
+## Create a dev box pool to use your image definition
+
+5. Navigate to the Manage section in the side menu. Select the 'Dev Box pools' item. Then you can create a Dev Box Pool by clicking "Create".
+6. Select a name, and in the [dropdown](#) you'll see 3 image definitions - pick 'project-sample-1'.  
+   Select 32 vCPU [compute](#), and 2048 GB SSD for storage for the SKU. Later, when dev boxes are created in this pool, they'll be created based on the [imageDefinition.yaml](#), which provides the base image and a set of customizations to apply.
+7. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
+   At the very end, click on the [check-box](#) for licensing.
+
+## Enable SSO
+
+- From your project, click on the ‘Manage’ dropdown and then ‘Dev Box Pools’
+- Click on ‘Create dev box pool’
+- Name your pool and select the default definition. Select ‘Microsoft Hosted Network’
+- Click on ‘Enable Single Sign On’
+
+## Enable Open in VS Code
+*Enable Open in VS Code will be Enterprise Ready; we will be adding a new Conditional Access policy and an Admin Level Pool setting.*
+
+Enable Pool Level Setting:
+1. Enable the AFEC on the subscription via the Subscription "preview features" blade.
+2. Go to the Pool's blade to enable/disable the Open in VS Code option.
+
 # Part 5: Manage your dev box in scale
+*Manage your dev boxes in scale by applying project policies.*
+
+### Create a Project Policy
+
+1. Go to your Dev Center, click on ‘Manage’ in the lefthand navigation, then click on ‘Project Policy’ in the dropdown menu. Click on ‘Create’ to begin creating a project policy.
+
+*We will work on creating a default policy. This will configure the settings any current and future projects will use as a default. We are going to create a policy that enables the [8vCPU SKUs](#) by default.*
+
+2. Follow these steps to create a project policy:
+   - Click on ‘Create a policy’
+   - Click on ‘Select SKUs’ and then select ‘A specific SKU or group of [SKUs](#)’. Select all the 8vCPU SKUs.
+   - Click on ‘Select Images’ and then select ‘All current and future images’
+   - Click on ‘Select Networks’ and then select ‘All current and future networks’
+   - Click on ‘Create’ to finish
+
 
 # Part 6: Give yourself project access 
 *Admins normally provide Dev Box user access to developers. Today, we will give ourselves access!*
