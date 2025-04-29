@@ -9,8 +9,8 @@ $location = 'westus3'
 $userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the cloudslice-app
 
 # test create a devcenter
-#az group create -l $location -n $resourceGroupName
-#az devcenter admin devcenter create --location $locaiton --name $devCenterName --resource-group $resourceGroupName
+az group create -l $location -n $resourceGroupName
+az devcenter admin devcenter create --location $location --name $devCenterName --resource-group $resourceGroupName
 
 # Create a log analytics workspace for the dev center
 $laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
@@ -42,15 +42,15 @@ $requestBody = @{
     osType = "Windows"
 }
 
+# possible issue with az login?
+
 # Get the Azure AD token
-$token = az account get-access-token --query accessToken --output tsv
+$token = az account get-access-token --resource 'https://devcenter.azure.com' --query accessToken --output tsv
 
 # Convert the request body to JSON
 $jsonBody = $requestBody | ConvertTo-Json
 
 # test exaxmple: https://72f988bf-86f1-41af-91ab-2d7cd011db47-mybuilddevcenter.eastus2.devcenter.azure.com/
-
-
 
 # Define the API endpoint
 $apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/$devBoxName?api-version=2025-02-01"
