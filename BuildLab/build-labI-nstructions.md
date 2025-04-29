@@ -59,6 +59,24 @@ Once everything is set up, you can open the Dev Box in VS Code by clicking the *
 
 ![Connect to Tunnel Screenshot](path/to/image2.png)
 
+## 6. Dev Box Remote experience in VS Code
 
+You can open any folder or workspace on the remote Dev Box using **File > Open File/Folder/Workspace** just as you would locally!
+
+If you have a WSL environment on the Dev Box, you can connect to it using **Remote Explorer**.
+
+![Remote Explorer Screenshot](path/to/image.png)
+
+Select WSL targets from the dropdown and all the WSL distributions will be listed. You can open any WSL distribution in the current or new window.
+
+Select WSL targets from the dropdown and all the WSL distributions will be listed. You can open any WSL distribution in the current or new window.
+
+![WSL Targets Screenshot](path/to/image.png)
+
+For more information on the WSL development experience, please refer to the [Remote - WSL](#) and [Set up a WSL development environment](#) documentation.
+
+---
+
+## Open a Developer MCP Server and enable Dark Mode for your Dev Box
 
 
