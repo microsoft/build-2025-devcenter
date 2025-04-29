@@ -16,17 +16,49 @@
 
 ## Connect to your Dev Box with the open in VS Code Feature
 
-### 1. Provision a Dev Box
+## 1. Provision a Dev Box
 > You can skip this step if you already have a Dev Box.
 
 5. Sign in to [Developer Portal](https://devportal.microsoft.com/) with your Microsoft account, and create a Dev Box in the project you have access to.
 
 ---
 
-### 2. Install VS Code Extension
+## 2. Install VS Code Extension
 6.Download the Dev Box VS Code extension (preview version) from [here](https://azure.github.io/dev-box/media/ms-devbox-2.0.0-preview.vsix) and install it in your **local** VS Code — **NOT** in the Dev Box you want to connect to.
 
 7. Open Extensions view in VS Code (`Ctrl+Shift+X`) and select the `...` icon on the top right corner.  
 Choose **Install from VSIX...** and select the downloaded file.
 
 Also make sure you have the latest version of the [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension pack installed.
+
+## 3. Sign in to Dev Box Extension
+
+Click the Dev Box icon in the left sidebar, and select **Sign In**.
+
+![Sign in to Dev Box with Microsoft](path/to/image.png)
+
+## 4. Create and Enable Dev Box Tunnel
+
+After signing in, you will see all the projects you have access to. Choose the project where you created the Dev Box, and select the Dev Box you want to connect to.
+
+If you see **No Tunnel** in the description, you will need to manually create a tunnel resource first.
+
+![Create Tunnel Screenshot](path/to/image.png)
+
+> *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
+> 
+> *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
+
+Then, you can enable the tunnel. This process may take up to 1–3 minutes, as it will install VS Code on the Dev Box (if not already installed) and set up the tunnel.
+
+![Enable Tunnel Screenshot](path/to/image1.png)
+
+## 5. Connect to the Dev Box in VS Code
+
+Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button.
+
+![Connect to Tunnel Screenshot](path/to/image2.png)
+
+
+
+
