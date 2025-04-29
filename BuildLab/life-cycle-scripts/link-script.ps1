@@ -1,6 +1,7 @@
 
 # Define the URL of the external script
-$scriptUrl = "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/jyotilama/add-linked-script/BuildLab/create-devbox-onbehalf.ps1"
+# Make sure to update endpoint back to main once the script is ready to be used in production.
+$scriptUrl = "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/main/BuildLab/life-cycle-scripts/link-script.ps1"
 
 try {
 
