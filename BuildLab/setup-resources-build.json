@@ -144,7 +144,7 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "main",
+                            "branch": "jyotilama/cleanup-kv-dc-naming", // update to main branch after testing
                             "path": "catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
