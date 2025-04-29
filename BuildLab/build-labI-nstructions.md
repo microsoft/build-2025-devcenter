@@ -79,4 +79,21 @@ For more information on the WSL development experience, please refer to the [Rem
 
 ## Open a Developer MCP Server and enable Dark Mode for your Dev Box
 
+# Part 2: Customize your Dev Box 
 
+# Part 3: Explore dev box troubleshooting capabilities
+
+# Part 4: Add additional governance to your dev box setup
+
+# Part 5: Manage your dev box in scale
+
+# Part 6: Give yourself project access 
+
+# Part 7: Testing out dev box in the future - what should you do? 
+1.	Search for ‘Microsoft Dev Box’ in the azure portal to navigate to the Dev Box service. 
+2.	Click on ‘get started’. This will navigate you to a wizard to set up your dev box resources. Fill out the fields in the template to deploy all of the necessary Azure resources for dev box. 
+o	NOTE: Make sure you are using unique names for each of your resources
+3.	Go to devportal.microsoft.com. From here click on ‘New Dev Box’ and follow the steps for Dev Box creation.  
+
+
+# Part 8: BONUS: Monitoring your dev box with Azure Monitor
