@@ -29,3 +29,27 @@ $poolName = "basic-image-pool"
 $devBoxName = "myDevBox"
 $userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the cloudslice-app
 az devcenter dev dev-box create --pool-name $poolName --name $devBoxName --dev-center-name $devCenterName --project-name $projectName --user-id $userID
+
+# send request to create dev box
+# Define the necessary variables
+$subscriptionId = "<Your Subscription ID>"
+$resourceGroupName = "<Your Resource Group Name>"
+$location = "centraluseuap"
+$token = "<Your Azure AD Token>"
+
+# Create the request body
+$requestBody = @{
+    poolName = $poolName
+}
+
+# Convert the request body to JSON
+$jsonBody = $requestBody | ConvertTo-Json
+
+# Define the API endpoint
+$apiUrl = "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/projects/$projectName/users/me/devboxes/$devBoxName?api-version=2025-02-01"
+
+# Send the web request to create the Dev Box
+$response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
+
+# Output the response
+$response
