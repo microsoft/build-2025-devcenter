@@ -9,8 +9,8 @@ $location = 'westus3'
 $userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the cloudslice-app
 
 # test create a devcenter
-az group create -l $location -n $resourceGroupName
-az devcenter admin devcenter create --location $locaiton --name $devCenterName --resource-group $resourceGroupName
+#az group create -l $location -n $resourceGroupName
+#az devcenter admin devcenter create --location $locaiton --name $devCenterName --resource-group $resourceGroupName
 
 # Create a log analytics workspace for the dev center
 $laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
@@ -28,7 +28,8 @@ $projectName = "myProject"
 $poolName = "basic-image-pool"
 $devBoxName = "myDevBox"
 $userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the cloudslice-app
-az devcenter dev dev-box create --pool-name $poolName --name $devBoxName --dev-center-name $devCenterName --project-name $projectName --user-id $userID
+
+#az devcenter dev dev-box create --pool-name $poolName --name $devBoxName --dev-center-name $devCenterName --project-name $projectName --user-id $userID
 
 # send request to create dev box
 # Define the necessary variables
