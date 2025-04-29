@@ -34,9 +34,8 @@
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
-        "defaultCatalogName": "default-catalog",
-        "imageDefinitionName": "simple-image",
-        "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('defaultCatalogName'), '~', variables('imageDefinitionName'))]"
+        "imageDefinitionName": "clone-eshop-repo",
+        "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('contosoCatalogName'), '~', variables('imageDefinitionName'))]" // this will be contosoCatalog/clone-eshop-repo.
     },
     "resources": [
         {
@@ -138,24 +137,6 @@
                 }
             },
             "resources": [
-                {
-                    "type": "catalogs",
-                    "apiVersion": "2024-10-01-preview",
-                    "name": "[variables('defaultcatalogName')]",
-                    "properties": {
-                        "gitHub": {
-                            "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "main",
-                            "path": "default-catalog/image-definitions",
-                            "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
-                        },
-                        "syncType": "Scheduled"
-                    },
-                    "dependsOn": [
-                        "[variables('projectName')]",
-                        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
-                    ]
-                },
                 {
                     "type": "catalogs",
                     "apiVersion": "2024-10-01-preview",
