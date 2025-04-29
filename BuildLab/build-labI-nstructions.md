@@ -35,7 +35,7 @@ Also make sure you have the latest version of the [Remote Development](https://m
 
 Click the Dev Box icon in the left sidebar, and select **Sign In**.
 
-![Sign in to Dev Box with Microsoft](BuildLab\InstructionImages\Build2025Images\SignIn.png)
+![Sign in to Dev Box with Microsoft]('BuildLab\InstructionImages\Build2025Images\SignIn.png')
 
 ## 4. Create and Enable Dev Box Tunnel
 
