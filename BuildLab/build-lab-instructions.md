@@ -1,9 +1,12 @@
-# Build Lab Instructions
+# Build the ultimate enterprise ready cloud development environment | Lab Instructions
 
 # Part 1: Connect and use your dev box
 
 ## Connect to your Dev Box
-1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials.
+1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
+
+![Lab Side Panel](InstructionImages/Build2025Images/LabSidePanel.png)
+
 2. You should see a Dev Box in your developer portal. Click on ‘Connect via app’ to connect to your dev box.
 
 *You will see a pop-up suggesting you [download](#) the Windows App.*
@@ -75,11 +78,63 @@ Select WSL targets from the dropdown and all the WSL distributions will be liste
 
 For more information on the WSL development experience, please refer to the [Remote - WSL](#) and [Set up a WSL development environment](#) documentation.
 
----
+# Part 2: Explore dev box troubleshooting capabilities
+## Take a snapshot of your dev box to (later) restore
 
-## TODO: Open a Developer MCP Server and enable Dark Mode for your Dev Box
+To access the self-serve + use the **Snapshot** and Restore feature, follow these steps:
 
-# TODO Part 2: Customize your Dev Box
+1. Log in to the Developer Portal.
+2. Navigate to the Dev Box section.
+3. Select the Dev Box environment you wish to take a **snapshot** of.
+4. Click on "Take **Snapshot**."
+5. A dialog will appear showing the timestamp of the manual **snapshot**.
+6. Confirm the **snapshot** in the dialog.
+7. Your **snapshot** will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
+
+
+
+
+## Open a Developer MCP Server and enable Dark Mode for your Dev Box
+
+1. **Open GitHub Copilot chat in your local VS Code**
+
+2. **Switch Copilot to agent mode:**
+
+   ![Switch to Agent Mode](InstructionImages\Build2025Images\MCPAgent.jpg)  
+   *(Use the dropdown to select "Agent" mode)*
+
+3. **Validate that the Dev Box MCP is running by clicking the tool icon:**
+
+   ![Tool Icon](InstructionImages\Build2025Images\AddContext.jpg) 
+
+   ![Checklist](InstructionImages\Build2025Images\Checklist.jpg) 
+
+   *You should see available APIs like:*
+
+   - `listAllDevBoxesByUser`: Lists Dev Boxes in the Dev Center for a particular user  
+   - `listDevBoxesInProjectByUser`: Lists Dev Boxes in a project for a particular user  
+   - `getDevBoxByUser`: Gets a Dev Box  
+   - `createDevBox`: Creates a Dev Box  
+   - `deleteDevBox`: Deletes a Dev Box  
+   - `startDevBox`: Starts a Dev Box  
+   - `stopDevBox`: Stops a Dev Box  
+
+4. **In your chat, ask Copilot to:**  
+   _“List me all of my dev boxes”_  
+   This will show you a high-level view of your Dev Boxes.
+
+5. **Now ask Copilot to:**  
+   _“Update my my-build-devbox to use dark mode”_
+
+6. **Then ask Copilot to:**  
+   _“Connect and launch my my-build-devbox”_
+
+7. **Recommended:**  
+   Disconnect the browser Dev Box and reconnect with your Windows app now.
+
+
+
+# Part 3: Customize your Dev Box
 
 ### *Create a custom network connection*
 
@@ -168,43 +223,41 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 6. Once the Catalog attach and sync are complete, select ‘image definitions’ and you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings
 
-# Part 3: Explore dev box troubleshooting capabilities
-*Take a snapshot of your dev box to (later) restore*
 
-To access the self-serve + use the **Snapshot** and Restore feature, follow these steps:
+# Part 4: Restore your dev box!
+*We can now complete step 8 in part 2 to restore your Dev Box!* 
+1. Go to devportal.microsoft.com
+2. Select the Dev Box environment you wish to restore.
+3. Click on "Restore."
+4. Choose the desired [restore](#) point from the list of available **snapshots**.
+5. Confirm the restoration process.
+6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
 
-1. Log in to the Developer Portal.
-2. Navigate to the Dev Box section.
-3. Select the Dev Box environment you wish to take a **snapshot** of.
-4. Click on "Take **Snapshot**."
-5. A dialog will appear showing the timestamp of the manual **snapshot**.
-6. Confirm the **snapshot** in the dialog.
-7. Your **snapshot** will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
 
-# Part 4: Add additional governance to your dev box setup
+# Part 5: Add additional governance to your dev box setup
 
 *We are going to edit your existing project and create a new pool to use the custom definition you previously created along with the custom network. We will add additional governance capabilities to that project + pool setup for utmost security and easiest management.*
 
 ## Configure your existing project for additional governance
 
-1. [Navigate to](#) your existing project. Select ‘Dev Box [Settings](#)’ in the side menu.
+1. Navigate to your existing project. Select ‘Settings’ in the side menu.
 
 ## Apply Tunnels to allow developers to connect remotely to their dev box from other clients.
 
 2. Select the check box to enable Dev Box tunnels.
 
-## Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a [cost](#) control.
+## Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a cost control.
 
-3. Select the check box to ‘Apply [limits](#)’. Set the limit field to 2 or larger.
-4. Click on ‘Apply’ to apply [all](#) of these project edits.
+3. Select the check box to ‘Apply limits’. Set the limit field to 2 or larger.
+4. Click on ‘Apply’ to apply all of these project edits.
 
 ## Create a dev box pool to use your image definition
 
 5. Navigate to the Manage section in the side menu. Select the 'Dev Box pools' item. Then you can create a Dev Box Pool by clicking "Create".
-6. Select a name, and in the [dropdown](#) you'll see 3 image definitions - pick 'project-sample-1'.  
-   Select 32 vCPU [compute](#), and 2048 GB SSD for storage for the SKU. Later, when dev boxes are created in this pool, they'll be created based on the [imageDefinition.yaml](#), which provides the base image and a set of customizations to apply.
+6. Select a name, and in the dropdown you'll see 3 image definitions - pick 'project-sample-1'.  
+   Select 32 vCPU compute, and 2048 GB SSD for storage for the SKU. Later, when dev boxes are created in this pool, they'll be created based on the imageDefinition.yaml, which provides the base image and a set of customizations to apply.
 7. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
-   At the very end, click on the [check-box](#) for licensing.
+   At the very end, click on the check-box for licensing.
 
 ## Enable SSO
 
@@ -220,46 +273,89 @@ Enable Pool Level Setting:
 1. Enable the AFEC on the subscription via the Subscription "preview features" blade.
 2. Go to the Pool's blade to enable/disable the Open in VS Code option.
 
-# Part 5: Manage your dev box in scale
+# Part 6: Manage your dev box in scale
 *Manage your dev boxes in scale by applying project policies.*
 
 ### Create a Project Policy
 
 1. Go to your Dev Center, click on ‘Manage’ in the lefthand navigation, then click on ‘Project Policy’ in the dropdown menu. Click on ‘Create’ to begin creating a project policy.
 
-*We will work on creating a default policy. This will configure the settings any current and future projects will use as a default. We are going to create a policy that enables the [8vCPU SKUs](#) by default.*
+*We will work on creating a default policy. This will configure the settings any current and future projects will use as a default. We are going to create a policy that enables the 8vCPU SKUs by default.*
 
 2. Follow these steps to create a project policy:
    - Click on ‘Create a policy’
-   - Click on ‘Select SKUs’ and then select ‘A specific SKU or group of [SKUs](#)’. Select all the 8vCPU SKUs.
+   - Click on ‘Select SKUs’ and then select ‘A specific SKU or group of SKUs. Select all the 8vCPU SKUs.
    - Click on ‘Select Images’ and then select ‘All current and future images’
    - Click on ‘Select Networks’ and then select ‘All current and future networks’
    - Click on ‘Create’ to finish
 
 
-# Part 6: Give yourself project access 
+# Part 7: Give yourself project access 
 *Admins normally provide Dev Box user access to developers. Today, we will give ourselves access!*
 
-1. In your project, [navigate to](#) the 'Access Control (IAM)' blade.
+1. In your project, navigate to the 'Access Control (IAM)' blade.
 2. Click on '+Add', and add a role assignment.
-3. Search for 'DevCenter Dev Box User' role. On the next page, pick '+Select [members](#)'.  
+3. Search for 'DevCenter Dev Box User' role. On the next page, pick '+Select members'.  
    Add your username, select the account, hit 'Select', then click on 'Review + assign' twice.
 
-# Part 7: Testing out dev box in the future - what should you do? 
+# Part 8: Testing out dev box in the future - what should you do? 
 1.	Search for ‘Microsoft Dev Box’ in the azure portal to navigate to the Dev Box service. 
 2.	Click on ‘get started’. This will navigate you to a wizard to set up your dev box resources. Fill out the fields in the template to deploy all of the necessary Azure resources for dev box. 
-o	NOTE: Make sure you are using unique names for each of your resources
+    - Resource group: build 2025
+    - Region: WestUS3, or EastUS2 
+    - DevCenter Name, Project Name, Pool Name: **NOTE** make sure you are using unique names for each of your resources
 3.	Go to devportal.microsoft.com. From here click on ‘New Dev Box’ and follow the steps for Dev Box creation.  
 
 
-# Part 8: Restore your dev box!
-*We can now complete step 8 in part 2 to restore your Dev Box!* 
-1. Go to devportal.microsoft.com
-2. Select the Dev Box environment you wish to restore.
-3. Click on "Restore."
-4. Choose the desired [restore](#) point from the list of available **snapshots**.
-5. Confirm the restoration process.
-6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
-
-
 # Part 9: BONUS: Monitoring your dev box with Azure Monitor
+1. Look up ‘Dev Centers’ in the Azure Portal 
+2. Click on the build devcenter
+3. Click on ‘Monitoring' and select 'Logs' in the side menu.  
+4. Close the pop-out window. 
+5. Select 'KQL Mode' on the right dropdown. Paste the following query: 
+
+``` 
+// Summarize the health check results for all the DevBoxes deployed in your DevCenter
+
+let HealthCheckIdToDescription = (idx:long) {
+    case(
+        idx == 0,  "DomainJoin",
+        idx == 1,  "DomainTrust",
+        idx == 2,  "FSLogix",
+        idx == 3,  "SxSStack",
+        idx == 4,  "URLCheck",
+        idx == 5,  "GenevaAgent",
+        idx == 6,  "DomainReachable",
+        idx == 7,  "WebRTCRedirector",
+        idx == 8,  "SxSStackEncryption",
+        idx == 9,  "IMDSReachable",
+        idx == 10, "MSIXPackageStaging",
+        strcat("InvalidNameIndex: ", idx)
+     )
+};
+let GetHealthCheckResult = (idx:long) {
+    case(
+        idx == 0, "Unknown",
+        idx == 1, "Succeeded",
+        idx == 2, "Failed",
+        idx == 3, "SessionHostShutdown",
+        strcat("InvalidResultIndex: ", idx)
+    )
+};
+DevCenterAgentHealthLogs
+| where TimeGenerated > ago(1d)
+//| project-reorder TimeGenerated, OperationName, DevBoxName, SessionHostName, NicResourceId, SubnetResourceId, _ResourceId, Status, SessionHostHealthCheckResult, UpgradeState, LastHeartBeat
+| where isnotempty(SessionHostHealthCheckResult)
+| mv-expand todynamic(SessionHostHealthCheckResult)
+| evaluate bag_unpack(SessionHostHealthCheckResult)
+| evaluate bag_unpack(AdditionalFailureDetails)
+| extend HealthCheckDesc = HealthCheckIdToDescription(HealthCheckName)
+| extend HealthCheckResult=GetHealthCheckResult(HealthCheckResult)
+| summarize count() by HealthCheckDesc, HealthCheckResult
+
+ ``` 
+
+6. Click on ‘Run’ to run your query.  
+
+
+😀 Congradulations! You have finished the lab! 😀
