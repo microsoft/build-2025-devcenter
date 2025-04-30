@@ -100,14 +100,14 @@ To access the self-serve + use the **Snapshot** and Restore feature, follow thes
 
 2. **Switch Copilot to agent mode:**
 
-   ![Switch to Agent Mode](InstructionImages\Build2025Images\MCPAgent.jpg)  
+   ![Switch to Agent Mode](InstructionImages/Build2025Images/MCPAgent.jpg)  
    *(Use the dropdown to select "Agent" mode)*
 
 3. **Validate that the Dev Box MCP is running by clicking the tool icon:**
 
-   ![Tool Icon](InstructionImages\Build2025Images\AddContext.jpg) 
+   ![Tool Icon](InstructionImages/Build2025Images/AddContext.jpg) 
 
-   ![Checklist](InstructionImages\Build2025Images\Checklist.jpg) 
+   ![Checklist](InstructionImages/Build2025Images/Checklist.jpg) 
 
    *You should see available APIs like:*
 
