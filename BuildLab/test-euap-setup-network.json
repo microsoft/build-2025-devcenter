@@ -1,7 +1,12 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "currentTime": {
+            "type": "string",
+            "defaultValue": "[utcNow('d')]"
+        }
+    },
     "variables": {
         "nsgName": "test-euap-nsg",
         "subnetName": "centraluseuap-subnet",
@@ -12,10 +17,28 @@
     },
     "resources": [
         {
+            "type": "Microsoft.Resources/deploymentScripts", // HACK: only added to test for euap region.
+            "apiVersion": "2023-08-01",
+            "name": "WaitFor5minScript",
+            "location": "[variables('vnetLocation')]",
+            "kind": "AzureCLI",
+            "properties": {
+            "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
+            "azCliVersion": "2.45.0",
+            "scriptContent": "#!\/bin\/bash\r\nsleep 300", // sleep for 5 minutes
+            "timeout": "PT5M",
+            "cleanupPreference": "Always",
+            "retentionInterval": "P1D"
+            }
+        },
+        {
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2024-05-01",
             "name": "[variables('nsgName')]",
             "location": "[variables('vnetLocation')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deploymentScripts', 'WaitFor5minScript')]"
+            ],
             "properties": {
                 "securityRules": [
                     {

@@ -10,8 +10,7 @@ $userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the 
 
 # TEST create a devcenter - DELETE LATER
 az group create -l $location -n $resourceGroupName
-az devcenter admin devcenter create --location $location --name $devCenterName --resource-group $resourceGroupName
-
+# az devcenter admin devcenter create --location $location --name $devCenterName --resource-group $resourceGroupName
 
 
 # Set up Monitoring for the dev center
@@ -23,7 +22,6 @@ $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
 $devcenters = (az devcenter admin devcenter list | ConvertFrom-Json) | Where-Object { $_.name.ToLower() -like "*build*" }
 $devcenterid = $devcenters.id
 az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
-
 
 
 # Work In Progress
