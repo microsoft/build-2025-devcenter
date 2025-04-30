@@ -35,7 +35,7 @@ Also make sure you have the latest version of the [Remote Development](https://m
 
 Click the Dev Box icon in the left sidebar, and select **Sign In**.
 
-![Sign in to Dev Box with Microsoft]('BuildLab\InstructionImages\Build2025Images\SignIn.png')
+![Sign in to Dev Box with Microsoft](InstructionImages/Build2025Images/SignIn.png)
 
 ## 4. Create and Enable Dev Box Tunnel
 
@@ -43,7 +43,7 @@ After signing in, you will see all the projects you have access to. Choose the p
 
 If you see **No Tunnel** in the description, you will need to manually create a tunnel resource first.
 
-![Create Tunnel Screenshot](path/to/image.png)
+![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
 > *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
 > 
@@ -51,13 +51,13 @@ If you see **No Tunnel** in the description, you will need to manually create a 
 
 Then, you can enable the tunnel. This process may take up to 1–3 minutes, as it will install VS Code on the Dev Box (if not already installed) and set up the tunnel.
 
-![Enable Tunnel Screenshot](path/to/image1.png)
+![Enable Tunnel Screenshot](InstructionImages/Build2025Images/EnableTunnel.png)
 
 ## 5. Connect to the Dev Box in VS Code
 
 Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button.
 
-![Connect to Tunnel Screenshot](path/to/image2.png)
+![Connect to Tunnel Screenshot](InstructionImages/Build2025Images/ConnectTunnel.png)
 
 ## 6. Dev Box Remote experience in VS Code
 
@@ -65,13 +65,13 @@ You can open any folder or workspace on the remote Dev Box using **File > Open F
 
 If you have a WSL environment on the Dev Box, you can connect to it using **Remote Explorer**.
 
-![Remote Explorer Screenshot](path/to/image.png)
+![Remote Explorer Screenshot](InstructionImages/Build2025Images/WSLTarget.png)
 
 Select WSL targets from the dropdown and all the WSL distributions will be listed. You can open any WSL distribution in the current or new window.
 
 Select WSL targets from the dropdown and all the WSL distributions will be listed. You can open any WSL distribution in the current or new window.
 
-![WSL Targets Screenshot](path/to/image.png)
+![WSL Targets Screenshot](InstructionImages/Build2025Images/NewWindow.png)
 
 For more information on the WSL development experience, please refer to the [Remote - WSL](#) and [Set up a WSL development environment](#) documentation.
 
