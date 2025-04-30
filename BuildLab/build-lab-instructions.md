@@ -358,4 +358,4 @@ DevCenterAgentHealthLogs
 6. Click on ‘Run’ to run your query.  
 
 
-😀 Congradulations! You have finished the lab! 😀
+😀 Congratulations! You have finished the lab! 😀
