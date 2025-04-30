@@ -29,8 +29,8 @@
         }
     },
     "variables": {
-        "devcenterName":  "[concat('build-', substring(subscription().subscriptionId, 0, 6), '-dc')]", // name might need to be changed.
-        "keyVaultName": "[concat('keyVault-', substring(subscription().subscriptionId, 0, 6))]", // name might need to be changed.
+        "devcenterName":  "[concat('build-', substring(subscription().subscriptionId, 0, 6), '-dc')]",
+        "keyVaultName": "[concat('keyVault-', substring(subscription().subscriptionId, 0, 6))]",
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
@@ -144,7 +144,7 @@
                     "properties": {
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
-                            "branch": "jyotilama/cleanup-kv-dc-naming", // update to main branch after testing
+                            "branch": "main",
                             "path": "catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
