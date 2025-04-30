@@ -11,7 +11,7 @@
         "nsgName": "test-euap-nsg",
         "subnetName": "centraluseuap-subnet",
         "subnetAddressPrefixes": "10.4.0.0/24",
-        "vnetLocation": "centraluseuap",
+        "vnetLocation": "eastus2",
         "vnetName": "centraluseuap-vnet",
         "vnetAddressPrefixes": "10.4.0.0/16"
     },
@@ -20,7 +20,7 @@
             "type": "Microsoft.Resources/deploymentScripts", // HACK: only added to test for euap region.
             "apiVersion": "2023-08-01",
             "name": "WaitFor5minScript2",
-            "location": "westus3", // cannot be euap
+            "location": "eastus2", // cannot be euap
             "kind": "AzureCLI",
             "properties": {
             "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
