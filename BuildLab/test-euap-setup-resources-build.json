@@ -42,7 +42,7 @@
             "type": "Microsoft.Resources/deploymentScripts", // HACK: only added to test for euap region.
             "apiVersion": "2023-08-01",
             "name": "WaitFor5minScript",
-            "location": "[parameters('location')]",
+            "location": "westus3",  // cannot be euap
             "kind": "AzureCLI",
             "properties": {
             "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
