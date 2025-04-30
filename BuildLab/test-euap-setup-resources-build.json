@@ -2,13 +2,13 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "location": {
+        /*"location": {
             "type": "string",
             "defaultValue": "centraluseuap", //"[resourceGroup().location]", lab does not have westus3 option and keeps defaulting to westus2.
             "metadata": {
                 "description": "Location for all resources."
             }
-        },
+        },*/
         "secretName": {
             "type": "string",
             "defaultValue": "GitHubPAT"
@@ -33,6 +33,7 @@
         "keyVaultName": "[concat('keyVault-', substring(subscription().subscriptionId, 0, 6))]", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
+        "location": "centraluseuap",
         "contosoCatalogName": "contosoCatalog",
         "imageDefinitionName": "clone-eshop-repo",
         "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('contosoCatalogName'), '~', variables('imageDefinitionName'))]" // this will be contosoCatalog/clone-eshop-repo.
@@ -57,7 +58,7 @@
             "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
             "apiVersion": "2024-11-30",
             "name": "[variables('userAssignedIdentityName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deploymentScripts', 'WaitFor5minScript')]"
             ]
@@ -66,7 +67,7 @@
             "type": "Microsoft.KeyVault/vaults",
             "apiVersion": "2024-04-01-preview",
             "name": "[variables('keyVaultName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
             "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
             ],
@@ -111,7 +112,7 @@
             "type": "Microsoft.DevCenter/devcenters",
             "apiVersion": "2025-02-01",
             "name": "[variables('devcenterName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
                 "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
@@ -138,7 +139,7 @@
             "type": "Microsoft.DevCenter/projects",
             "apiVersion": "2024-10-01-preview",
             "name": "[variables('projectName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]"
             ],
@@ -179,7 +180,7 @@
             "type": "Microsoft.Resources/deploymentScripts", // HACK: only added this to provide time for the catalog to complete syncing.
             "apiVersion": "2023-08-01",
             "name": "GetUserPrincipalIdScript",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "kind": "AzureCLI",
             "dependsOn": [
                 "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]"
@@ -197,7 +198,7 @@
             "type": "Microsoft.DevCenter/projects/pools",
             "apiVersion": "2024-10-01-preview",
             "name": "[concat(variables('projectName'), '/basic-image-pool')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deploymentScripts', 'GetUserPrincipalIdScript')]"
             ],
@@ -222,7 +223,7 @@
                 "singleSignOnStatus": "Disabled",
                 "virtualNetworkType": "Managed",
                 "managedVirtualNetworkRegions": [
-                    "[parameters('location')]"
+                    "[variables('location')]"
                 ]
             }
         }
