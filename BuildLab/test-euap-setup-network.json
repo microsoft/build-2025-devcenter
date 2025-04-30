@@ -11,7 +11,7 @@
         "nsgName": "test-euap-nsg",
         "subnetName": "centraluseuap-subnet",
         "subnetAddressPrefixes": "10.4.0.0/24",
-        "vnetLocation": "eastus2",
+        "vnetLocation": "centraluseuap",
         "vnetName": "centraluseuap-vnet",
         "vnetAddressPrefixes": "10.4.0.0/16"
     },

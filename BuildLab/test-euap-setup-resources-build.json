@@ -33,7 +33,7 @@
         "keyVaultName": "[concat('keyVault-', substring(subscription().subscriptionId, 0, 6))]", // name might need to be changed.
         "userAssignedIdentityName": "myUserAssignedIdentity",
         "projectName": "myProject",
-        "location": "eastus2",//"centraluseuap",
+        "location": "centraluseuap",
         "contosoCatalogName": "contosoCatalog",
         "imageDefinitionName": "clone-eshop-repo",
         "devBoxDefinitionName": "[concat('/images/~Catalog~', variables('contosoCatalogName'), '~', variables('imageDefinitionName'))]" // this will be contosoCatalog/clone-eshop-repo.
