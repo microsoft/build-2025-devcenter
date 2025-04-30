@@ -2,6 +2,9 @@
 
 # Don't need az login the lab already has the context set up.
 
+Start-Sleep 300 # wait for 5 min
+
+
 # Variables
 $resourceGroupName = 'Build-2025'
 $location =  'centraluseuap' #'westus3'
