@@ -1,0 +1,18 @@
+$schema: 1.0
+name: clone-eshop-repo
+image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
+tasks:
+  - name: ~/winget
+    description: Install Visual Studio Code
+    parameters:
+      package:  Microsoft.VisualStudioCode
+
+  - name: ~/powershell
+    parameters:
+      command: |
+        $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') 
+  
+  # temporaryly disable git clone task since it is not working as expected
+  #- name: git-clone
+  #  parameters:
+  #    repositoryUrl: https://github.com/contoso-co/eShop.git
