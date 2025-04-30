@@ -20,8 +20,10 @@ $laworkspace = az monitor log-analytics workspace create --resource-group $resou
 
 # Create a diagnostic setting on the devcenter
 $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
-$devcenters = (az devcenter admin devcenter list | ConvertFrom-Json) | Where-Object { $_.name.ToLower() -like "*build*" }
-$devcenterid = $devcenters.id
+$subscriptionComponent = "/subscriptions/"+ $subId
+$rgComponent = "/resourceGroups/"+ $resourceGroupName
+$providerComponent = "/providers/Microsoft.DevCenter/devcenters/" + $devCenterName
+$devcenterid = $subscriptionComponent + $rgComponent + $providerComponent
 az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
 
 
