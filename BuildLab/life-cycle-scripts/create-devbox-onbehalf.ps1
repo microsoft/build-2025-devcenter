@@ -1,17 +1,19 @@
 # This is just a testing script in progress to create a dev box on behalf of the lab user.
 
-# Don't need az login and the devcenter extension has already been installed on the vm disk.
+# Don't need az login the lab already has the context set up.
 
 # Variables
-$resourceGroupName = 'onbehalfrg'
-$devCenterName = 'onBehalfDevCenter'
-$location = 'westus3'
-$userID = '7e199eac-e561-43fc-b1d3-dd9dbb4bef71' # This is the object ID of the cloudslice-app
+$resourceGroupName = 'Build-2025'
+$location =  'centraluseuap' #'westus3'
+$userID = '69d563db-e4f3-4bd3-be8c-44926ea56a7d' # This is the object ID of the cloud-slice-app
 
 # TEST create a devcenter - DELETE LATER
 az group create -l $location -n $resourceGroupName
 # az devcenter admin devcenter create --location $location --name $devCenterName --resource-group $resourceGroupName
 
+# Every instance of the lab vm will generate a new subscription ID, which will make the of the dev center name unique.
+$subId = az account show --query "{SubscriptionId:id}" --output tsv
+$devCenterName = 'build-' + $subId.Substring(0, 6) + "-dc"
 
 # Set up Monitoring for the dev center
 # Create a log analytics workspace for the dev center
