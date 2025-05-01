@@ -3,7 +3,7 @@
 # Make sure to update endpoint back to main once the script is ready to be used in production.
 
 # Define the URL of the external script
-$scriptUrl = "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/jyotilama/update-project-premissions/BuildLab/life-cycle-scripts/create-devbox-onbehalf.ps1"
+$scriptUrl = "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/main/BuildLab/life-cycle-scripts/create-devbox-onbehalf.ps1"
  
 try {
         # Use Invoke-WebRequest to download the script
