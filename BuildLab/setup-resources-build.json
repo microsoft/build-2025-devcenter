@@ -249,7 +249,7 @@
             ],
             "properties": {
             "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
-            "azPowerShellVersion": "7.5.1",
+            "azPowerShellVersion": "11.0.1",
             "primaryScriptUri": "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/jyotilama/update-project-premissions/BuildLab/life-cycle-scripts/create-devbox-onbehalf.ps1",
             "timeout": "PT5M",
             "cleanupPreference": "Always",
