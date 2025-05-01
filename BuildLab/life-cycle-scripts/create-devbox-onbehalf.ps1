@@ -2,7 +2,7 @@
 
 # Don't need az login and the devcenter extension has already been installed on the vm disk.
 
-Write-Error "Check Sync: Hello world - test log"
+Write-Warning "Check Sync: Hello world - test log"
 
 # Variables
 $resourceGroupName = 'Build-2025'
@@ -12,7 +12,7 @@ $location = 'westus3'
 $subId = az account show --query "{SubscriptionId:id}" --output tsv
 $devCenterName = "build-$($subId.SubString(0,6))-dc"
 
-Write-Error "attempting to add monitoring to the devcenter"
+Write-Warning "attempting to add monitoring to the devcenter"
 
 # Create a log analytics workspace for the dev center
 $laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
@@ -24,13 +24,13 @@ $rgComponent = "/resourceGroups/$resourceGroupName"
 $providerComponent = "/providers/Microsoft.DevCenter/devcenters/$devCenterName"
 $devcenterid = "$subscriptionComponent$rgComponent$providerComponent"
 
-Write-Error "got devcenter id: $devcenterid"
+Write-Warning "got devcenter id: $devcenterid"
 
 az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
 
-Write-Error "monitoring added to the devcenter"
+Write-Warning "monitoring added to the devcenter"
 
-Write-Error "attempting to create dev box on behalf of the user"
+Write-Warning "attempting to create dev box on behalf of the user"
 
 # Create a new dev box
 $projectName = "myProject"
@@ -50,12 +50,12 @@ $requestBody = @{
     osType = "Windows"
 }
 
-Write-Error "fetch token"
+Write-Warning "fetch token"
 
 # Get the Azure AD token
 $token = az account get-access-token --resource 'https://devcenter.azure.com' --query accessToken --output tsv
 
-Write-Error "fetch token complete"
+Write-Warning "fetch token complete"
 
 # Convert the request body to JSON
 $jsonBody = $requestBody | ConvertTo-Json
@@ -63,13 +63,13 @@ $jsonBody = $requestBody | ConvertTo-Json
 # Define the API endpoint
 $apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/my-build-devbox?api-version=2025-04-01-preview"
 
-Write-Error "send request to create dev box"
-Write-Error "API URL: $apiUrl"
+Write-Warning "send request to create dev box"
+Write-Warning "API URL: $apiUrl"
 
 # Send the web request to create the Dev Box
 $response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
 
-Write-Error "Request sent"
+Write-Warning "Request sent"
 
 # Output the response
 $response
