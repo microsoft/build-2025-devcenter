@@ -2,7 +2,7 @@
 
 # Don't need az login and the devcenter extension has already been installed on the vm disk.
 
-Write-Error "Hello world - test log"
+Write-Warning "Check Sync: Hello world - test log"
 
 # Variables
 $resourceGroupName = 'Build-2025'
@@ -10,24 +10,27 @@ $location = 'westus3'
 
 # Every instance of the lab vm will generate a new subscription ID, which will make the of the dev center name unique.
 $subId = az account show --query "{SubscriptionId:id}" --output tsv
-$devCenterName = "build-${subId.Substring(0, 6)}-dc"
+$devCenterName = "build-$($subId.SubString(0,6))-dc"
 
-# TEST create a devcenter
-#az group create -l $location -n $resourceGroupName
-#az devcenter admin devcenter create --location $locaiton --name $devCenterName --resource-group $resourceGroupName
+Write-Warning "attempting to add monitoring to the devcenter"
 
 # Create a log analytics workspace for the dev center
-$laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
-
+# $laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
 
 # Create a diagnostic setting on the devcenter
 $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
-$subscriptionComponent = "/subscriptions/"+ $subId
-$rgComponent = "/resourceGroups/"+ $resourceGroupName
-$providerComponent = "/providers/Microsoft.DevCenter/devcenters/" + $devCenterName
-$devcenterid = $subscriptionComponent + $rgComponent + $providerComponent
-az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
+$subscriptionComponent = "/subscriptions/$subId"
+$rgComponent = "/resourceGroups/$resourceGroupName"
+$providerComponent = "/providers/Microsoft.DevCenter/devcenters/$devCenterName"
+$devcenterid = "$subscriptionComponent$rgComponent$providerComponent"
 
+Write-Warning "got devcenter id: $devcenterid"
+
+# az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
+
+Write-Warning "monitoring added to the devcenter"
+
+Write-Warning "attempting to create dev box on behalf of the user"
 
 # Create a new dev box
 $projectName = "myProject"
@@ -47,17 +50,26 @@ $requestBody = @{
     osType = "Windows"
 }
 
+Write-Warning "fetch token"
+
 # Get the Azure AD token
 $token = az account get-access-token --resource 'https://devcenter.azure.com' --query accessToken --output tsv
+
+Write-Warning "fetch token complete"
 
 # Convert the request body to JSON
 $jsonBody = $requestBody | ConvertTo-Json
 
 # Define the API endpoint
-$apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/my-build-devbox?api-version=2025-02-01"
+$apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/my-build-devbox?api-version=2025-04-01-preview"
+
+Write-Warning "send request to create dev box"
+Write-Warning "API URL: $apiUrl"
 
 # Send the web request to create the Dev Box
 $response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
+
+Write-Warning "Request sent"
 
 # Output the response
 $response
