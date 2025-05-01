@@ -245,7 +245,7 @@
             "location": "[parameters('location')]",
             "kind": "AzureCLI",
             "dependsOn": [
-                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'), '/pools//basic-image-pool')]"
+                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'), '/pools/basic-image-pool')]"
             ],
             "properties": {
             "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
