@@ -1,6 +1,13 @@
 # This is just a testing script in progress to create a dev box on behalf of the lab user.
-
 # Don't need az login and the devcenter extension has already been installed on the vm disk.
+
+Param (
+    [string]$upn,
+    [string]$oid
+)
+ 
+Write-Host $upn
+Write-Host $oid
 
 Write-Warning "Check Sync: Hello world - test log"
 
