@@ -2,9 +2,6 @@
 
 # Don't need az login the lab already has the context set up.
 
-Start-Sleep 300 # wait for 5 min
-
-
 # Variables
 $resourceGroupName = 'Build-2025'
 $location =  'centraluseuap' #'westus3'
@@ -57,7 +54,7 @@ $jsonBody = $requestBody | ConvertTo-Json
 # test exaxmple: https://72f988bf-86f1-41af-91ab-2d7cd011db47-mybuilddevcenter.eastus2.devcenter.azure.com/
 
 # Define the API endpoint
-$apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/web-test-devbox?api-version=2025-02-01"
+$apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/web-test-devbox?api-version=2025-04-01-preview"
 
 # Send the web request to create the Dev Box
 $response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
