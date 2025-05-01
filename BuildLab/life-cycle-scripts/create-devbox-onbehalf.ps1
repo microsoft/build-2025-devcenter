@@ -15,7 +15,7 @@ $devCenterName = "build-$($subId.SubString(0,6))-dc"
 Write-Warning "attempting to add monitoring to the devcenter"
 
 # Create a log analytics workspace for the dev center
-$laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
+# $laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
 
 # Create a diagnostic setting on the devcenter
 $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
@@ -26,7 +26,7 @@ $devcenterid = "$subscriptionComponent$rgComponent$providerComponent"
 
 Write-Warning "got devcenter id: $devcenterid"
 
-az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
+# az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
 
 Write-Warning "monitoring added to the devcenter"
 
