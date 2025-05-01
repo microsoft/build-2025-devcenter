@@ -44,7 +44,7 @@ userID='69d563db-e4f3-4bd3-be8c-44926ea56a7d' # This is the object ID of the clo
 
 # Option 2: Send request to create dev box
 tenantId="4cfe372a-37a4-44f8-91b2-5faf34253c62" # This is the tenant ID of the cloudslice-app
-# devboxLocation="centraluseuap" # TESTING in eueap
+devboxLocation="centraluseuap" # TESTING in eueap
 
 # Create the request body
 requestBody=$(jq -n --arg poolName "$poolName" --arg osType "Windows" '{poolName: $poolName, osType: $osType}')
@@ -63,9 +63,4 @@ echo "send request to create dev box"
 echo "API URL: $apiUrl"
 
 # Send the web request to create the Dev Box
-response=$(curl -X PUT -H "Authorization: Bearer $token" -H "Content-Type: application/json" -d "$requestBody" "$apiUrl")
-
-echo "Request sent"
-
-# Output the response
-echo $response
+curl -X PUT -H "Authorization: Bearer $token" -H "Content-Type: application/json" -d "$requestBody" "$apiUrl"
