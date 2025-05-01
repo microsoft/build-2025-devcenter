@@ -2,7 +2,7 @@
 
 # Don't need az login and the devcenter extension has already been installed on the vm disk.
 
-Write-Error "Hello world - test log"
+#Write-Error "Hello world - test log"
 
 # Variables
 $resourceGroupName = 'Build-2025'
