@@ -236,7 +236,8 @@
           "apiVersion": "2021-05-01-preview",
           "name": "devcenter-diagnostics",
           "dependsOn": [
-            "[resourceId('Microsoft.OperationalInsights/workspaces', 'DevCenterLogs')]"
+            "[resourceId('Microsoft.OperationalInsights/workspaces', 'DevCenterLogs')]",
+            "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]"
           ],
           "scope": "[resourceId('Microsoft.DevCenter/devcenters', variables('devcenterName'))]",
           "properties": {
