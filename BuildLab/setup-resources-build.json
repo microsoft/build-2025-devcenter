@@ -32,6 +32,7 @@
         "devcenterName":  "[concat('build-', substring(subscription().subscriptionId, 0, 6), '-dc')]",
         "keyVaultName": "[concat('keyVault-', substring(subscription().subscriptionId, 0, 6))]",
         "userAssignedIdentityName": "myUserAssignedIdentity",
+        "roleDefinitionId": "45d50f46-0b78-4001-a660-4198cbe8cd05", // Dev Box User Role set on Project level.
         "projectName": "myProject",
         "contosoCatalogName": "contosoCatalog",
         "imageDefinitionName": "clone-eshop-repo",
@@ -155,6 +156,35 @@
                         "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
                     ]
                 }
+            ]
+        },
+        {
+            "type": "Microsoft.Authorization/roleAssignments",
+            "apiVersion": "2022-04-01",
+            "scope": "[format('Microsoft.DevCenter/projects/{0}', variables('projectName'))]",
+            "name": "[guid(subscription().id, resourceGroup().id, 'onbehalf', variables('roleDefinitionId'))]",
+            "properties": {
+                "description": "Allows deployer to create dev boxes in the project resource.",
+                "principalId": "69d563db-e4f3-4bd3-be8c-44926ea56a7d", // object id of the cloud-slice-app which will create a dev box on behalf of the user.
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitionId'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Authorization/roleAssignments",
+            "apiVersion": "2022-04-01",
+            "scope": "[format('Microsoft.DevCenter/projects/{0}', variables('projectName'))]",
+            "name": "[guid(subscription().id, resourceGroup().id, variables('userAssignedIdentityName'), variables('roleDefinitionId'))]",
+            "properties": {
+                "description": "Allows deployer to create dev boxes in the project resource.",
+                "principalId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName')), '2018-11-30').principalId]", // the lab user managed identity.
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitionId'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]",
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
             ]
         },
         {

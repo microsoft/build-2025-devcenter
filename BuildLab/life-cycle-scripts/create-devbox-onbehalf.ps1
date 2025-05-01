@@ -10,7 +10,7 @@ $location = 'westus3'
 
 # Every instance of the lab vm will generate a new subscription ID, which will make the of the dev center name unique.
 $subId = az account show --query "{SubscriptionId:id}" --output tsv
-$devCenterName = 'build-' + $subId.Substring(0, 6) + "-dc"
+$devCenterName = "build-${subId.Substring(0, 6)}-dc"
 
 # TEST create a devcenter
 #az group create -l $location -n $resourceGroupName
@@ -39,7 +39,7 @@ $userID = '69d563db-e4f3-4bd3-be8c-44926ea56a7d' # This is the object ID of the 
 
 # Option 2: Send request to create dev box
 $tenantId = "4cfe372a-37a4-44f8-91b2-5faf34253c62" # This is the tenat ID of the cloudslice-app
-#$devboxLocation = "centraluseuap" # TESIING in eueap
+$devboxLocation = "centraluseuap" # TESIING in eueap
 
 # Create the request body
 $requestBody = @{
