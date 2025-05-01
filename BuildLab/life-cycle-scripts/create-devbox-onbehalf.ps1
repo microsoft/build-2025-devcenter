@@ -2,7 +2,7 @@
 
 # Don't need az login and the devcenter extension has already been installed on the vm disk.
 
-#Write-Error "Hello world - test log"
+Write-Error "Hello world - test log"
 
 # Variables
 $resourceGroupName = 'Build-2025'
@@ -16,6 +16,7 @@ $devCenterName = 'build-' + $subId.Substring(0, 6) + "-dc"
 # Create a log analytics workspace for the dev center
 $laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
 
+Write-Error "attempting to add monitoring to the devcenter"
 
 # Create a diagnostic setting on the devcenter
 $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
@@ -23,8 +24,12 @@ $subscriptionComponent = "/subscriptions/"+ $subId
 $rgComponent = "/resourceGroups/"+ $resourceGroupName
 $providerComponent = "/providers/Microsoft.DevCenter/devcenters/" + $devCenterName
 $devcenterid = $subscriptionComponent + $rgComponent + $providerComponent
+
+Write-Error "got devcenter id: $devcenterid"
+
 az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
 
+Write-Error "attempting to add monitoring to the devcenter"
 
 # TEST create a devcenter
 az group create -l $location -n $resourceGroupName

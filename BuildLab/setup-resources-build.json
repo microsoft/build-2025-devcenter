@@ -183,7 +183,8 @@
                 "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitionId'))]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]"
+                "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]",
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
             ]
         },
         {
