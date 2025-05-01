@@ -250,7 +250,7 @@
             "properties": {
             "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
             "azCliVersion": "2.45.0",
-            "primaryScriptUri": "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/jyotilama/update-project-premissions/BuildLab/life-cycle-scripts/create-devbox-onbehalf.ps1",
+            "primaryScriptUri": "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/jyotilama/update-project-premissions/BuildLab/life-cycle-scripts/create-onbehalf.sh",
             "timeout": "PT5M",
             "cleanupPreference": "Always",
             "retentionInterval": "P1D"
