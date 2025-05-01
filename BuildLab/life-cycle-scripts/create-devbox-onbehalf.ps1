@@ -12,9 +12,6 @@ $location = 'westus3'
 $subId = az account show --query "{SubscriptionId:id}" --output tsv
 $devCenterName = 'build-' + $subId.Substring(0, 6) + "-dc"
 
-# TEST create a devcenter
-#az group create -l $location -n $resourceGroupName
-#az devcenter admin devcenter create --location $locaiton --name $devCenterName --resource-group $resourceGroupName
 
 # Create a log analytics workspace for the dev center
 $laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
@@ -27,6 +24,12 @@ $rgComponent = "/resourceGroups/"+ $resourceGroupName
 $providerComponent = "/providers/Microsoft.DevCenter/devcenters/" + $devCenterName
 $devcenterid = $subscriptionComponent + $rgComponent + $providerComponent
 az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
+
+
+# TEST create a devcenter
+az group create -l $location -n $resourceGroupName
+az devcenter admin devcenter create --location $locaiton --name $devCenterName --resource-group $resourceGroupName
+#TEST DELETE THIS LATER
 
 
 # Create a new dev box
@@ -54,7 +57,7 @@ $token = az account get-access-token --resource 'https://devcenter.azure.com' --
 $jsonBody = $requestBody | ConvertTo-Json
 
 # Define the API endpoint
-$apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/my-build-devbox?api-version=2025-02-01"
+$apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/my-build-devbox?api-version=2025-04-01-preview"
 
 # Send the web request to create the Dev Box
 $response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
