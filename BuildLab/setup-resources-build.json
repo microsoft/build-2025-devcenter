@@ -243,13 +243,13 @@
             "apiVersion": "2023-08-01",
             "name": "ScriptForCreateOnBehalf",
             "location": "[parameters('location')]",
-            "kind": "AzureCLI",
+            "kind": "AzurePowerShell",
             "dependsOn": [
                 "[resourceId('Microsoft.DevCenter/projects/pools', 'myProject', 'basic-image-pool')]"
             ],
             "properties": {
             "forceUpdateTag": "[parameters('currentTime')]", // Ensures the script runs on every deployment.
-            "azCliVersion": "2.45.0",
+            "azPowerShellVersion": "7.5.1",
             "primaryScriptUri": "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/jyotilama/update-project-premissions/BuildLab/life-cycle-scripts/create-devbox-onbehalf.ps1",
             "timeout": "PT5M",
             "cleanupPreference": "Always",
