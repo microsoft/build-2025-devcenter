@@ -2,7 +2,7 @@
 
 # Don't need az login and the devcenter extension has already been installed on the vm disk.
 
-Write-Log "Check Sync: Hello world - test log"
+Write-Host "Check Sync: Hello world - test log"
 
 # Variables
 $resourceGroupName = 'Build-2025'
@@ -10,27 +10,27 @@ $location = 'westus3'
 
 # Every instance of the lab vm will generate a new subscription ID, which will make the of the dev center name unique.
 $subId = az account show --query "{SubscriptionId:id}" --output tsv
-$devCenterName = 'build-' + $subId.Substring(0, 6) + "-dc"
+$devCenterName = "build-$($subId.SubString(0,6))-dc"
 
-Write-Log "attempting to add monitoring to the devcenter"
+Write-Host "attempting to add monitoring to the devcenter"
 
 # Create a log analytics workspace for the dev center
 $laworkspace = az monitor log-analytics workspace create --resource-group $resourceGroupName --workspace-name "DevCenterLogs" --location "westus2"
 
 # Create a diagnostic setting on the devcenter
 $laworkspaceid = ($laworkspace | ConvertFrom-Json).id
-$subscriptionComponent = "/subscriptions/"+ $subId
-$rgComponent = "/resourceGroups/"+ $resourceGroupName
-$providerComponent = "/providers/Microsoft.DevCenter/devcenters/" + $devCenterName
-$devcenterid = $subscriptionComponent + $rgComponent + $providerComponent
+$subscriptionComponent = "/subscriptions/$subId"
+$rgComponent = "/resourceGroups/$resourceGroupName"
+$providerComponent = "/providers/Microsoft.DevCenter/devcenters/$devCenterName"
+$devcenterid = "$subscriptionComponent$rgComponent$providerComponent"
 
-Write-Log "got devcenter id: $devcenterid"
+Write-Host "got devcenter id: $devcenterid"
 
 az monitor diagnostic-settings create --name DevCenter-Diagnostics --resource $devcenterid --logs '[{"categoryGroup":"allLogs","enabled":true}]' --workspace $laworkspaceid
 
-Write-Log "monitoring added to the devcenter"
+Write-Host "monitoring added to the devcenter"
 
-Write-Log "attempting to create dev box on behalf of the user"
+Write-Host "attempting to create dev box on behalf of the user"
 
 # Create a new dev box
 $projectName = "myProject"
@@ -50,12 +50,12 @@ $requestBody = @{
     osType = "Windows"
 }
 
-Write-Log "fetch token"
+Write-Host "fetch token"
 
 # Get the Azure AD token
 $token = az account get-access-token --resource 'https://devcenter.azure.com' --query accessToken --output tsv
 
-Write-Log "fetch token complete"
+Write-Host "fetch token complete"
 
 # Convert the request body to JSON
 $jsonBody = $requestBody | ConvertTo-Json
@@ -63,13 +63,13 @@ $jsonBody = $requestBody | ConvertTo-Json
 # Define the API endpoint
 $apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/my-build-devbox?api-version=2025-04-01-preview"
 
-Write-Log "send request to create dev box"
-Write-Log "API URL: $apiUrl"
+Write-Host "send request to create dev box"
+Write-Host "API URL: $apiUrl"
 
 # Send the web request to create the Dev Box
 $response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
 
-Write-Log "Request sent"
+Write-Host "Request sent"
 
 # Output the response
 $response
