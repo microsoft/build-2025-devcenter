@@ -158,7 +158,7 @@
                 }
             ]
         },
-        /*{
+        {
             "type": "Microsoft.Authorization/roleAssignments",
             "apiVersion": "2022-04-01",
             "scope": "[format('Microsoft.DevCenter/projects/{0}', variables('projectName'))]",
@@ -186,7 +186,7 @@
                 "[resourceId('Microsoft.DevCenter/projects', variables('projectName'))]",
                 "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('userAssignedIdentityName'))]"
             ]
-        },*/
+        },
         {
             "type": "Microsoft.Resources/deploymentScripts", // HACK: only added this to provide time for the catalog to complete syncing.
             "apiVersion": "2023-08-01",
@@ -239,7 +239,7 @@
             }
         },
         {
-            "type": "Microsoft.Resources/deploymentScripts", // HACK: only added this to provide time for the catalog to complete syncing.
+            "type": "Microsoft.Resources/deploymentScripts", // HACK: only need this so that we can request create a dev box on behalf of the user.
             "apiVersion": "2023-08-01",
             "name": "ScriptForCreateOnBehalf",
             "location": "[parameters('location')]",
