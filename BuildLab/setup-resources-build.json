@@ -158,7 +158,7 @@
                 }
             ]
         },
-                {
+        {
             "type": "Microsoft.Authorization/roleAssignments",
             "apiVersion": "2022-04-01",
             "scope": "[format('Microsoft.DevCenter/projects/{0}', variables('projectName'))]",
