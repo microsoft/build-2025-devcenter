@@ -237,6 +237,63 @@
                     "[parameters('location')]"
                 ]
             }
-        }
+        },
+        {
+          "type": "Microsoft.OperationalInsights/workspaces",
+          "apiVersion": "2021-12-01-preview",
+          "name": "DevCenterLogs",
+          "location": "WestUS2",
+          "dependsOn": [
+            "[resourceId('Microsoft.DevCenter/devcenters', variables('devcenterName'))]"
+          ],
+          "properties": {
+            "sku": {
+              "name": "PerGB2018"
+            },
+            "retentionInDays": 30,
+            "features": {
+              "enableLogAccessUsingOnlyResourcePermissions": true
+            },
+            "workspaceCapping": {
+              "dailyQuotaGb": -1
+            },
+            "publicNetworkAccessForIngestion": "Enabled",
+            "publicNetworkAccessForQuery": "Enabled"
+          }
+        },
+        {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "apiVersion": "2021-05-01-preview",
+          "name": "devcenter-diagnostics",
+          "dependsOn": [
+            "[resourceId('Microsoft.OperationalInsights/workspaces', 'DevCenterLogs')]",
+            "[resourceId('Microsoft.DevCenter/devcenters', variables('devCenterName'))]"
+          ],
+          "scope": "[resourceId('Microsoft.DevCenter/devcenters', variables('devcenterName'))]",
+          "properties": {
+            "workspaceId": "[resourceId('Microsoft.OperationalInsights/workspaces', 'DevCenterLogs')]",
+            "logs": [
+              {
+                "category": null,
+                "categoryGroup": "allLogs",
+                "enabled": true,
+                "retentionPolicy": {
+                  "days": 0,
+                  "enabled": false
+                }
+              }
+            ],
+            "metrics": [
+              {
+                "category": "AllMetrics",
+                "enabled": true,
+                "retentionPolicy": {
+                  "days": 0,
+                  "enabled": false
+                }
+              }
+            ]
+          }
+        }   
     ]
 }
