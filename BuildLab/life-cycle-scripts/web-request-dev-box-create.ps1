@@ -5,6 +5,7 @@ $projectName = "onbehalf-project"
 $poolName = "number-two-pool"
 
 $userID = 'bbc28698-d0fe-42d0-ab02-19099f309d70' # testing app id
+$jyotiUserID = 'fd698db4-ebc3-41b7-b6f8-0623438ae585' # this is jyoti's object ID
 
 $subId = az account show --query "{SubscriptionId:id}" --output tsv
 #$devCenterName = "build-${subId.Substring(0, 6)}-dc"
@@ -46,13 +47,18 @@ Write-Warning "fetch token complete"
 $jsonBody = $requestBody | ConvertTo-Json
 
 # Define the API endpoint
-$apiUrl = "https://$tenantId-build-3de261-dc.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/my-build-devbox?api-version=2025-04-01-preview"
+$apiUrl = "https://$tenantId-build-3de261-dc.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$jyotiUserID/devboxes/my-build-devbox?api-version=2025-04-01-preview"
 
 Write-Warning "send request to create dev box"
 Write-Warning "API URL: $apiUrl"
 
+$Headers = {
+    'Authorization' = "Bearer $token"
+    'x-ms-upn' = 'jyotilama@microsoft.com' 
+}
+
 # Send the web request to create the Dev Box
-$response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
+$response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers $Headers -Body $jsonBody -ContentType "application/json"
 
 # Output the response
 $response
