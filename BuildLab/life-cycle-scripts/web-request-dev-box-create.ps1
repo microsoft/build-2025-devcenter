@@ -52,7 +52,7 @@ $apiUrl = "https://$tenantId-build-3de261-dc.$devboxLocation.devcenter.azure.com
 Write-Warning "send request to create dev box"
 Write-Warning "API URL: $apiUrl"
 
-$Headers = {
+$Headers = @{
     'Authorization' = "Bearer $token"
     'x-ms-upn' = 'jyotilama@microsoft.com' 
 }
