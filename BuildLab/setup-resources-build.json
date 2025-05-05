@@ -146,7 +146,7 @@
                         "gitHub": {
                             "uri": "[parameters('catalogRepositoryUrl')]",
                             "branch": "main",
-                            "path": "conbehalf-catalog/image-definitions",
+                            "path": "onbehalf-catalog/image-definitions",
                             "secretIdentifier": "[concat('https://', variables('keyVaultName'), '.vault.azure.net/secrets/', parameters('secretName'))]"
                         },
                         "syncType": "Scheduled"
