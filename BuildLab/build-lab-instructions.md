@@ -199,10 +199,10 @@ To further simplify the experience of authoring the customization file, you can 
 
 ---
 
-### *To save time in uploading your `imageDefinition.yaml`*  
+### * Go to the Azure Portal to save time in uploading your `imageDefinition.yaml`*  
 We have already pre-created an `imageDefinition.yaml` in a specific repo that you can use.
 
-1. After clicking on your Dev Center in the Azure Portal, click on the blue button 'Create Project' and create a front-end project for the Dev Center. Select that “Contoso-lod50664841” Dev Center. Name it ‘front-end-project’.  
+1. Search for 'Dev Center' in the search bar. After clicking on your Dev Center in the Azure Portal, scroll down to click on the blue button 'Create Project' and create a front-end project for the Dev Center. Select your Dev Center. Name it ‘front-end-project’.  
 2. Follow the steps to finish creating your project.  
     a. On the ‘Dev box management’ tab for the project creation flow, you can set a limit for the number of dev boxes developers can own in the project. For example, I can [limit](#) to 2 dev boxes. Please set this field to 2 or larger. After this step, click ‘Next’  
     b. On the ‘Catalogs’ tab, do not change any defaults. Click ‘Next’  
