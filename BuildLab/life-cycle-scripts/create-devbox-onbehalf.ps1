@@ -8,16 +8,28 @@ Write-Warning "Check Sync: Hello world - test log"
 $subId = az account show --query "{SubscriptionId:id}" --output tsv
 $devCenterName = "build-$($subId.SubString(0,6))-dc"
 
+Write-Warning "Subscription ID: $subId"
+Write-Warning "Dev Center Name: $devCenterName"
 Write-Warning "attempting to create dev box on behalf of the user"
 
 # Create a new dev box
 $projectName = "myProject"
 $poolName = "basic-image-pool"
-$userID = '69d563db-e4f3-4bd3-be8c-44926ea56a7d' # This is the object ID of the cloud-slice-app
+
+# $userID = '69d563db-e4f3-4bd3-be8c-44926ea56a7d' # This is the object ID of the cloud-slice-app
+
+# Get the UPN (User Principal Name) of the user
+$UPN = "@{lab.CloudPortalCredential(User1).Username}"
+$userObjectId = (Get-AzADUser -UserPrincipalName $UPN).id
+
+Write-Host "User info"
+Write-Warning "User Object ID: $userObjectId"
+Write-Warning "User UPN: $UPN"
+
 
 # Send request to create dev box
 $tenantId = "4cfe372a-37a4-44f8-91b2-5faf34253c62" # This is the tenat ID of the cloudslice-app
-$devboxLocation = "centraluseuap" # TESIING in eueap
+$devboxLocation = "eastasia" # TESIING in eastasia
 
 # Create the request body
 $requestBody = @{
@@ -36,13 +48,18 @@ Write-Warning "fetch token complete"
 $jsonBody = $requestBody | ConvertTo-Json
 
 # Define the API endpoint
-$apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userID/devboxes/my-build-devbox?api-version=2025-04-01-preview"
+$apiUrl = "https://$tenantId-$devcenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$userObjectId/devboxes/my-build-devbox?api-version=2025-04-01-preview"
 
 Write-Warning "send request to create dev box"
 Write-Warning "API URL: $apiUrl"
 
+$Headers = @{
+    'Authorization' = "Bearer $token"
+    'x-ms-upn' = $UPN
+}
+
 # Send the web request to create the Dev Box
-$response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers @{Authorization = "Bearer $token"} -Body $jsonBody -ContentType "application/json"
+$response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers $Headers -Body $jsonBody -ContentType "application/json"
 
 Write-Warning "Request sent"
 
