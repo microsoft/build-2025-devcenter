@@ -20,11 +20,11 @@ $poolName = "basic-image-pool"
 
 # Get the UPN (User Principal Name) of the user
 $UPN = "@{lab.CloudPortalCredential(User1).Username}"
-$userObjectId = $(az ad user show --id $UPN --query "id" --output tsv)  #(Get-AzADUser -UserPrincipalName $UPN).id
+$userObjectId = $(az ad user show --id $testJyotiUPN --query "id" --output tsv) # (Get-AzADUser -UserPrincipalName $UPN).id
 
 Write-Host "User info"
-Write-Warning "User Object ID: $userObjectId"
-Write-Warning "User UPN: $UPN"
+Write-Host "User UPN: $UPN"
+Write-Host "User Object ID: $userObjectId"
 
 # Set access for the user
 # Assign the 'Dev Center Dev Box User' role to the user
@@ -32,8 +32,13 @@ az role assignment create `
     --assignee-object-id $userObjectId `
     --assignee-principal-type User `
     --role "DevCenter Dev Box User" `
-    --scope "/subscriptions/$subId/resourceGroups/Build-2025/providers/Microsoft.DevCenter/projects/$projectName"
+    --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.DevCenter/projects/$projectName"
 
+Write-Host "Done assigning role to user"
+
+Start-Sleep -Seconds 10 # wait for the role assignment to propagate
+
+Write-Host "Attempting to create dev box on behalf of the user"
 
 # Send request to create dev box
 $tenantId = "4cfe372a-37a4-44f8-91b2-5faf34253c62" # This is the tenat ID of the cloudslice-app
