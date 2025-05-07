@@ -2,7 +2,7 @@
 
 # Part 1: Connect and use your dev box
 
-## Connect to your Dev Box
+## Connect to your Dev Box in the Developer Portal 
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
     - Note: Feel free to close the tutorial for the Developer Portal. 
 
@@ -20,7 +20,7 @@
 ## 2. Connect to your Dev Box using a Dev Box Tunnel. 
 1. Close your Dev Box. Open VS Code on your machine. 
 
-7. Open Extensions view in VS Code (`Ctrl+Shift+X`) and select the `...` icon on the top right corner.  You should see the Dev Box Extension.
+2. Open Extensions view in VS Code (`Ctrl+Shift+X`) and select the `...` icon on the top right corner.  You should see the Dev Box Extension.
 
 ## 3. Sign in to the Dev Box Extension
 
@@ -28,11 +28,9 @@ Click the Dev Box icon in the left sidebar, and select **Sign In**.
 
 ![Sign in to Dev Box with Microsoft](InstructionImages/Build2025Images/SignIn.png)
 
-## 4. Create and Enable Dev Box Tunnel
+## 4. Create and Enable the Dev Box Tunnel
 
 After signing in, you will see all the projects you have access to. Choose the project where you created the Dev Box, and select the Dev Box you want to connect to.
-
-If you see **No Tunnel** in the description, you will need to manually create a tunnel resource first.
 
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
@@ -40,7 +38,7 @@ If you see **No Tunnel** in the description, you will need to manually create a 
 > 
 > *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
 
-Then, you can enable the tunnel. This process may take up to 1–3 minutes, as it will install VS Code on the Dev Box (if not already installed) and set up the tunnel.
+Then, you can enable the tunnel by clicking on the settings gear next to the tunnel - you'll see 'enable tunnel'. This process may take up to 1–3 minutes, as it will install VS Code on the Dev Box (if not already installed) and set up the tunnel.
 
 ![Enable Tunnel Screenshot](InstructionImages/Build2025Images/EnableTunnel.png)
 
@@ -56,9 +54,8 @@ You can open any folder or workspace on the remote Dev Box using **File > Open F
 
 If you have a WSL environment on the Dev Box, you can connect to it using **Remote Explorer**.
 
-![Remote Explorer Screenshot](InstructionImages/Build2025Images/WSLTarget.png)
 
-Select WSL targets from the dropdown and all the WSL distributions will be listed. You can open any WSL distribution in the current or new window.
+![Remote Explorer Screenshot](InstructionImages/Build2025Images/WSLTarget.png)
 
 Select WSL targets from the dropdown and all the WSL distributions will be listed. You can open any WSL distribution in the current or new window.
 
@@ -146,14 +143,15 @@ Attach your network connection to your Dev Center so it can later be used to cre
 2. Open Visual Studio Code  
 3. Go to Extensions (`Ctrl+Shift+X`) and verify that the Dev Box extension is installed  
     a. If not installed, search for "Dev Box" and install it  
-4. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box. If not, clone the repository  
+4. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box (click on File, Open Folder, C Drive, Users, click on your User, Repos, Contoso-co/Eshop). 
+    - If the repository is not there, clone the repository.  
 5. Open the cloned repository in VS Code  
 
 #### *Experience in Dev Box VS Code Extension*
 
-5. Create a new `imagedefinition.yaml` file  
-6. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/contoso-base/imagedefinition.yaml)  
-7. For example, to configure pre-installation of VS Code and configure environment variables, add the following to the `imagedefinition.yaml` file:
+1. Create a new `imagedefinition.yaml` file inside the catalog\image-definitions folder. 
+2. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/contoso-base/imagedefinition.yaml)  
+3. For example, to configure pre-installation of VS Code and configure environment variables, add the following to the `imagedefinition.yaml` file:
 
     ```yaml
     - name: '~/winget'
@@ -167,28 +165,28 @@ Attach your network connection to your Dev Center so it can later be used to cre
           $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
     ```
 
-8. As you like, you could continue the process to configure more packages and tools
+4. You could continue the process to configure more packages and tools as you like!
 
 ---
 
-### *Experience using agentic workflow in VS Code*  
+### *Continue editing your imagedefinition.yaml by using agentic workflow in VS Code*  
 To further simplify the experience of authoring the customization file, you can leverage the agentic workflow to directly generate an `imagedefinition.yaml` file through prompts and conversations
 
-9. Open Copilot Chat  
-    a. Ensure Dev Box tools are pre-selected under Select Tools  
-    b. Select Agent mode and choose the model Claude 3.5 Sonnet  
+5. Open Copilot Chat  
+    a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet  
+    b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon top left of the Co-Pilot chat).
 
-10. In the chat, enter:  
+6. In the chat, enter:  
     `"Help me configure a dev box to work on this repo"`  
     a. The agent will scan the repository to identify the application type and components (Web, API, Blazor, etc.)  
 
-11. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
+7. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
     a. `imagedefinition.yaml` will include git cloning the specific repository onto the dev box  
 
-12. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
-13. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
-14. Copy and run the validation command in the Terminal  
-15. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
+8. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
+9. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
+10. Copy and run the validation command in the Terminal  
+11. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
 
 ---
 
