@@ -1,13 +1,26 @@
 
-# Define the URL of the external script
+# This script is attached to the Lab Vm life cycle.
 # Make sure to update endpoint back to main once the script is ready to be used in production.
-$scriptUrl = "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/main/BuildLab/life-cycle-scripts/link-script.ps1"
 
+# Define the URL of the external script
+$scriptUrl = "https://raw.githubusercontent.com/microsoft/build-2025-devcenter/refs/heads/main/BuildLab/life-cycle-scripts/create-devbox-onbehalf.ps1"
+ 
 try {
-
-    . { iwr -useb $scriptUrl } | iex; install
-
+        # Use Invoke-WebRequest to download the script
+        $response = Invoke-WebRequest -UseBasicParsing -Uri $scriptUrl
+ 
+        Write-Host "Parsed script url"
+ 
+        # Extract the content from the response
+        $scriptContent = $response.Content
+ 
+        Write-Host "Got content from script"
+ 
+        # Execute the script content
+        Invoke-Expression $scriptContent
+ 
+        Write-Host "Finished invoking script"
 }
 catch {
-    Write-Error "Failed to download the script from the URL. Error: $_"
+    Write-Error "Failed to download or run the script from the URL. Error: $_"
 }
