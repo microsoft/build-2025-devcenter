@@ -2,6 +2,8 @@
 
 # Part 1: Connect and use your dev box
 
+TEMPORARY VSIX FILE FOR DEV BOX EXTENSION TESTING: https://microsoftapc-my.sharepoint.com/:u:/g/personal/kesu_microsoft_com/EaOakCxkd49KiajOgmy8CBkBcoSUupgONmWbsMrA7pw41Q?e=2Eg8tm 
+
 ## Connect to your Dev Box in the Developer Portal 
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
     - Note: Feel free to close the tutorial for the Developer Portal. 
