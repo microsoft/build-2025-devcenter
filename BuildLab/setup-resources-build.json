@@ -4,7 +4,7 @@
     "parameters": {
         "location": {
             "type": "string",
-            "defaultValue": "westus3", //"[resourceGroup().location]", lab does not have westus3 option and keeps defaulting to westus2.
+            "defaultValue": "eastasia", // testing in eastasia, change back to westus3 later.
             "metadata": {
                 "description": "Location for all resources."
             }
