@@ -1,14 +1,13 @@
 
 
 # Create a new dev box in the pool
-$projectName = "onbehalf-project"  
-$poolName = "number-two-pool"
+$projectName = "onbehalf-test"  
+$poolName = "onbehalf-test-eastasia-pool"
 
-$userID = 'bbc28698-d0fe-42d0-ab02-19099f309d70' # testing app id
 $jyotiUserID = 'fd698db4-ebc3-41b7-b6f8-0623438ae585' # this is jyoti's object ID
 
-$subId = az account show --query "{SubscriptionId:id}" --output tsv
-#$devCenterName = "build-${subId.Substring(0, 6)}-dc"
+
+$devCenterName = "onbehalf-test-f6z7ja-dc"
 
 write-host "Dev Center Name: $devCenterName"
 
@@ -17,7 +16,7 @@ write-host "Dev Center Name: $devCenterName"
 # send request to create dev box
 # Define the necessary variables
 $tenantId = "72f988bf-86f1-41af-91ab-2d7cd011db47"
-$devboxLocation = "centraluseuap" # The location where the Dev Box will be created
+$devboxLocation = "eastasia" # The location where the Dev Box will be created
 
 # Create the request body
 $requestBody = @{
@@ -26,7 +25,9 @@ $requestBody = @{
 }
 
 # Get the Azure AD token
-#$token = az account get-access-token --resource 'https://devcenter.azure.com' --query accessToken --output tsv
+# $token = az account get-access-token --resource 'https://devcenter.azure.com' --query accessToken --output tsv # create dev box on manual? 
+
+
 $token = Get-Content -Path ".\temp-token.txt" -Raw # TESTING
 
 # Convert the request body to JSON
@@ -47,7 +48,7 @@ Write-Warning "fetch token complete"
 $jsonBody = $requestBody | ConvertTo-Json
 
 # Define the API endpoint
-$apiUrl = "https://$tenantId-build-3de261-dc.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$jyotiUserID/devboxes/my-build-devbox?api-version=2025-04-01-preview"
+$apiUrl = "https://$tenantId-$devCenterName.$devboxLocation.devcenter.azure.com/projects/$projectName/users/$jyotiUserID/devboxes/manual-test-onbehalf-create?api-version=2025-04-01-preview"
 
 Write-Warning "send request to create dev box"
 Write-Warning "API URL: $apiUrl"
