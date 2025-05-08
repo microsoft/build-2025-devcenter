@@ -10,12 +10,14 @@
 
 2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 'Click on ‘Connect via app’ to connect to your dev box.
 
-*You will see a pop-up suggesting you download the Windows App.*
+*We will next download the Windows App for the best experience connecting to your Dev Box.*
 
-3. Follow those steps and download it from the App Store. Once installed, login into the Windows App to connect to your Dev Box from a Desktop Client.
- **Note:** you will need to sign into the Windows App with your username and password for the Developer portal.
-4. You can skip the Windows App tutorial as well and connect to your Dev Box.
-
+3. Click on the Settings Gear on the top right of the developer portal. 
+4. Click on the link 'Windows App'. This should lead you to the Microsoft Store. 
+5. Download the Windows App. Open the file and follow the steps to install the app. 
+6. Sign into the Windows App using the same login as what you used for the Developer Portal.
+7. Feel free to skip the Windows App tutorial. You should see your dev box in the Windows App.
+8. Click on 'Connect' in the Windows App to connect to your Dev Box. 
 
 ## 2. Connect to your Dev Box using a Dev Box Tunnel. 
 1. Close your Dev Box. Open VS Code on your machine. 
@@ -35,7 +37,7 @@ After signing in, you will see all the projects you have access to. Choose the p
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
 > *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
-> 
+
 > *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
 
 Then, you can enable the tunnel by clicking on the settings gear next to the tunnel - you'll see 'enable tunnel'. This process may take up to 1–3 minutes, as it will install VS Code on the Dev Box (if not already installed) and set up the tunnel.
