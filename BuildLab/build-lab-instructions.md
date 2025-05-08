@@ -204,10 +204,10 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 3. You can create a catalog for the specific project:  
     a. Expand the 'Settings' section, select 'Identity', then 'User Assigned' tab on the blade, then ‘+Add’, and click the 'myUserAssignedIdentity' option. Then, add the identity.  
 4. Select ‘+Add’ and finish creating your project catalog by adding a name (‘MyCatalog’), selecting ‘GitHub’ as your catalog location, then select ‘Personal access token’. This will use a repository we prepared for this lab. Fill in the following:  
-    a. **Repository**: `https://github.com/microsoft/build-2025-devcenter.git`  
+    a. **Repository**: `https://github.com/jylama/build-2025-devcenter.git`  
     b. **Branch**: `main`  
     c. **Folder path**: `catalog/image-definitions`  
-    d. **Secret Identifier NOTE: you need to modify this URL using the first 5 characters in your subscription name**: `https://keyVault-firstFiveCharactersOfSubscription.vault.azure.net/secrets/GitHubPAT`  You can find the first 5 characters by going to your project, and clicking on 'overview'. 
+    d. **Secret Identifier NOTE: you need to modify this URL using the first 6 characters in your subscription**: `https://keyvault-[first 6 characters of user subscription id].vault.azure.net/secrets/GitHubPAT`  You can find the first 6 characters by going to your project, and clicking on 'overview'. 
 
 5. Once the Catalog attach and sync are complete, select ‘image definitions’ and you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
