@@ -2,7 +2,7 @@
 
 # Part 1: Connect and use your dev box
 
-TEMPORARY VSIX FILE FOR DEV BOX EXTENSION TESTING: https://github.com/microsoft/build-2025-devcenter/blob/sagarlankala-patch-1/extension-1.0.0.3049.387.vsix 
+TEMPORARY VSIX FILE FOR DEV BOX EXTENSION TESTING: https://github.com/microsoft/build-2025-devcenter/blob/main/extension-1.0.0.3049.387.vsix 
 
 ## Connect to your Dev Box in the Developer Portal 
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
