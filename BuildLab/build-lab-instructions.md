@@ -181,7 +181,7 @@ To further simplify the experience of authoring the customization file, you can 
     b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon top left of the Co-Pilot chat).
 
 6. In the chat, enter:  
-    `"I want to configure a dev box with all the tools and packages required to work on the eShop repo"`  
+    `"I want to configure a dev box for my team with all the tools and packages required to work on the eShop repo"`  
     a. The agent will scan the repository to identify the application type and components (Web, API, Blazor, etc.)  
 
 7. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
