@@ -1,0 +1,11 @@
+
+Name             : Test-Create-OnBehalf
+Id               : 
+IsCustom         : True
+Description      : Custom role for managing Dev Boxes
+Actions          : {Microsoft.DevCenter/projects/*, Microsoft.Authorization/*/read, Microsoft.Resources/deployments/*, Microsoft.Resources/subscriptions/resourceGroups/read}
+NotActions       : {Microsoft.DevCenter/projects/write, Microsoft.DevCenter/projects/delete}
+DataActions      : {Microsoft.DevCenter/projects/users/devboxes/adminStart/action, Microsoft.DevCenter/projects/users/devboxes/adminStop/action, Microsoft.DevCenter/projects/users/devboxes/adminRead/action, Microsoft.DevCenter/projects/users/devboxes/adminWrite/action…}
+NotDataActions   : 
+AssignableScopes : {/subscriptions/3de261df-f2d8-4c00-a0ee-a0be30f1e48e}
+
