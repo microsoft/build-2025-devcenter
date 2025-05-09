@@ -90,11 +90,13 @@ New-AzRoleDefinition -Role $roleDefinition
 # Wait for the custom role definition to propagate
 Start-Sleep -Seconds 5
 
-# Assign the custom role to the user
+$appObjectId = "69d563db-e4f3-4bd3-be8c-44926ea56a7d" # The object ID of the cloud splice app
+
+# Assign the custom role to the cloud splice app object ID
 New-AzRoleAssignment `
-    -ObjectId $userObjectId `
+    -ObjectId $appObjectId `
     -RoleDefinitionName "Dev-Box-Create-OnBehalf" `
-    -Scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.DevCenter/projects/$projectName"
+    -Scope "/subscriptions/$subId"
 
 
 $check1 = "Assigned custom role"
