@@ -2,8 +2,6 @@
 
 # Part 1: Connect and use your dev box
 
-TEMPORARY VSIX FILE FOR DEV BOX EXTENSION TESTING: https://microsoftapc-my.sharepoint.com/:u:/g/personal/kesu_microsoft_com/EaOakCxkd49KiajOgmy8CBkBcoSUupgONmWbsMrA7pw41Q?e=2Eg8tm 
-
 ## Connect to your Dev Box in the Developer Portal 
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
     - Note: Feel free to close the tutorial for the Developer Portal. 
@@ -56,7 +54,7 @@ Once everything is set up, you can open the Dev Box in VS Code by clicking the *
 
 You can open any folder or workspace on the remote Dev Box using **File > Open File/Folder/Workspace** just as you would locally!
 
-If you have a WSL environment on the Dev Box, you can connect to it using **Remote Explorer**.
+## If you have a WSL environment on the Dev Box, you can connect to it using **Remote Explorer**.
 
 
 ![Remote Explorer Screenshot](InstructionImages/Build2025Images/WSLTarget.png)
@@ -67,7 +65,7 @@ Select WSL targets from the dropdown and all the WSL distributions will be liste
 
 For more information on the WSL development experience, please refer to the [Remote - WSL](#) and [Set up a WSL development environment](#) documentation.
 
-# Part 2: Explore dev box troubleshooting capabilities
+# Part 2: Explore Dev Box SnapShot and Restore
 ## Take a snapshot of your dev box to (later) restore
 
 To access the self-serve + use the Snapshot and Restore feature, follow these steps:
@@ -82,6 +80,13 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 
 
 ## Open a Developer MCP Server and enable Dark Mode for your Dev Box
+Open Windows Powershell and login to your work or school account.
+![image](https://github.com/user-attachments/assets/84714c1a-9002-4b90-a7cb-d3cc096732c6)
+Login with the lab account 
+![image](https://github.com/user-attachments/assets/8bbffe13-043b-4d15-a3d5-11b5252d458c)
+Type az login in the Powershell command line.
+![image](https://github.com/user-attachments/assets/16ee01bd-f68c-46b4-a654-e804b6a0c7de)
+
 
 1. **Open GitHub Copilot chat in your local VS Code**
 
