@@ -2,7 +2,6 @@
 
 # Part 1: Connect and use your dev box
 
-TEMPORARY VSIX FILE FOR DEV BOX EXTENSION TESTING: https://github.com/microsoft/build-2025-devcenter/blob/main/extension-1.0.0.3049.387.vsix 
 
 ## Connect to your Dev Box in the Developer Portal 
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
@@ -54,20 +53,9 @@ Once everything is set up, you can open the Dev Box in VS Code by clicking the *
 
 ## 6. Dev Box Remote experience in VS Code
 
-You can open any folder or workspace on the remote Dev Box using **File > Open File/Folder/Workspace** just as you would locally!
+You can open any folder or workspace on the remote Dev Box using **File > Open File/Folder/Workspace** just as you would locally! If you have a WSL environment on the Dev Box, you can connect to it using **Remote Explorer**.
 
-If you have a WSL environment on the Dev Box, you can connect to it using **Remote Explorer**.
-
-
-![Remote Explorer Screenshot](InstructionImages/Build2025Images/WSLTarget.png)
-
-Select WSL targets from the dropdown and all the WSL distributions will be listed. You can open any WSL distribution in the current or new window.
-
-![WSL Targets Screenshot](InstructionImages/Build2025Images/NewWindow.png)
-
-For more information on the WSL development experience, please refer to the [Remote - WSL](#) and [Set up a WSL development environment](#) documentation.
-
-# Part 2: Explore dev box troubleshooting capabilities
+# Part 2: Explore Dev Box SnapShot and Restore
 ## Take a snapshot of your dev box to (later) restore
 
 To access the self-serve + use the Snapshot and Restore feature, follow these steps:
