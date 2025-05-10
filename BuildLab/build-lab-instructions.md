@@ -38,6 +38,7 @@ After signing in, you will see all the projects you have access to. Choose the p
 
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
+# PreRequisite
 > *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
 
 > *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
@@ -82,6 +83,16 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 
 
 ## Open a Developer MCP Server and enable Dark Mode for your Dev Box
+# PreRequisite
+
+1. Open Windows Powershell and login to your work or school account.
+![image](https://github.com/user-attachments/assets/84714c1a-9002-4b90-a7cb-d3cc096732c6)
+
+2.Login with the lab account 
+![image](https://github.com/user-attachments/assets/8bbffe13-043b-4d15-a3d5-11b5252d458c)
+
+3.Type az login in the Powershell command line.
+![image](https://github.com/user-attachments/assets/16ee01bd-f68c-46b4-a654-e804b6a0c7de)
 
 1. **Open GitHub Copilot chat in your local VS Code**
 
