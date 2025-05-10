@@ -2,8 +2,6 @@
 
 # Part 1: Connect and use your dev box
 
-TEMPORARY VSIX FILE FOR DEV BOX EXTENSION TESTING: https://github.com/microsoft/build-2025-devcenter/blob/main/extension-1.0.0.3049.387.vsix 
-
 ## Connect to your Dev Box in the Developer Portal 
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
     - Note: Feel free to close the tutorial for the Developer Portal. 
@@ -86,13 +84,13 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 # PreRequisite
 
 1. Open Windows Powershell and login to your work or school account.
-![image](https://github.com/user-attachments/assets/84714c1a-9002-4b90-a7cb-d3cc096732c6)
+
 
 2.Login with the lab account 
-![image](https://github.com/user-attachments/assets/8bbffe13-043b-4d15-a3d5-11b5252d458c)
+
 
 3.Type az login in the Powershell command line.
-![image](https://github.com/user-attachments/assets/16ee01bd-f68c-46b4-a654-e804b6a0c7de)
+
 
 1. **Open GitHub Copilot chat in your local VS Code**
 
