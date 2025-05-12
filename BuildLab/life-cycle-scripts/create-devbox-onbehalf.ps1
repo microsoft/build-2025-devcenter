@@ -7,6 +7,11 @@ $subId = '@lab.CloudSubscription.Id'
 $rg = '@lab.CloudResourceGroup(ResourceGroup1).Name'
 $devCenterName = "build-$($subId.SubString(0,6))-dc"
 
+# Set the desired subscription context
+Set-AzContext -SubscriptionId $subId
+# Register the feature
+Register-AzProviderFeature -FeatureName "DevTunnelsPreview" -ProviderNamespace "Microsoft.DevCenter"
+
 # Create a new dev box
 $projectName = "myProject"
 $poolName = "basic-image-pool"
