@@ -28,7 +28,7 @@ New-AzRoleAssignment `
 
 # Define the custom role properties for OnBehalf creation
 $customRole = @{
-    Name = "Dev-Box-Create-OnBehalf"
+    Name = "Dev-Box-Create-OnBehalf-$devCenterName"
     IsCustom = $true
     Description = "Custom role for managing Dev Boxes"
     Actions = @(
@@ -95,7 +95,7 @@ $appObjectId = "69d563db-e4f3-4bd3-be8c-44926ea56a7d" # The object ID of the clo
 # Assign the custom role to the cloud splice app object ID
 New-AzRoleAssignment `
     -ObjectId $appObjectId `
-    -RoleDefinitionName "Dev-Box-Create-OnBehalf" `
+    -RoleDefinitionName "Dev-Box-Create-OnBehalf-$devCenterName" `
     -Scope "/subscriptions/$subId"
 
 
