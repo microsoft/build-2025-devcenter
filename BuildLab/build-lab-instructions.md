@@ -197,6 +197,20 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 5. Once the Catalog attach and sync are complete, click on the 'Manage' dropdown and select ‘image definitions’- you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
 
+# Part 4: Restore your dev box in the Developer Portal!
+*We can now complete step 8 in part 2 to restore your Dev Box!* 
+1. Go to devportal.microsoft.com
+2. Select the Dev Box environment you wish to restore.
+3. Click on "Restore."
+4. Choose the desired [restore](#) point from the list of available **snapshots**.
+5. Confirm the restoration process.
+6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
+
+
+# Part 5: Go to the Azure Portal and add additional governance to your dev box setup
+
+*We are going to edit your existing project and create a new pool to use the custom definition you previously created along with the custom network. We will add additional governance capabilities to that project + pool setup for utmost security and easiest management.*
+
 ### *Create a custom network connection in the Azure Portal*
 *Create custom network connection resources to leverage firewalls or connect to on-premise resources.  
 For the sake of time, we have created a VNET.*
@@ -212,23 +226,9 @@ Attach your network connection to your Dev Center so it can later be used to cre
 2. Click on the 'Dev Box Configuration' dropdown, then select 'Networking' 
 3. Click on 'Add'. Then select the network connection you created. 
 
-# Part 4: Restore your dev box in the Developer Portal!
-*We can now complete step 8 in part 2 to restore your Dev Box!* 
-1. Go to devportal.microsoft.com
-2. Select the Dev Box environment you wish to restore.
-3. Click on "Restore."
-4. Choose the desired [restore](#) point from the list of available **snapshots**.
-5. Confirm the restoration process.
-6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
-
-
-# Part 5: Go to the Azure Portal and add additional governance to your dev box setup
-
-*We are going to edit your existing project and create a new pool to use the custom definition you previously created along with the custom network. We will add additional governance capabilities to that project + pool setup for utmost security and easiest management.*
-
 ## Configure your existing project for additional governance
 
-1. Navigate to your existing project. Select ‘Settings’ in the side menu.
+1. Navigate to your existing project you created in the customizations section. Select ‘Settings’ in the side menu.
 
 ## Apply Tunnels to allow developers to connect remotely to their dev box from other clients.
 
