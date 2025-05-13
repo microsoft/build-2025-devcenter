@@ -116,36 +116,17 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 
 # Part 3: Customize your Dev Box
 
-### *Create a custom network connection in the Azure Portal*
+### *Configure a custom image definition using AI in your Dev Box*
 
-*Create custom network connection resources to leverage firewalls or connect to on-premise resources.  
-For the sake of time, we have created a VNET.*
-
-1. Open up a new tab and go to portal.azure.com, log in using your user name and password for the Azure Portal (found in the side panel) and follow the steps to finish creating a Network Connection
-
-    a. Search for ‘Network Connections’ in the search bar of the Azure portal. Click ‘Create’ to start network connection creation.  
-    b. Name your network connection. Select the Virtual Network we have provided in our new region Spain Central. Click on ‘Create’.
-
-### *Attach your network connection to your Dev Center* 
-Attach your network connection to your Dev Center so it can later be used to create Dev Boxes. 
-1. Look up 'Dev Center' in the search bar. Select your Dev Center. 
-2. Click on the 'Dev Box Configuration' dropdown, then select 'Networking' 
-3. Click on 'Add'. Then select the network connection you created. 
-
-### *Configure a custom image definition to pre-configure Dev Boxes for your team*
-
-**Create an image definition to customize dev boxes based on the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes**
+**Create an image definition to customize dev boxes to the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes**
 
 1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'. 
 2. Open Visual Studio Code in your Dev Box.  
 3. Go to Extensions (`Ctrl+Shift+X`) and verify that the Dev Box extension is installed  
-    a. If not installed, search for "Dev Box" and install it
-   
-![image](https://github.com/user-attachments/assets/ac2a725e-cae1-4266-a8df-7907e44015e4)
-
-5. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box (click on File, Open Folder, C Drive, Users, click on your User, Repos, Contoso-co/Eshop). 
+    a. If not installed, search for "Dev Box" and install it  
+4. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box (click on File, Open Folder, C Drive, Users, click on your User, Repos, Contoso-co/Eshop). 
     - If the repository is not there, clone the repository.  
-6. Open the cloned repository in VS Code  
+5. Open the cloned repository in VS Code  
 
 #### *Experience in Dev Box VS Code Extension*
 
@@ -169,37 +150,24 @@ Attach your network connection to your Dev Center so it can later be used to cre
 
 ---
 
-### *Leverage agentic workflow in VS Code to create or modify your imagedefinition.yaml*  
+### *Continue editing your imagedefinition.yaml by using agentic workflow in VS Code*  
 To further simplify the experience of authoring the customization file, you can leverage the agentic workflow to directly generate an `imagedefinition.yaml` file through prompts and conversations
 
 5. Open Copilot Chat  
-    a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet
-![image](https://github.com/user-attachments/assets/51ad30d7-402f-4969-a6f4-cc757362b7a9)
-
+    a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet  
     b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon top left of the Co-Pilot chat).
-![image](https://github.com/user-attachments/assets/441cd55b-9eb3-4ee7-b9a7-cd7cef383546)
-![image](https://github.com/user-attachments/assets/5a16cfb4-417d-479d-a819-2201d1902c48)
 
-
-7. In the chat, enter:  
+6. In the chat, enter:  
     `"I want to configure a dev box for my team with all the tools and packages required to work on the eShop repo"`  
     a. The agent will scan the repository to identify the application type and components (Web, API, Blazor, etc.)  
 
-8. When prompted, select ‘Continue’ to configure the allowed WinGet packages and generate the `imagedefinition.yaml`  
+7. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
     a. `imagedefinition.yaml` will include git cloning the specific repository onto the dev box  
 
-9. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
-10. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator. Copy and run the validation command in the Terminal  
-11. Once validation completes, you can apply customizations on the current dev box
-    
-    a. Open Command Palette(Ctrl+Shift+P)  
-    b. Select 'Dev Box: Apply Customization Tasks'  
-    c. Confirm the UAC prompts to install tools and apply the settings  
-
-    ![image](https://github.com/user-attachments/assets/e3b41125-1737-4935-a2a9-3c1958cf4c66)
-
-   
-13. To share and configure the team's dev boxes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
+8. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
+9. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
+10. Copy and run the validation command in the Terminal  
+11. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
 
 ---
 
@@ -220,15 +188,29 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 
     ![Remember your subscription](InstructionImages/Build2025Images/RememberSubscription.png)
 
-4. Select ‘+Add’ and finish creating your project catalog by adding a name (‘MyCatalog’), selecting ‘GitHub’ as your catalog location, then select ‘Personal access token’. This will use a repository we prepared for this lab. Fill in the following:  
+4. Go to the Catalog's blade above the Identity blade.Select ‘+Add’ and finish creating your project catalog by adding a name (‘MyCatalog’), selecting ‘GitHub’ as your catalog location, then select ‘Personal access token’. This will use a repository we prepared for this lab. Fill in the following:  
     a. **Repository**: `https://github.com/jylama/build-2025-devcenter.git`  
     b. **Branch**: `main`  
     c. **Folder path**: `catalog/image-definitions`  
     d. **Secret Identifier NOTE: you need to modify this URL using the first 6 characters in your subscription**: `https://keyvault-[first 6 characters of user subscription id].vault.azure.net/secrets/GitHubPAT`  This is where you can use those 6 characters you noted! You can also find the first 6 characters by going to your project, and clicking on 'overview'. 
 
-5. Once the Catalog attach and sync are complete, select ‘image definitions’ and you can see image definitions imported  
+5. Once the Catalog attach and sync are complete, click on the 'Manage' dropdown and select ‘image definitions’- you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
 
+### *Create a custom network connection in the Azure Portal*
+*Create custom network connection resources to leverage firewalls or connect to on-premise resources.  
+For the sake of time, we have created a VNET.*
+
+1. Open up a new tab and go to portal.azure.com, log in using your user name and password for the Azure Portal (found in the side panel) and follow the steps to finish creating a Network Connection
+
+    a. Search for ‘Network Connections’ in the search bar of the Azure portal. Click ‘Create’ to start network connection creation.  
+    b. Name your network connection. Select the Virtual Network we have provided in our new region Spain Central. Click on ‘Create’.
+
+### *Attach your network connection to your Dev Center* 
+Attach your network connection to your Dev Center so it can later be used to create Dev Boxes. 
+1. Look up 'Dev Center' in the search bar. Select your Dev Center. 
+2. Click on the 'Dev Box Configuration' dropdown, then select 'Networking' 
+3. Click on 'Add'. Then select the network connection you created. 
 
 # Part 4: Restore your dev box in the Developer Portal!
 *We can now complete step 8 in part 2 to restore your Dev Box!* 
@@ -300,11 +282,11 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 1.	Search for ‘Microsoft Dev Box’ in the azure portal to navigate to the Dev Box service. 
 2.	Click on ‘get started’. This will navigate you to a wizard to set up your dev box resources. Fill out the fields in the template to deploy all of the necessary Azure resources for dev box. 
     - Resource group: build 2025
-    - Location: WestUS3, or EastUS2 
+    - Your region should be pre-selected from the resource group
     - DevCenter Name, Project Name, Pool Name: **NOTE** make sure you are using unique names for each of your resources
 3. Click on 'Next' and wait to ensure there aren't any errors related to duplicates in the resource names.
 4. Click on 'Create' to spin up resources. 
-5.	Once the resources are deployed, go to devportal.microsoft.com. From here click on ‘New Dev Box’ and follow the steps for Dev Box creation.  
+5.	Once the resources are deployed, go to devportal.microsoft.com or refresh your existing instance. From here click on ‘New Dev Box’ and follow the steps for Dev Box creation.  
 
 
 # Part 9: BONUS: Monitoring your dev box with Azure Monitor
