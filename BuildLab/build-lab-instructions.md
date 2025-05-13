@@ -132,17 +132,20 @@ Attach your network connection to your Dev Center so it can later be used to cre
 2. Click on the 'Dev Box Configuration' dropdown, then select 'Networking' 
 3. Click on 'Add'. Then select the network connection you created. 
 
-### *Configure a custom image definition using AI in your Dev Box*
+### *Configure a custom image definition to pre-configure Dev Boxes for your team*
 
-**Create an image definition to customize dev boxes to the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes**
+**Create an image definition to customize dev boxes based on the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes**
 
 1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'. 
 2. Open Visual Studio Code in your Dev Box.  
 3. Go to Extensions (`Ctrl+Shift+X`) and verify that the Dev Box extension is installed  
-    a. If not installed, search for "Dev Box" and install it  
-4. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box (click on File, Open Folder, C Drive, Users, click on your User, Repos, Contoso-co/Eshop). 
+    a. If not installed, search for "Dev Box" and install it
+   
+![image](https://github.com/user-attachments/assets/ac2a725e-cae1-4266-a8df-7907e44015e4)
+
+5. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box (click on File, Open Folder, C Drive, Users, click on your User, Repos, Contoso-co/Eshop). 
     - If the repository is not there, clone the repository.  
-5. Open the cloned repository in VS Code  
+6. Open the cloned repository in VS Code  
 
 #### *Experience in Dev Box VS Code Extension*
 
@@ -166,24 +169,37 @@ Attach your network connection to your Dev Center so it can later be used to cre
 
 ---
 
-### *Continue editing your imagedefinition.yaml by using agentic workflow in VS Code*  
+### *Leverage agentic workflow in VS Code to create or modify your imagedefinition.yaml*  
 To further simplify the experience of authoring the customization file, you can leverage the agentic workflow to directly generate an `imagedefinition.yaml` file through prompts and conversations
 
 5. Open Copilot Chat  
-    a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet  
-    b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon top left of the Co-Pilot chat).
+    a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet
+![image](https://github.com/user-attachments/assets/51ad30d7-402f-4969-a6f4-cc757362b7a9)
 
-6. In the chat, enter:  
+    b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon top left of the Co-Pilot chat).
+![image](https://github.com/user-attachments/assets/441cd55b-9eb3-4ee7-b9a7-cd7cef383546)
+![image](https://github.com/user-attachments/assets/5a16cfb4-417d-479d-a819-2201d1902c48)
+
+
+7. In the chat, enter:  
     `"I want to configure a dev box for my team with all the tools and packages required to work on the eShop repo"`  
     a. The agent will scan the repository to identify the application type and components (Web, API, Blazor, etc.)  
 
-7. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
+8. When prompted, select ‘Continue’ to configure the allowed WinGet packages and generate the `imagedefinition.yaml`  
     a. `imagedefinition.yaml` will include git cloning the specific repository onto the dev box  
 
-8. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
-9. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
-10. Copy and run the validation command in the Terminal  
-11. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
+9. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
+10. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator. Copy and run the validation command in the Terminal  
+11. Once validation completes, you can apply customizations on the current dev box
+    
+    a. Open Command Palette(Ctrl+Shift+P)  
+    b. Select 'Dev Box: Apply Customization Tasks'  
+    c. Confirm the UAC prompts to install tools and apply the settings  
+
+    ![image](https://github.com/user-attachments/assets/e3b41125-1737-4935-a2a9-3c1958cf4c66)
+
+   
+13. To share and configure the team's dev boxes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
 
 ---
 
