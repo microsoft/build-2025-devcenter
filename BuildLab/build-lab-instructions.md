@@ -1,23 +1,23 @@
 # Build the ultimate enterprise ready cloud development environment | Lab Instructions
 
+# Part 0: Log into GitHub 
+
+1. You will see a URL on the side panel of your machine with an SSO URL for logging into GitHub. Log into GitHub using the username and password provided. 
+
+![Lab Side Panel](InstructionImages/Build2025Images/LabSidePanel.png)
+
 # Part 1: Connect and use your dev box
 
 ## Connect to your Dev Box in the Developer Portal 
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
-    - Note: Feel free to close the tutorial for the Developer Portal. 
+    - **Note:** PLEASE CLICK ON 'YES' TO SAVE YOUR LOGIN INFORMATION. Otherwise, authentication will not work for other parts of the lab.  
+    - Feel free to close the tutorial for the Developer Portal. 
 
-![Lab Side Panel](InstructionImages/Build2025Images/LabSidePanel.png)
 
-2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 'Click on ‘Connect via app’ to connect to your dev box.
 
-*We will next download the Windows App for the best experience connecting to your Dev Box.*
+2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 
 
-3. Click on the Settings Gear on the top right of the developer portal. 
-4. Click on the link 'Windows App'. This should lead you to the Microsoft Store. 
-5. Download the Windows App. Open the file and follow the steps to install the app. 
-6. Sign into the Windows App using the same login as what you used for the Developer Portal.
-7. Feel free to skip the Windows App tutorial. You should see your dev box in the Windows App.
-8. Click on 'Connect' in the Windows App to connect to your Dev Box. 
+3. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'. 
 
 ## 2. Connect to your Dev Box using a Dev Box Tunnel. 
 1. Close your Dev Box. Open VS Code on your machine. 
@@ -26,7 +26,9 @@
 
 ## 3. Sign in to the Dev Box Extension
 
-Click the Dev Box icon in the left sidebar, and select **Sign In**.
+1. Click on the profile icon on the bottom left of VS Code and click on 'Sign in to use Dev Box'. 
+
+2. Click the Dev Box icon in the left sidebar, and select **Sign In**.
 
 ![Sign in to Dev Box with Microsoft](InstructionImages/Build2025Images/SignIn.png)
 
@@ -47,59 +49,27 @@ Then, you can enable the tunnel by clicking on the settings gear next to the tun
 
 ## 5. Connect to the Dev Box in VS Code
 
-Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button.
+Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button. A new VS Code Window should pop up.
 
 ![Connect to Tunnel Screenshot](InstructionImages/Build2025Images/ConnectTunnel.png)
 
-## 6. Dev Box Remote experience in VS Code
-
-You can open any folder or workspace on the remote Dev Box using **File > Open File/Folder/Workspace** just as you would locally!
-
-If you have a WSL environment on the Dev Box, you can connect to it using **Remote Explorer**.
+Now you have connected to your Dev Box from a Dev Tunnel! 
 
 
-![Remote Explorer Screenshot](InstructionImages/Build2025Images/WSLTarget.png)
-
-Select WSL targets from the dropdown and all the WSL distributions will be listed. You can open any WSL distribution in the current or new window.
-
-![WSL Targets Screenshot](InstructionImages/Build2025Images/NewWindow.png)
-
-For more information on the WSL development experience, please refer to the [Remote - WSL](#) and [Set up a WSL development environment](#) documentation.
-
-# Part 2: Explore dev box troubleshooting capabilities
-## Take a snapshot of your dev box to (later) restore
-
-To access the self-serve + use the Snapshot and Restore feature, follow these steps:
-
-1. Log in to the Developer Portal.
-2. Select the Dev Box you wish to take a snapshot of. Click on the elipses `...`
-3. Click on "Take Snapshot."
-4. A dialog will appear showing the timestamp of the manual snapshot.
-5. Confirm the snapshot in the dialog.
-6. Your snapshot will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
-
-
-
-## Open a Developer MCP Server and enable Dark Mode for your Dev Box
+## Open a Developer MCP Server, enable Dark Mode for your Dev Box, and connect from your MCP
 # PreRequisite
 
-1. Open Windows Powershell and login to your work or school account.
+1. Open your terminal and type 'az login' in the command line. 
+2. Login with the lab account 
 
+3. Open the GitHub Copilot chat in your local VS Code
 
-2.Login with the lab account 
-
-
-3.Type az login in the Powershell command line.
-
-
-1. **Open GitHub Copilot chat in your local VS Code**
-
-2. **Switch Copilot to agent mode:**
+4. Switch Copilot to agent mode and select 'Claude 3.5' or 'Claude 3.7':
 
    ![Switch to Agent Mode](InstructionImages/Build2025Images/MCPAgent.jpg)  
    *(Use the dropdown to select "Agent" mode)*
 
-3. **Validate that the Dev Box MCP is running by clicking the tool icon:**
+3. Validate that the Dev Box MCP is running by clicking the tool icon:
 
    ![Tool Icon](InstructionImages/Build2025Images/AddContext.jpg) 
 
@@ -117,17 +87,31 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 
 4. **In your chat, ask Copilot to:**  
    _“List me all of my dev boxes”_  
-   This will show you a high-level view of your Dev Boxes.
+
+   - This will show you a high-level view of your Dev Boxes. 
+   - It may prompt you to authorize VS Code - please do so.
+   - CoPilot may ask you to run certain commands. Please click on 'Continue'.
 
 5. **Now ask Copilot to:**  
-   _“Update my my-build-devbox to use dark mode”_
+   _“Update my [DevBoxName] to use dark mode”_
 
 6. **Then ask Copilot to:**  
-   _“Connect and launch my my-build-devbox”_
+   _“Connect and launch my [DevBoxName]”_
 
 7. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
+# Part 2: Explore dev box troubleshooting capabilities
+## Take a snapshot of your dev box to (later) restore
+
+To access the self-serve + use the Snapshot and Restore feature, follow these steps:
+
+1. Log in to the Developer Portal.
+2. Select the Dev Box you wish to take a snapshot of. Click on the elipses `...`
+3. Click on "Take Snapshot."
+4. A dialog will appear showing the timestamp of the manual snapshot.
+5. Confirm the snapshot in the dialog.
+6. Your snapshot will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
 
 
 # Part 3: Customize your Dev Box
@@ -152,8 +136,8 @@ Attach your network connection to your Dev Center so it can later be used to cre
 
 **Create an image definition to customize dev boxes to the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes**
 
-1. Connect to your Dev Box in the Developer portal. 
-2. Open Visual Studio Code  
+1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'. 
+2. Open Visual Studio Code in your Dev Box.  
 3. Go to Extensions (`Ctrl+Shift+X`) and verify that the Dev Box extension is installed  
     a. If not installed, search for "Dev Box" and install it  
 4. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box (click on File, Open Folder, C Drive, Users, click on your User, Repos, Contoso-co/Eshop). 
@@ -216,11 +200,15 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 
 3. You can create a catalog for the specific project:  
     a. Expand the 'Settings' section, select 'Identity', then 'User Assigned' tab on the blade, then ‘+Add’, and click the 'myUserAssignedIdentity' option. Then, add the identity.  
+    - Note: Keep track of the first 6 characters of the subscription name once your identity has been created. This will be useful for later!
+
+    ![Remember your subscription](InstructionImages/Build2025Images/RememberSubscription.png)
+
 4. Select ‘+Add’ and finish creating your project catalog by adding a name (‘MyCatalog’), selecting ‘GitHub’ as your catalog location, then select ‘Personal access token’. This will use a repository we prepared for this lab. Fill in the following:  
     a. **Repository**: `https://github.com/jylama/build-2025-devcenter.git`  
     b. **Branch**: `main`  
     c. **Folder path**: `catalog/image-definitions`  
-    d. **Secret Identifier NOTE: you need to modify this URL using the first 6 characters in your subscription**: `https://keyvault-[first 6 characters of user subscription id].vault.azure.net/secrets/GitHubPAT`  You can find the first 6 characters by going to your project, and clicking on 'overview'. 
+    d. **Secret Identifier NOTE: you need to modify this URL using the first 6 characters in your subscription**: `https://keyvault-[first 6 characters of user subscription id].vault.azure.net/secrets/GitHubPAT`  This is where you can use those 6 characters you noted! You can also find the first 6 characters by going to your project, and clicking on 'overview'. 
 
 5. Once the Catalog attach and sync are complete, select ‘image definitions’ and you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
