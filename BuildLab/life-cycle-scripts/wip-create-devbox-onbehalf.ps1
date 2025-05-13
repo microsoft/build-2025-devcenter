@@ -5,7 +5,8 @@
 # Every instance of the lab vm will generate a new subscription ID, which will make the of the dev center name unique.
 $subId = '@lab.CloudSubscription.Id'
 $rg = '@lab.CloudResourceGroup(ResourceGroup1).Name'
-$devCenterName = "build-$($subId.SubString(0,6))-dc"
+$segment = $subId.SubString(0, 6)
+$devCenterName = "build-$segment-dc"
 
 # Create a new dev box
 $projectName = "myProject"
@@ -30,7 +31,7 @@ New-AzRoleAssignment `
 $customRole = @{
     Name = "Dev-Box-Create-OnBehalf-$devCenterName"
     IsCustom = $true
-    Description = "Custom role for managing Dev Boxes"
+    Description = "Custom role for creating Dev Boxes on behalf of users in subscription."
     Actions = @(
         "Microsoft.DevCenter/projects/*",
         "Microsoft.Authorization/*/read",
@@ -88,7 +89,7 @@ $roleDefinition | ConvertTo-Json -Depth 10
 New-AzRoleDefinition -Role $roleDefinition
 
 # Wait for the custom role definition to propagate
-Start-Sleep -Seconds 5
+Start-Sleep -Seconds 15
 
 $appObjectId = "69d563db-e4f3-4bd3-be8c-44926ea56a7d" # The object ID of the cloud splice app
 
