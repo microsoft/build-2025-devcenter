@@ -101,7 +101,7 @@ Now you have connected to your Dev Box from a Dev Tunnel!
 7. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
-# Part 2: Explore dev box troubleshooting capabilities
+# Part 2: Explore DEv Box Snapshot and Restore
 ## Take a snapshot of your dev box to (later) restore
 
 To access the self-serve + use the Snapshot and Restore feature, follow these steps:
@@ -230,21 +230,17 @@ Attach your network connection to your Dev Center so it can later be used to cre
 
 1. Navigate to your existing project you created in the customizations section. Select ‘Settings’ in the side menu.
 
-## Apply Tunnels to allow developers to connect remotely to their dev box from other clients.
-
-2. Select the check box to enable Dev Box tunnels.
-
 ## Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a cost control.
 
-3. Select the check box to ‘Apply limits’. Set the limit field to 2 or larger.
-4. Click on ‘Apply’ to apply all of these project edits.
+2. Select the check box to ‘Apply limits’. Set the limit field to 2 or larger.
+3. Click on ‘Apply’ to apply all of these project edits.
 
 ## Create a dev box pool to use your image definition
 
-5. Navigate to the Manage section in the side menu. Select the 'Dev Box pools' item. Then you can create a Dev Box Pool by clicking "Create".
-6. Select a name, and in the dropdown you'll seeimage definitions - pick 'frontend-eng'.  
+4. Navigate to the Manage section in the side menu. Select the 'Dev Box pools' item. Then you can create a Dev Box Pool by clicking "Create".
+5. Select a name, and in the dropdown you'll seeimage definitions - pick 'frontend-eng'.  
    Select 32 vCPU compute, and 2048 GB SSD for storage for the SKU. Later, when dev boxes are created in this pool, they'll be created based on the imageDefinition.yaml, which provides the base image and a set of customizations to apply.
-7. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
+6. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
    At the very end, click on the check-box for licensing.
 
 ## Enable SSO
