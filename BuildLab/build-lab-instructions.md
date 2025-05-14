@@ -20,9 +20,9 @@
 3. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'. 
 
 ## 2. Connect to your Dev Box using a Dev Box Tunnel. 
-1. Close your Dev Box. Open VS Code on your machine. 
+1. Open VS Code on your machine. 
 
-2. Open Extensions view in VS Code (`Ctrl+Shift+X`) and select the `...` icon on the top right corner.  You should see the Dev Box Extension.
+2. Open Extensions view in VS Code (`Ctrl+Shift+X`) and You should see the Dev Box Extension.
 
 ## 3. Sign in to the Dev Box Extension
 
@@ -101,7 +101,7 @@ Now you have connected to your Dev Box from a Dev Tunnel!
 7. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
-# Part 2: Explore DEv Box Snapshot and Restore
+# Part 2: Explore Dev Box Snapshot and Restore
 ## Take a snapshot of your dev box to (later) restore
 
 To access the self-serve + use the Snapshot and Restore feature, follow these steps:
