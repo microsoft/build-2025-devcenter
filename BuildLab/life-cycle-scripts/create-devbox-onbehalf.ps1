@@ -1,5 +1,13 @@
-# This is just a testing script in progress to create a dev box on behalf of the lab user.
-# Don't need az login and the devcenter extension has already been installed on the vm disk.
+
+# Lab Set Up: 
+# Execute Script in Cloud Platform
+# Language	PowerShell
+# Blocking	Yes
+# Delay	5 Seconds
+# Timeout	10 Minutes
+# Retries	0
+# Error Action	Notify User
+
 
 # Variables
 # Every instance of the lab vm will generate a new subscription ID, which will make the of the dev center name unique.
@@ -7,6 +15,7 @@ $subId = '@lab.CloudSubscription.Id'
 $rg = '@lab.CloudResourceGroup(ResourceGroup1).Name'
 $segment = $subId.SubString(0, 6)
 $devCenterName = "build-$segment-dc"
+$roleName = "Dev Box Create OnBehalf-$devCenterName"
 
 # Create a new dev box
 $projectName = "myProject"
@@ -24,81 +33,57 @@ Set-LabVariable -Name ObjectId -Value $userObjectId
 New-AzRoleAssignment `
     -ObjectId $userObjectId `
     -RoleDefinitionName "DevCenter Dev Box User" `
-    -Scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.DevCenter/projects/$projectName"
+    -Scope "/subscriptions/$subId"
 
+New-AzRoleAssignment `
+    -ObjectId $userObjectId `
+    -RoleDefinitionName "Reader" `
+    -Scope "/subscriptions/$subId"
 
-# Define the custom role properties for OnBehalf creation
-$customRole = @{
-    Name = "Dev-Box-Create-OnBehalf-$devCenterName"
-    IsCustom = $true
-    Description = "Custom role for creating Dev Boxes on behalf of users in subscription."
-    Actions = @(
-        "Microsoft.DevCenter/projects/*",
-        "Microsoft.Authorization/*/read",
-        "Microsoft.Resources/deployments/*",
-        "Microsoft.Resources/subscriptions/resourceGroups/read"
-    )
-    NotActions = @(
-        "Microsoft.DevCenter/projects/write",
-        "Microsoft.DevCenter/projects/delete"
-    )
-    DataActions = @(
-        "Microsoft.DevCenter/projects/users/devboxes/adminStart/action",
-        "Microsoft.DevCenter/projects/users/devboxes/adminStop/action",
-        "Microsoft.DevCenter/projects/users/devboxes/adminRead/action",
-        "Microsoft.DevCenter/projects/users/devboxes/adminWrite/action",
-        "Microsoft.DevCenter/projects/users/devboxes/adminDelete/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userStop/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userStart/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userGetRemoteConnection/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userRead/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userWrite/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userDelete/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userActionRead/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userActionManage/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userCustomize/action",
-        "Microsoft.DevCenter/projects/users/devboxes/userCreateOnBehalf/action",
-        "Microsoft.DevCenter/projects/users/environments/adminRead/action",
-        "Microsoft.DevCenter/projects/users/environments/userWrite/action",
-        "Microsoft.DevCenter/projects/users/environments/adminWrite/action",
-        "Microsoft.DevCenter/projects/users/environments/userDelete/action",
-        "Microsoft.DevCenter/projects/users/environments/adminDelete/action",
-        "Microsoft.DevCenter/projects/users/environments/adminAction/action",
-        "Microsoft.DevCenter/projects/users/environments/adminActionRead/action",
-        "Microsoft.DevCenter/projects/users/environments/adminActionManage/action",
-        "Microsoft.DevCenter/projects/users/environments/adminOutputsRead/action"
-    )
-    AssignableScopes = @(
-        "/subscriptions/$subId"
-    )
+#New-AzRoleAssignment `
+#    -ObjectId $userObjectId `
+#    -RoleDefinitionName "DevCenter Dev Box User" `
+#    -Scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.DevCenter/projects/$projectName"
+
+# Check for the role definition with timeout
+$startTime = Get-Date
+$timeout = (Get-Date).AddMinutes(5)
+$roleFound = $false
+$retryIntervalSeconds = 10
+$attempt = 1
+
+Write-Host "Waiting for role definition to propagate (timeout: 5 minutes)..."
+
+while ((Get-Date) -lt $timeout -and -not $roleFound) {
+    Write-Host "Attempt $($attempt) :: Checking for role '$roleName'..." -ForegroundColor Yellow
+    $definition = Get-AzRoleDefinition -Name $roleName -ErrorAction SilentlyContinue
+    
+    if ($definition) {
+        $roleFound = $true
+        $elapsedTime = (Get-Date) - $startTime
+        Write-Host "Role definition found after $([math]::Round($elapsedTime.TotalSeconds)) seconds!" -ForegroundColor Green
+        Write-Host "Role Details:"
+        $definition | Format-List
+    } else {
+        Write-Host "Role not found yet. Waiting $retryIntervalSeconds seconds before next check..."
+        Start-Sleep -Seconds $retryIntervalSeconds
+        $attempt++
+    }
 }
 
-# Convert the role definition to a valid PSRoleDefinition object
-$roleDefinition = [Microsoft.Azure.Commands.Resources.Models.Authorization.PSRoleDefinition]::new()
-$roleDefinition.Name = $customRole.Name
-$roleDefinition.IsCustom = $customRole.IsCustom
-$roleDefinition.Description = $customRole.Description
-$roleDefinition.Actions = $customRole.Actions
-$roleDefinition.NotActions = $customRole.NotActions
-$roleDefinition.DataActions = $customRole.DataActions
-$roleDefinition.AssignableScopes = $customRole.AssignableScopes
+If (-not $roleFound) {
+    Write-Error "Role definition not found within the timeout period." -ForegroundColor Red
+    exit 1
+}
 
-$roleDefinition | ConvertTo-Json -Depth 10
-
-# Create the custom role
-New-AzRoleDefinition -Role $roleDefinition
-
-# Wait for the custom role definition to propagate
-Start-Sleep -Seconds 60
-
+Write-Host "Role Definition ID: $($definition.Id)" -ForegroundColor Green
 $appObjectId = "69d563db-e4f3-4bd3-be8c-44926ea56a7d" # The object ID of the cloud splice app
 
 # Assign the custom role to the cloud splice app object ID
 New-AzRoleAssignment `
     -ObjectId $appObjectId `
-    -RoleDefinitionName "Dev-Box-Create-OnBehalf-$devCenterName" `
+    -RoleDefinitionId $definition.Id `
     -Scope "/subscriptions/$subId"
-
 
 $check1 = "Assigned custom role"
 

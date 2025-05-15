@@ -2,7 +2,8 @@
 
 # Part 1: Log into GitHub 
 
-1. You will see a URL on the side panel of your machine with an SSO URL for logging into GitHub (item #4). Log into GitHub using the username and password provided. 
+1. You will see a URL on the side panel of your machine with an SSO URL for logging into GitHub. Log into GitHub using the username and password provided.
+2. **NOTE:** Microsoft will ask if you want to 'Stay signed in'. Select 'yes'.
 
 ![Lab Side Panel](InstructionImages/Build2025Images/LabSidePanel.png)
 
@@ -10,28 +11,24 @@
 
 ## 1. Find your Dev Box in the Developer portal
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
-    - **Note:** PLEASE CLICK ON 'YES' TO SAVE YOUR LOGIN INFORMATION. Otherwise, authentication will not work for other parts of the lab.  
     - Feel free to close the tutorial for the Developer Portal. 
 
 2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 
 
-## 2. Connect to your dev box using the Windows App
+3. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal.
+4. Skip the tutorial, and click on 'Connect'.
+5. You have now connected to your Dev Box!
 
-1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. 
-2. Sign in using the same credentials you used for the Developer Portal. 
-3. Skip the tutorial, and click on 'Connect'. 
-4. You have now connected to your Dev Box! 
-5. Close your current Dev Box for the next part. 
+## 2. Connect to your Dev Box using a Dev Box Tunnel. 
+1. Close your Dev Box session. Open VS Code on your machine. 
 
-## 3. Connect to your Dev Box using a Dev Box Tunnel. 
+2. Open Extensions view in VS Code (`Ctrl+Shift+X`) and You should see the Dev Box Extension.
 
+## 3. Sign in to the Dev Box Extension
 
-### Sign in to the Dev Box Extension
-1. Open VS Code on your machine. 
-2. Open Extensions view in VS Code (`Ctrl+Shift+X`) and select the `...` icon on the top right corner.  You should see the Dev Box Extension.
-3. Click on the profile icon on the bottom left of VS Code and click on 'Sign in to use Dev Box'. 
+1. Click on the profile icon on the bottom left of VS Code and click on 'Sign in to use Dev Box'. Use the same username and password you used for the Developer Portal.
 
-4. Click the Dev Box icon in the left sidebar, and select **Sign In**.
+2. Click the Dev Box icon in the left sidebar, and select **Sign In**.
 
 ![Sign in to Dev Box with Microsoft](InstructionImages/Build2025Images/SignIn.png)
 
@@ -105,8 +102,7 @@ Now you have connected to your Dev Box from a Dev Tunnel!
 7. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
-# Part 3: Explore dev box troubleshooting capabilities
-
+# Part 2: Explore Dev Box Snapshot and Restore
 ## Take a snapshot of your dev box to (later) restore
 
 To access the self-serve + use the Snapshot and Restore feature, follow these steps:
@@ -126,13 +122,37 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 *Create an image definition to customize dev boxes to the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes*
 ### Connect to your Dev Box in VS Code
 
-1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'. 
-2. Open Visual Studio Code in your Dev Box.  
-3. Go to Extensions (`Ctrl+Shift+X`) and verify that the Dev Box extension is installed  
-    a. If not installed, search for "Dev Box" and install it  
-4. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box (click on File, Open Folder, C Drive, Users, click on your User, Repos, Contoso-co/Eshop). 
-    - If the repository is not there, clone the repository.  
-5. Open the cloned repository in VS Code  
+1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'.
+2. Open Visual Studio Code in your Dev Box.
+3. In the 'Setup VS Code' window, select to setup Copilot and Signin
+   ![image](https://github.com/user-attachments/assets/ea1d183f-b660-4ab6-83b3-8242a23e975b)
+   ![image](https://github.com/user-attachments/assets/72e8eff6-f497-4a74-afd7-ac417cfa761b)
+
+4. Complete the signin by selecting 'Continue' on the 'Authorize Visual Studio Code' prompts
+   ![image](https://github.com/user-attachments/assets/9ca7ef86-245b-494f-b54e-59e9db83cbd8)
+   ![image](https://github.com/user-attachments/assets/e987a056-8f78-4394-83f5-f654f50cba36)
+   
+5. Copilot should now be setup and you can select to open VS Code
+
+   ![image](https://github.com/user-attachments/assets/e152d75b-f053-4e10-81ab-7949ae9aae07)
+6. Open Copilot chat and ask to 'Show terminal' or open command prompt 'Ctrl+Shift+P' and enter '>View: Toggle Terminal'
+7. In the terminal, select to download git by entering the following command 'winget install --id Git.Git -e'
+8. Once git installation is complete, close and reopen VS code
+
+9. Clone the repository by entering 'git clone https://github.com/contoso-co/eShop.git' in terminal
+10. Open the cloned repository: Click on Open Folder, C Drive, Users, Click on your User, eShop) 
+    ![image](https://github.com/user-attachments/assets/e67662ed-2f08-4a8b-aed5-d23128f50f5a)
+    ![image](https://github.com/user-attachments/assets/ffb03cbb-ec00-40da-9d4c-13aff1a25fe5)
+
+     
+12. Go to Extensions (`Ctrl+Shift+X`) and install the Dev Box extension
+    
+    ![image](https://github.com/user-attachments/assets/97eb8936-372e-49e0-9f5a-eede54c40a07)
+
+    a. If already installed installed, ensure its the latest version else select to update
+
+    ![image](https://github.com/user-attachments/assets/1922f1b7-615d-422b-a778-be8cbcfbe186)
+
 
 ### Experience in the Dev Box VS Code Extension
 
@@ -161,26 +181,37 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 
 5. Open Copilot Chat  
     a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet  
-    b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon top left of the Co-Pilot chat).
+    b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon bottom left of the Co-Pilot chat).
+   ![image](https://github.com/user-attachments/assets/469d6afa-9e6f-4a96-bf6f-9c24fb54602d)
+    ![image](https://github.com/user-attachments/assets/5b884791-dda2-4d17-9310-e4ee0ace2334)
 
-6. In the chat, enter:  
+
+7. In the chat, enter:  
     `"I want to configure a dev box for my team with all the tools and packages required to work on the eShop repo"`  
     a. The agent will scan the repository to identify the application type and components (Web, API, Blazor, etc.)  
 
-7. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
+8. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
     a. `imagedefinition.yaml` will include git cloning the specific repository onto the dev box  
 
-8. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
-9. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
-10. Copy and run the validation command in the Terminal  
-11. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
+9. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
+10. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator. Copy and run the validation command in the Terminal  
+11. Once validation completes, you can apply customizations on the current dev box
+    
+    a. Open Command Palette(Ctrl+Shift+P)  
+    b. Select 'Dev Box: Apply Customization Tasks'  
+    c. Confirm the UAC prompts to install tools and apply the settings  
+
+    ![image](https://github.com/user-attachments/assets/e3b41125-1737-4935-a2a9-3c1958cf4c66)
+
+   
+12. To share and configure the team's dev boxes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
 
 ---
 
 ### To save time in uploading your `imageDefinition.yaml` go to the Azure Portal and attach a catalog 
 We have already pre-created an `imageDefinition.yaml` in a specific repo that you can use.
 
-1. Search for 'Dev Center' in the search bar. After clicking on your Dev Center in the Azure Portal, scroll down to click on the blue button 'Create Project' and create a front-end project for the Dev Center. Select your Dev Center. Name it ‘front-end-project’.  
+1. Go to portal.azure.com. Search for 'Dev Center' in the search bar. After clicking on your Dev Center in the Azure Portal, scroll down to click on the blue button 'Create Project' and create a front-end project for the Dev Center. Select your Dev Center. Name it ‘front-end-project’.  
 2. Follow the steps to finish creating your project.  
     a. On the ‘Dev box management’ tab for the project creation flow, you can set a limit for the number of dev boxes developers can own in the project. For example, I can limit to 2 dev boxes. Please set this field to 2 or larger. After this step, click ‘Next’  
     b. On the ‘Catalogs’ tab, do not change any defaults. Click ‘Next’  
@@ -203,6 +234,20 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 5. Once the Catalog attach and sync are complete, click on the 'Manage' dropdown and select ‘image definitions’- you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
 
+# Part 4: Restore your dev box in the Developer Portal!
+*We can now complete step 8 in part 2 to restore your Dev Box!* 
+1. Go to devportal.microsoft.com
+2. Select the Dev Box environment you wish to restore.
+3. Click on "Restore."
+4. Choose the desired [restore](#) point from the list of available **snapshots**.
+5. Confirm the restoration process.
+6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
+
+
+# Part 5: Go to the Azure Portal and add additional governance to your dev box setup
+
+*We are going to edit your existing project and create a new pool to use the custom definition you previously created along with the custom network. We will add additional governance capabilities to that project + pool setup for utmost security and easiest management.*
+
 ### *Create a custom network connection in the Azure Portal*
 *Create custom network connection resources to leverage firewalls or connect to on-premise resources.  
 For the sake of time, we have created a VNET.*
@@ -218,39 +263,21 @@ Attach your network connection to your Dev Center so it can later be used to cre
 2. Click on the 'Dev Box Configuration' dropdown, then select 'Networking' 
 3. Click on 'Add'. Then select the network connection you created. 
 
-# Part 5: Restore your dev box in the Developer Portal!
-*We can now complete restore your Dev Box from the snapshot!* 
-1. Go to devportal.microsoft.com
-2. Select the Dev Box environment you wish to restore.
-3. Click on "Restore."
-4. Choose the desired [restore](#) point from the list of available **snapshots**.
-5. Confirm the restoration process.
-6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
+## Configure your existing project for additional governance
 
-
-# Part 6: Go to the Azure Portal and add additional governance to your dev box setup
-
-*We are going to edit your existing project and create a new pool to use the custom definition you previously created along with the custom network. We will add additional governance capabilities to that project + pool setup for utmost security and easiest management.*
-
-### Configure your existing project for additional governance
-
-1. Navigate to your existing project. Select ‘Settings’ in the side menu.
-
-### Apply Tunnels to allow developers to connect remotely to their dev box from other clients.
-
-2. Select the check box to enable Dev Box tunnels.
+1. Navigate to your existing project you created in the customizations section. Select ‘Settings’ in the side menu.
 
 ### Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a cost control.
 
-3. Select the check box to ‘Apply limits’. Set the limit field to 2 or larger.
-4. Click on ‘Apply’ to apply all of these project edits.
+2. Select the check box to ‘Apply limits’. Set the limit field to 2 or larger.
+3. Click on ‘Apply’ to apply all of these project edits.
 
 ### Create a dev box pool to use your image definition
 
-5. Navigate to the Manage section in the side menu. Select the 'Dev Box pools' item. Then you can create a Dev Box Pool by clicking "Create".
-6. Select a name, and in the dropdown you'll seeimage definitions - pick 'frontend-eng'.  
+4. Navigate to the Manage section in the side menu. Select the 'Dev Box pools' item. Then you can create a Dev Box Pool by clicking "Create".
+5. Select a name, and in the dropdown you'll seeimage definitions - pick 'frontend-eng'.  
    Select 32 vCPU compute, and 2048 GB SSD for storage for the SKU. Later, when dev boxes are created in this pool, they'll be created based on the imageDefinition.yaml, which provides the base image and a set of customizations to apply.
-7. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
+6. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
    At the very end, click on the check-box for licensing.
 
 ### Enable SSO
