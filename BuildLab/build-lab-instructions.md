@@ -122,13 +122,37 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 
 **Create an image definition to customize dev boxes to the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes**
 
-1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'. 
-2. Open Visual Studio Code in your Dev Box.  
-3. Go to Extensions (`Ctrl+Shift+X`) and verify that the Dev Box extension is installed  
-    a. If not installed, search for "Dev Box" and install it  
-4. Validate that the [contoso-co/eshop](https://contoso-co/eshop) repository is cloned onto your Dev Box (click on File, Open Folder, C Drive, Users, click on your User, Repos, Contoso-co/Eshop). 
-    - If the repository is not there, clone the repository.  
-5. Open the cloned repository in VS Code  
+1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'.
+2. Open Visual Studio Code in your Dev Box.
+3. In the 'Setup VS Code' window, select to setup Copilot and Signin
+   ![image](https://github.com/user-attachments/assets/ea1d183f-b660-4ab6-83b3-8242a23e975b)
+   ![image](https://github.com/user-attachments/assets/72e8eff6-f497-4a74-afd7-ac417cfa761b)
+
+4. Complete the signin by selecting 'Continue' on the 'Authorize Visual Studio Code' prompts
+   ![image](https://github.com/user-attachments/assets/9ca7ef86-245b-494f-b54e-59e9db83cbd8)
+   ![image](https://github.com/user-attachments/assets/e987a056-8f78-4394-83f5-f654f50cba36)
+   
+5. Copilot should now be setup and you can select to open VS Code
+
+   ![image](https://github.com/user-attachments/assets/e152d75b-f053-4e10-81ab-7949ae9aae07)
+6. Open Copilot chat and ask to 'Show terminal' or open command prompt 'Ctrl+Shift+P' and enter '>View: Toggle Terminal'
+7. In the terminal, select to download git by entering the following command 'winget install --id Git.Git -e'
+8. Once git installation is complete, close and reopen VS code
+
+9. Clone the repository by entering 'git clone https://github.com/contoso-co/eShop.git' in terminal
+10. Open the cloned repository: Click on Open Folder, C Drive, Users, Click on your User, eShop) 
+    ![image](https://github.com/user-attachments/assets/e67662ed-2f08-4a8b-aed5-d23128f50f5a)
+    ![image](https://github.com/user-attachments/assets/ffb03cbb-ec00-40da-9d4c-13aff1a25fe5)
+
+     
+12. Go to Extensions (`Ctrl+Shift+X`) and install the Dev Box extension
+    
+    ![image](https://github.com/user-attachments/assets/97eb8936-372e-49e0-9f5a-eede54c40a07)
+
+    a. If already installed installed, ensure its the latest version else select to update
+
+    ![image](https://github.com/user-attachments/assets/1922f1b7-615d-422b-a778-be8cbcfbe186)
+
 
 #### *Experience in Dev Box VS Code Extension*
 
@@ -157,19 +181,22 @@ To further simplify the experience of authoring the customization file, you can 
 
 5. Open Copilot Chat  
     a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet  
-    b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon top left of the Co-Pilot chat).
+    b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon bottom left of the Co-Pilot chat).
+   ![image](https://github.com/user-attachments/assets/469d6afa-9e6f-4a96-bf6f-9c24fb54602d)
+    ![image](https://github.com/user-attachments/assets/5b884791-dda2-4d17-9310-e4ee0ace2334)
 
-6. In the chat, enter:  
+
+7. In the chat, enter:  
     `"I want to configure a dev box for my team with all the tools and packages required to work on the eShop repo"`  
     a. The agent will scan the repository to identify the application type and components (Web, API, Blazor, etc.)  
 
-7. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
+8. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
     a. `imagedefinition.yaml` will include git cloning the specific repository onto the dev box  
 
-8. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
-9. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
-10. Copy and run the validation command in the Terminal  
-11. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
+9. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
+10. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
+11. Copy and run the validation command in the Terminal  
+12. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
 
 ---
 
