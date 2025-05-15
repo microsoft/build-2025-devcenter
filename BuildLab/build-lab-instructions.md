@@ -28,7 +28,7 @@
 
 ## 3. Sign in to the Dev Box Extension
 
-1. Click on the profile icon on the bottom left of VS Code and click on 'Sign in to use Dev Box'. 
+1. Click on the profile icon on the bottom left of VS Code and click on 'Sign in to use Dev Box'. Use the same username and password you used for the Developer Portal.
 
 2. Click the Dev Box icon in the left sidebar, and select **Sign In**.
 
