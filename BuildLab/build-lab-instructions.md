@@ -1,19 +1,17 @@
 # Build the ultimate enterprise ready cloud development environment | Lab Instructions
 
-# Part 0: Log into GitHub 
+# Part 1: Log into GitHub 
 
 1. You will see a URL on the side panel of your machine with an SSO URL for logging into GitHub. Log into GitHub using the username and password provided.
 2. **NOTE:** Microsoft will ask if you want to 'Stay signed in'. Select 'yes'.
 
 ![Lab Side Panel](InstructionImages/Build2025Images/LabSidePanel.png)
 
-# Part 1: Connect and use your dev box
+# Part 2: Connect and use your dev box
 
-## Connect to your Dev Box in the Developer Portal 
+## 1. Find your Dev Box in the Developer portal
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
     - Feel free to close the tutorial for the Developer Portal. 
-
-
 
 2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 
 
@@ -34,13 +32,13 @@
 
 ![Sign in to Dev Box with Microsoft](InstructionImages/Build2025Images/SignIn.png)
 
-## 4. Create and Enable the Dev Box Tunnel
+### Create and Enable the Dev Box Tunnel
 
-After signing in, you will see all the projects you have access to. Choose the project where you created the Dev Box, and select the Dev Box you want to connect to.
+After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to.
 
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
-# PreRequisite
+### PreRequisite (already complete)
 > *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
 
 > *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
@@ -49,7 +47,7 @@ Then, you can enable the tunnel by clicking on the settings gear next to the tun
 
 ![Enable Tunnel Screenshot](InstructionImages/Build2025Images/EnableTunnel.png)
 
-## 5. Connect to the Dev Box in VS Code
+### Connect to the Dev Box in VS Code
 
 Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button. A new VS Code Window should pop up.
 
@@ -58,10 +56,12 @@ Once everything is set up, you can open the Dev Box in VS Code by clicking the *
 Now you have connected to your Dev Box from a Dev Tunnel! 
 
 
-## Open a Developer MCP Server, enable Dark Mode for your Dev Box, and connect from your MCP
-# PreRequisite
+# Part 3. Open a Developer MCP Server, enable Dark Mode for your Dev Box, and connect from your MCP
 
-1. Open your terminal and type 'az login' in the command line. 
+### PreRequisite
+
+1. Disconnect your Dev tunnel. 
+2. Open your terminal and type 'az login' in the command line. 
 2. Login with the lab account 
 
 3. Open the GitHub Copilot chat in your local VS Code
@@ -103,7 +103,7 @@ Now you have connected to your Dev Box from a Dev Tunnel!
 7. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
-# Part 2: Explore Dev Box Snapshot and Restore
+# Part 4: Explore Dev Box Snapshot and Restore
 ## Take a snapshot of your dev box to (later) restore
 
 To access the self-serve + use the Snapshot and Restore feature, follow these steps:
@@ -116,11 +116,12 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 6. Your snapshot will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
 
 
-# Part 3: Customize your Dev Box
+# Part 5: Customize your Dev Box
 
-### *Configure a custom image definition using AI in your Dev Box*
+### Configure a custom image definition using AI in your Dev Box
 
-**Create an image definition to customize dev boxes to the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes**
+*Create an image definition to customize dev boxes to the specific team needs and configure dev box pools to leverage the image definition when creating dev boxes*
+### Connect to your Dev Box in VS Code
 
 1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'.
 2. Open Visual Studio Code in your Dev Box.
@@ -154,7 +155,7 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
     ![image](https://github.com/user-attachments/assets/1922f1b7-615d-422b-a778-be8cbcfbe186)
 
 
-#### *Experience in Dev Box VS Code Extension*
+### Experience in the Dev Box VS Code Extension
 
 1. Create a new `imagedefinition.yaml` file inside the catalog\image-definitions folder. 
 2. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/contoso-base/imagedefinition.yaml)  
@@ -176,8 +177,8 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 
 ---
 
-### *Continue editing your imagedefinition.yaml by using agentic workflow in VS Code*  
-To further simplify the experience of authoring the customization file, you can leverage the agentic workflow to directly generate an `imagedefinition.yaml` file through prompts and conversations
+### Continue editing your imagedefinition.yaml by using agentic workflows in VS Code
+*To further simplify the experience of authoring the customization file, you can leverage the agentic workflow to directly generate an `imagedefinition.yaml` file through prompts and conversations.*
 
 5. Open Copilot Chat  
     a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet  
@@ -208,7 +209,7 @@ To further simplify the experience of authoring the customization file, you can 
 
 ---
 
-### *To save time in uploading your `imageDefinition.yaml` go to the Azure Portal*  
+### To save time in uploading your `imageDefinition.yaml` go to the Azure Portal and attach a catalog 
 We have already pre-created an `imageDefinition.yaml` in a specific repo that you can use.
 
 1. Go to portal.azure.com. Search for 'Dev Center' in the search bar. After clicking on your Dev Center in the Azure Portal, scroll down to click on the blue button 'Create Project' and create a front-end project for the Dev Center. Select your Dev Center. Name it ‘front-end-project’.  
@@ -226,25 +227,17 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
     ![Remember your subscription](InstructionImages/Build2025Images/RememberSubscription.png)
 
 4. Go to the Catalog's blade above the Identity blade.Select ‘+Add’ and finish creating your project catalog by adding a name (‘MyCatalog’), selecting ‘GitHub’ as your catalog location, then select ‘Personal access token’. This will use a repository we prepared for this lab. Fill in the following:  
-    a. **Repository**: `https://github.com/jylama/build-2025-devcenter.git`  
-    b. **Branch**: `main`  
-    c. **Folder path**: `catalog/image-definitions`  
-    d. **Secret Identifier NOTE: you need to modify this URL using the first 6 characters in your subscription**: `https://keyvault-[first 6 characters of user subscription id].vault.azure.net/secrets/GitHubPAT`  This is where you can use those 6 characters you noted! You can also find the first 6 characters by going to your project, and clicking on 'overview'. 
+    - **Repository**: `https://github.com/jylama/build-2025-devcenter.git`  
+    - **Branch**: `main`  
+    - **Folder path**: `catalog/image-definitions`  
+    - **Secret Identifier NOTE: you need to modify this URL using the first 6 characters in your subscription**: `https://keyvault-[first 6 characters of user subscription id].vault.azure.net/secrets/GitHubPAT`  This is where you can use those 6 characters you noted! You can also find the first 6 characters by going to your project, and clicking on 'overview'. 
 
 5. Once the Catalog attach and sync are complete, click on the 'Manage' dropdown and select ‘image definitions’- you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
 
-# Part 4: Restore your dev box in the Developer Portal!
-*We can now complete step 8 in part 2 to restore your Dev Box!* 
-1. Go to devportal.microsoft.com
-2. Select the Dev Box environment you wish to restore.
-3. Click on "Restore."
-4. Choose the desired [restore](#) point from the list of available **snapshots**.
-5. Confirm the restoration process.
-6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
 
 
-# Part 5: Go to the Azure Portal and add additional governance to your dev box setup
+# Part 6: Go to the Azure Portal and add additional governance to your dev box setup
 
 *We are going to edit your existing project and create a new pool to use the custom definition you previously created along with the custom network. We will add additional governance capabilities to that project + pool setup for utmost security and easiest management.*
 
@@ -267,12 +260,12 @@ Attach your network connection to your Dev Center so it can later be used to cre
 
 1. Navigate to your existing project you created in the customizations section. Select ‘Settings’ in the side menu.
 
-## Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a cost control.
+### Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a cost control.
 
 2. Select the check box to ‘Apply limits’. Set the limit field to 2 or larger.
 3. Click on ‘Apply’ to apply all of these project edits.
 
-## Create a dev box pool to use your image definition
+### Create a dev box pool to use your image definition
 
 4. Navigate to the Manage section in the side menu. Select the 'Dev Box pools' item. Then you can create a Dev Box Pool by clicking "Create".
 5. Select a name, and in the dropdown you'll seeimage definitions - pick 'frontend-eng'.  
@@ -280,30 +273,31 @@ Attach your network connection to your Dev Center so it can later be used to cre
 6. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
    At the very end, click on the check-box for licensing.
 
-## Enable SSO
+### Enable SSO
 
-- From your project, click on the ‘Manage’ dropdown and then ‘Dev Box Pools’
-- Scroll right, click on the elipses, you'll see a pencil icon to edit. 
-- Click on the ‘Enable Single Sign On’ checkbox. 
+8. From your project, click on the ‘Manage’ dropdown and then ‘Dev Box Pools’
+9. Scroll right, click on the elipses, you'll see a pencil icon to edit. 
+10. Click on the ‘Enable Single Sign On’ checkbox. 
 
-# Part 6: Manage your dev box in scale
+# Part 7: Manage your dev box in scale
 *Manage your dev boxes in scale by applying project policies.*
 
-### Create a Project Policy
+### Create a default Project Policy
 
 1. Go to your Dev Center, click on ‘Manage’ in the lefthand navigation, then click on ‘Project Policy’ in the dropdown menu. Click on ‘Create’ to begin creating a project policy.
 
 *We will work on creating a default policy. This will configure the settings any current and future projects will use as a default. We are going to create a policy that enables the 8vCPU SKUs by default.*
 
-2. Follow these steps to create a project policy:
-   - Click on ‘Create a policy’
-   - Click on ‘Select SKUs’ and then select ‘A specific SKU or group of SKUs. Select all the 8vCPU SKUs.
-   - Click on ‘Select Images’ and then select ‘All current and future images’
-   - Click on ‘Select Networks’ and then select ‘All current and future networks’
-   - Click on ‘Create’ to finish
+Follow these steps to create a project policy:
+
+2. Click on ‘Create a policy’
+3. Click on ‘Select SKUs’ and then select ‘A specific SKU or group of SKUs. Select all the 8vCPU SKUs.
+4. Click on ‘Select Images’ and then select ‘All current and future images’
+5. Click on ‘Select Networks’ and then select ‘All current and future networks’
+6. Click on ‘Create’ to finish
 
 
-# Part 7: Give yourself project access 
+# Part 8: Give yourself project access 
 *Admins normally provide Dev Box user access to developers. Today, we will give ourselves access!*
 
 1. Go to the project you recently created and navigate to the 'Access Control (IAM)' blade.
@@ -311,7 +305,7 @@ Attach your network connection to your Dev Center so it can later be used to cre
 3. Search for the 'DevCenter Dev Box User' role. On the next page, pick '+Select members'.  
    Add your username which is the same as what you used for logging into the Azure Portal, hit 'Select', then click on 'Review + assign' twice.
 
-# Part 8: Testing out dev box in the future - what should you do? 
+# Part 9: Testing out dev box in the future - what should you do? 
 1.	Search for ‘Microsoft Dev Box’ in the azure portal to navigate to the Dev Box service. 
 2.	Click on ‘get started’. This will navigate you to a wizard to set up your dev box resources. Fill out the fields in the template to deploy all of the necessary Azure resources for dev box. 
     - Resource group: build 2025
@@ -322,7 +316,7 @@ Attach your network connection to your Dev Center so it can later be used to cre
 5.	Once the resources are deployed, go to devportal.microsoft.com or refresh your existing instance. From here click on ‘New Dev Box’ and follow the steps for Dev Box creation.  
 
 
-# Part 9: BONUS: Monitoring your dev box with Azure Monitor
+# BONUS: Monitoring your dev box with Azure Monitor
 1. Look up ‘Dev Centers’ in the Azure Portal 
 2. Click on the build devcenter
 3. Click on ‘Monitoring' and select 'Logs' in the side menu.  
@@ -372,6 +366,15 @@ DevCenterAgentHealthLogs
  ``` 
 
 6. Click on ‘Run’ to run your query.  
+
+# BONUS: Restore your dev box in the Developer Portal!
+*We can now complete step 8 in part 2 to restore your Dev Box!* 
+1. Go to devportal.microsoft.com
+2. Select the Dev Box environment you wish to restore.
+3. Click on "Restore."
+4. Choose the desired [restore](#) point from the list of available **snapshots**.
+5. Confirm the restoration process.
+6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
 
 
 😀 Congratulations! You have finished the lab! 😀
