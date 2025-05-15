@@ -2,7 +2,8 @@
 
 # Part 0: Log into GitHub 
 
-1. You will see a URL on the side panel of your machine with an SSO URL for logging into GitHub. Log into GitHub using the username and password provided. 
+1. You will see a URL on the side panel of your machine with an SSO URL for logging into GitHub. Log into GitHub using the username and password provided.
+2. Microsoft will ask if you want to 'Stay signed in'. Select 'yes'.
 
 ![Lab Side Panel](InstructionImages/Build2025Images/LabSidePanel.png)
 
