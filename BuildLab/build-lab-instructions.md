@@ -17,10 +17,12 @@
 
 2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 
 
-3. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'. 
+3. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal.
+4. Skip the tutorial, and click on 'Connect'.
+5. You have now connected to your Dev Box!
 
 ## 2. Connect to your Dev Box using a Dev Box Tunnel. 
-1. Open VS Code on your machine. 
+1. Close your Dev Box session. Open VS Code on your machine. 
 
 2. Open Extensions view in VS Code (`Ctrl+Shift+X`) and You should see the Dev Box Extension.
 
