@@ -3,7 +3,7 @@
 # Part 0: Log into GitHub 
 
 1. You will see a URL on the side panel of your machine with an SSO URL for logging into GitHub. Log into GitHub using the username and password provided.
-2. Microsoft will ask if you want to 'Stay signed in'. Select 'yes'.
+2. **NOTE:** Microsoft will ask if you want to 'Stay signed in'. Select 'yes'.
 
 ![Lab Side Panel](InstructionImages/Build2025Images/LabSidePanel.png)
 
@@ -11,7 +11,6 @@
 
 ## Connect to your Dev Box in the Developer Portal 
 1. Open your browser and go to [devportal.microsoft.com](https://devportal.microsoft.com). Enter your credentials - we have already given you access to the developer portal! You should find these credentials on the right side panel of your lab. 
-    - **Note:** PLEASE CLICK ON 'YES' TO SAVE YOUR LOGIN INFORMATION. Otherwise, authentication will not work for other parts of the lab.  
     - Feel free to close the tutorial for the Developer Portal. 
 
 
