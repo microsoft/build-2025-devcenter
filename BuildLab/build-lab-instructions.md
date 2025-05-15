@@ -56,11 +56,12 @@ Once everything is set up, you can open the Dev Box in VS Code by clicking the *
 Now you have connected to your Dev Box from a Dev Tunnel! 
 
 
-## 4. Open a Developer MCP Server, enable Dark Mode for your Dev Box, and connect from your MCP
+# Part 3. Open a Developer MCP Server, enable Dark Mode for your Dev Box, and connect from your MCP
 
 ### PreRequisite
 
-1. Open your terminal and type 'az login' in the command line. 
+1. Disconnect your Dev tunnel. 
+2. Open your terminal and type 'az login' in the command line. 
 2. Login with the lab account 
 
 3. Open the GitHub Copilot chat in your local VS Code
@@ -102,7 +103,7 @@ Now you have connected to your Dev Box from a Dev Tunnel!
 7. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
-# Part 2: Explore Dev Box Snapshot and Restore
+# Part 4: Explore Dev Box Snapshot and Restore
 ## Take a snapshot of your dev box to (later) restore
 
 To access the self-serve + use the Snapshot and Restore feature, follow these steps:
@@ -115,7 +116,7 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 6. Your snapshot will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
 
 
-# Part 4: Customize your Dev Box
+# Part 5: Customize your Dev Box
 
 ### Configure a custom image definition using AI in your Dev Box
 
@@ -234,17 +235,9 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 5. Once the Catalog attach and sync are complete, click on the 'Manage' dropdown and select ‘image definitions’- you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
 
-# Part 4: Restore your dev box in the Developer Portal!
-*We can now complete step 8 in part 2 to restore your Dev Box!* 
-1. Go to devportal.microsoft.com
-2. Select the Dev Box environment you wish to restore.
-3. Click on "Restore."
-4. Choose the desired [restore](#) point from the list of available **snapshots**.
-5. Confirm the restoration process.
-6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
 
 
-# Part 5: Go to the Azure Portal and add additional governance to your dev box setup
+# Part 6: Go to the Azure Portal and add additional governance to your dev box setup
 
 *We are going to edit your existing project and create a new pool to use the custom definition you previously created along with the custom network. We will add additional governance capabilities to that project + pool setup for utmost security and easiest management.*
 
@@ -323,7 +316,7 @@ Follow these steps to create a project policy:
 5.	Once the resources are deployed, go to devportal.microsoft.com or refresh your existing instance. From here click on ‘New Dev Box’ and follow the steps for Dev Box creation.  
 
 
-# Part 10: BONUS: Monitoring your dev box with Azure Monitor
+# BONUS: Monitoring your dev box with Azure Monitor
 1. Look up ‘Dev Centers’ in the Azure Portal 
 2. Click on the build devcenter
 3. Click on ‘Monitoring' and select 'Logs' in the side menu.  
@@ -373,6 +366,15 @@ DevCenterAgentHealthLogs
  ``` 
 
 6. Click on ‘Run’ to run your query.  
+
+# BONUS: Restore your dev box in the Developer Portal!
+*We can now complete step 8 in part 2 to restore your Dev Box!* 
+1. Go to devportal.microsoft.com
+2. Select the Dev Box environment you wish to restore.
+3. Click on "Restore."
+4. Choose the desired [restore](#) point from the list of available **snapshots**.
+5. Confirm the restoration process.
+6. Once the restoration is complete, you will receive an email notification informing you that your Dev Box is restored and ready to use.
 
 
 😀 Congratulations! You have finished the lab! 😀
