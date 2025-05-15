@@ -194,9 +194,17 @@ To further simplify the experience of authoring the customization file, you can 
     a. `imagedefinition.yaml` will include git cloning the specific repository onto the dev box  
 
 9. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
-10. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator  
-11. Copy and run the validation command in the Terminal  
-12. Once validation completes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
+10. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator. Copy and run the validation command in the Terminal  
+11. Once validation completes, you can apply customizations on the current dev box
+    
+    a. Open Command Palette(Ctrl+Shift+P)  
+    b. Select 'Dev Box: Apply Customization Tasks'  
+    c. Confirm the UAC prompts to install tools and apply the settings  
+
+    ![image](https://github.com/user-attachments/assets/e3b41125-1737-4935-a2a9-3c1958cf4c66)
+
+   
+12. To share and configure the team's dev boxes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
 
 ---
 
