@@ -19,6 +19,12 @@
 4. Skip the tutorial, and click on 'Connect'.
 5. You have now connected to your Dev Box!
 
+### PreRequisite ( Skip if you have already logged in once into your Dev Box)
+> *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
+> *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
+
+### Create and Enable the Dev Box Tunnel
+
 ## 2. Connect to your Dev Box using a Dev Box Tunnel. 
 1. Close your Dev Box session. Open VS Code on your machine. 
 
@@ -32,13 +38,10 @@
 
 ![Sign in to Dev Box with Microsoft](InstructionImages/Build2025Images/SignIn.png)
 
-### Create and Enable the Dev Box Tunnel
 
-### PreRequisite ( Skip if you have already logged in once into your Dev Box)
-> *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
-> *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
 
-3. After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to.
+
+3. After signing in, you will see all the projects you have access to. Choose the project with the dev box that we already created for you, and select the Dev Box you want to connect to.
 
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
@@ -53,6 +56,13 @@ Then, you can enable the tunnel by clicking on the settings gear next to the tun
 Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button. A new VS Code Window should pop up.
 
 ![Connect to Tunnel Screenshot](InstructionImages/Build2025Images/ConnectTunnel.png)
+
+Remote tunnels extension is required to be installed. Select Install and Reload.
+
+![image](https://github.com/user-attachments/assets/77ba06f6-2661-44f9-ba36-a02ba0f22b8e)
+
+Select the Account you use to login ( Select Microsoft)
+
 
 Now you have connected to your Dev Box from a Dev Tunnel! 
 
