@@ -79,16 +79,15 @@
 
 1. Disconnect your Dev tunnel. 
 2. Open your terminal and type 'az login' in the command line. 
-2. Login with the lab account 
-
-3. Open the GitHub Copilot chat in your local VS Code
-
-4. Switch Copilot to agent mode and select 'Claude 3.5' or 'Claude 3.7':
+3. Login with the microsoft account 
+4. Open the GitHub Copilot chat in your local VS Code
+5. Authorise skillable lab to give access to github
+6. Switch Copilot to agent mode and select 'Claude 3.5' or 'Claude 3.7':
 
    ![Switch to Agent Mode](InstructionImages/Build2025Images/MCPAgent.jpg)  
    *(Use the dropdown to select "Agent" mode)*
 
-3. Validate that the Dev Box MCP is running by clicking the tool icon:
+7. Validate that the Dev Box MCP is running by clicking the tool icon:
 
    ![Tool Icon](InstructionImages/Build2025Images/AddContext.jpg) 
 
