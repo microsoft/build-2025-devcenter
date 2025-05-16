@@ -34,14 +34,15 @@
 
 ### Create and Enable the Dev Box Tunnel
 
-After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to.
+### PreRequisite ( Skip if you have already logged in once into your Dev Box)
+> *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
+> *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
+
+3. After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to.
 
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
-### PreRequisite (already complete)
-> *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
 
-> *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
 
 Then, you can enable the tunnel by clicking on the settings gear next to the tunnel - you'll see 'enable tunnel'. This process may take up to 1–3 minutes, as it will install VS Code on the Dev Box (if not already installed) and set up the tunnel.
 
