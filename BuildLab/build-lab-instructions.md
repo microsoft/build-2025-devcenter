@@ -54,22 +54,22 @@
 ### Connect to the Dev Box in VS Code
 
 5. Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button. A new VS Code Window should pop up.
-
-6. Install the Remote Tunnels Extension - The remote tunnels extension is required. Please click on **Install and Reload**.
-   
-![Install remote](https://github.com/user-attachments/assets/550d5854-70c4-43a8-93f2-74f9398251cb)
-
+6. Choose the Account that you used to start the tunnel ( Select Microsoft in this case)
+<img width="599" alt="image" src="https://github.com/user-attachments/assets/68afcf8f-a9b7-4f97-a7e9-371127d3182b" />
 
 ![Connect to Tunnel Screenshot](InstructionImages/Build2025Images/ConnectTunnel.png)
 
-
-
-Choose the Account that you used to start the tunnel ( Select Microsoft in this case)
-<img width="599" alt="image" src="https://github.com/user-attachments/assets/68afcf8f-a9b7-4f97-a7e9-371127d3182b" />
-
-
+7. Install the Remote Tunnels Extension - The remote tunnels extension is required. Please click on **Install and Reload**.
+   
+![Install remote](https://github.com/user-attachments/assets/550d5854-70c4-43a8-93f2-74f9398251cb)
 
 Now you have connected to your Dev Box from a Dev Tunnel! 
+
+![image](https://github.com/user-attachments/assets/a4561593-2357-438d-81f8-32f5af2ba8a6)
+
+
+
+
 
 
 # Part 3. Open a Developer MCP Server, enable Dark Mode for your Dev Box, and connect from your MCP
@@ -289,11 +289,6 @@ Attach your network connection to your Dev Center so it can later be used to cre
 6. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
    At the very end, click on the check-box for licensing.
 
-### Enable SSO
-
-8. From your project, click on the ‘Manage’ dropdown and then ‘Dev Box Pools’
-9. Scroll right, click on the elipses, you'll see a pencil icon to edit. 
-10. Click on the ‘Enable Single Sign On’ checkbox. 
 
 # Part 7: Manage your dev box in scale
 *Manage your dev boxes in scale by applying project policies.*
