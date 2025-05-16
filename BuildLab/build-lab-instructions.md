@@ -124,7 +124,7 @@
 
 To access the self-serve + use the Snapshot and Restore feature, follow these steps:
 
-1. Log in to the Developer Portal.
+1. Log in to the Developer Portal from here <a href="https://devportal.microsoft-ppe.com/?features=enabletakesnapshot">Microsoft developer portal</a>
 2. Select the Dev Box you wish to take a snapshot of. Click on the elipses `...`
 3. Click on "Take Snapshot."
 4. A dialog will appear showing the timestamp of the manual snapshot.
