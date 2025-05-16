@@ -4,7 +4,7 @@
     "parameters": {
         "location": {
             "type": "string",
-            "defaultValue": "eastasia", // testing in eastasia, change back to westus3 later.
+            "defaultValue": "westus3",
             "metadata": {
                 "description": "Location for all resources."
             }
