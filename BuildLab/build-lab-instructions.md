@@ -140,24 +140,25 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 ### Connect to your Dev Box in VS Code
 
 1. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal. Skip the tutorial, and click on 'Connect'.
-2. Open Visual Studio Code in your Dev Box.
-3. In the 'Setup VS Code' window, select to setup Copilot and Signin
+2. Open Edge browser and login to GitHub using SSO URL - https://github.com/enterprises/skillable-events/sso
+3. Open Visual Studio Code in your Dev Box.
+4. In the 'Setup VS Code' window, select to setup Copilot and Signin
    ![image](https://github.com/user-attachments/assets/ea1d183f-b660-4ab6-83b3-8242a23e975b)
    ![image](https://github.com/user-attachments/assets/72e8eff6-f497-4a74-afd7-ac417cfa761b)
 
-4. Complete the signin by selecting 'Continue' on the 'Authorize Visual Studio Code' prompts
+5. Complete the signin by selecting 'Continue' on the 'Authorize Visual Studio Code' prompts
    ![image](https://github.com/user-attachments/assets/9ca7ef86-245b-494f-b54e-59e9db83cbd8)
    ![image](https://github.com/user-attachments/assets/e987a056-8f78-4394-83f5-f654f50cba36)
    
-5. Copilot should now be setup and you can select to open VS Code
+6. Copilot should now be setup and you can select to open VS Code
 
    ![image](https://github.com/user-attachments/assets/e152d75b-f053-4e10-81ab-7949ae9aae07)
-6. Open Copilot chat and ask to 'Show terminal' or open command prompt 'Ctrl+Shift+P' and enter '>View: Toggle Terminal'
-7. In the terminal, select to download git by entering the following command 'winget install --id Git.Git -e'
-8. Once git installation is complete, close and reopen VS code
+7. Open Copilot chat and ask to 'Show terminal' or open command prompt 'Ctrl+Shift+P' and enter '>View: Toggle Terminal'
+8. In the terminal, select to download git by entering the following command 'winget install --id Git.Git -e'
+9. Once git installation is complete, close and reopen VS code
 
-9. Clone the repository by entering 'git clone https://github.com/contoso-co/eShop.git' in terminal
-10. Open the cloned repository: Click on Open Folder, C Drive, Users, Click on your User, eShop) 
+10. Clone the repository by entering 'git clone https://github.com/contoso-co/eShop.git' in terminal
+11. Open the cloned repository: Click on Open Folder, C Drive, Users, Click on your User, eShop) 
     ![image](https://github.com/user-attachments/assets/e67662ed-2f08-4a8b-aed5-d23128f50f5a)
     ![image](https://github.com/user-attachments/assets/ffb03cbb-ec00-40da-9d4c-13aff1a25fe5)
 
@@ -174,7 +175,7 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 ### Experience in the Dev Box VS Code Extension
 
 1. Create a new `imagedefinition.yaml` file inside the catalog\image-definitions folder. 
-2. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/contoso-base/imagedefinition.yaml)  
+2. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/backend/imagedefinition.yaml)  
 3. For example, to configure pre-installation of VS Code and configure environment variables, add the following to the `imagedefinition.yaml` file:
 
     ```yaml
@@ -212,16 +213,16 @@ To access the self-serve + use the Snapshot and Restore feature, follow these st
 
 9. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
 10. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator. Copy and run the validation command in the Terminal  
-11. Once validation completes, you can apply customizations on the current dev box
+11.  Once validation completes, you can apply customizations on the current dev box
     
     a. Open Command Palette(Ctrl+Shift+P)  
     b. Select 'Dev Box: Apply Customization Tasks'  
-    c. Confirm the UAC prompts to install tools and apply the settings  
+    c. (You may skip and move onto next section in the interest of time) Confirm the UAC prompts to install tools and apply the settings
 
     ![image](https://github.com/user-attachments/assets/e3b41125-1737-4935-a2a9-3c1958cf4c66)
 
    
-12. To share and configure the team's dev boxes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
+12. (Optional: Skip this step in the interest of time) To share and configure the team's dev boxes, save the `imagedefinition.yaml`, commit it, and push it to the repository  
 
 ---
 
