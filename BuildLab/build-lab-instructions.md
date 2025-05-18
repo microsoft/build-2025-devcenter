@@ -15,9 +15,8 @@
 
 2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 
 
-3. Connect to your dev box by searching for the 'Windows App' in your Windows Search Bar. Sign in using the same credentials you used for the Developer Portal.
-4. Skip the tutorial, and click on 'Connect'.
-5. You have now connected to your Dev Box!
+3. Connect to your dev box by clicking on "Open in Windows App".
+4. You have now connected to your Dev Box!
 
 ## 2. Connect to your Dev Box using a Dev Box Tunnel.
 
@@ -31,40 +30,37 @@
 
 ## 3. Sign in to the Dev Box Extension
 
-1. Click on the profile icon on the bottom left of VS Code and click on 'Sign in to use Dev Box'. Use the same username and password you used for the Developer Portal.
-
-2. Click the Dev Box icon in the left sidebar, and select **Sign In**.
+1. Click the Dev Box icon in the left sidebar, and select **Sign In**.
 
 ![Sign in to Dev Box with Microsoft](InstructionImages/Build2025Images/SignIn.png)
 
 ### Create and Enable the Dev Box Tunnel
 
 
-
-3. After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to.
+2. After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to.
 
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
 
 
-4. Enable the tunnel by clicking on the settings gear next to the tunnel - you'll see 'enable tunnel'. This process may take up to 1–3 minutes, as it will install VS Code on the Dev Box (if not already installed) and set up the tunnel.
+3. Enable the tunnel by clicking on the settings gear next to the tunnel - you'll see 'enable tunnel'. This process may take up to 1–3 minutes, as it will install VS Code on the Dev Box (if not already installed) and set up the tunnel.
 
 ![Enable Tunnel Screenshot](InstructionImages/Build2025Images/EnableTunnel.png)
 
 ### Connect to the Dev Box in VS Code
 
-5. Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button. A new VS Code Window should pop up.
+4. Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button. A new VS Code Window should pop up.
  ![Connect to Tunnel Screenshot](InstructionImages/Build2025Images/ConnectTunnel.png)
-6. Choose the Account that you used to start the tunnel ( Select Microsoft in this case)
+5. Choose the Account that you used to start the tunnel ( Select Microsoft in this case)
 <img width="599" alt="image" src="https://github.com/user-attachments/assets/68afcf8f-a9b7-4f97-a7e9-371127d3182b" />
 
 
 
-7. Install the Remote Tunnels Extension - The remote tunnels extension is required. Please click on **Install and Reload**.
+6. Install the Remote Tunnels Extension - The remote tunnels extension is required. Please click on **Install and Reload**.
    
 ![Install remote](https://github.com/user-attachments/assets/550d5854-70c4-43a8-93f2-74f9398251cb)
 
-8.Now you have connected to your Dev Box from a Dev Tunnel! 
+7.Now you have connected to your Dev Box from a Dev Tunnel! 
 
 ![image](https://github.com/user-attachments/assets/a4561593-2357-438d-81f8-32f5af2ba8a6)
 
@@ -81,7 +77,7 @@
 2. Open your terminal and type 'az login' in the command line. 
 3. Login with the microsoft account 
 4. Open the GitHub Copilot chat in your local VS Code
-5. Authorise skillable lab to give access to github
+5. Authorise the skillable lab to give access to github
 6. Switch Copilot to agent mode and select 'Claude 3.5' or 'Claude 3.7':
 
    ![Switch to Agent Mode](InstructionImages/Build2025Images/MCPAgent.jpg)  
@@ -119,20 +115,8 @@
 7. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
-# Part 4: Explore Dev Box Snapshot and Restore
-## Take a snapshot of your dev box to (later) restore
 
-To access the self-serve + use the Snapshot and Restore feature, follow these steps:
-
-1. Log in to the Developer Portal from here <a href="https://devportal.microsoft-ppe.com/?features=enabletakesnapshot">Microsoft developer portal</a>
-2. Select the Dev Box you wish to take a snapshot of. Click on the elipses `...`
-3. Click on "Take Snapshot."
-4. A dialog will appear showing the timestamp of the manual snapshot.
-5. Confirm the snapshot in the dialog.
-6. Your snapshot will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
-
-
-# Part 5: Customize your Dev Box
+# Part 4: Customize your Dev Box
 
 ### Configure a custom image definition using AI in your Dev Box
 
@@ -252,6 +236,17 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 5. Once the Catalog attach and sync are complete, click on the 'Manage' dropdown and select ‘image definitions’- you can see image definitions imported  
     a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
 
+# Part 5: Explore Dev Box Snapshot and Restore
+## Take a snapshot of your dev box to (later) restore
+
+To access the self-serve + use the Snapshot and Restore feature, follow these steps:
+
+1. Log in to the Developer Portal from here <a href="https://devportal.microsoft-ppe.com/?features=enabletakesnapshot">Microsoft developer portal</a>
+2. Select the Dev Box you wish to take a snapshot of. Click on the elipses `...`
+3. Click on "Take Snapshot."
+4. A dialog will appear showing the timestamp of the manual snapshot.
+5. Confirm the snapshot in the dialog.
+6. Your snapshot will be taken, which takes around 10 minutes. Once completed, your Dev Box can be used.
 
 
 # Part 6: Go to the Azure Portal and add additional governance to your dev box setup
@@ -275,7 +270,7 @@ Attach your network connection to your Dev Center so it can later be used to cre
 
 ## Configure your existing project for additional governance
 
-1. Navigate to your existing project you created in the customizations section. Select ‘Settings’ in the side menu.
+1. Navigate to your existing project you created in the customizations section. Select ‘Dev Box Settings’ in the side menu.
 
 ### Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a cost control.
 
