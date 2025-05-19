@@ -65,7 +65,12 @@
 
 7.Now you have connected to your Dev Box from a Dev Tunnel! 
 
-![image](https://github.com/user-attachments/assets/a4561593-2357-438d-81f8-32f5af2ba8a6)
+![image](https://github.com/user-attachments/assets/a4561593-2357-438d-81f8-32f5af2ba8a6) 
+
+8. Dev Box Remote experience in VS Code
+You can open any any folder or workspace on the remote Dev Box using File > Open File/Folder/Workspace just as you would locally!
+
+9. To proceed to the next section, Please close the Dev Box remote Session.
 
 
 
@@ -76,18 +81,28 @@
 
 ### PreRequisite
 
-1. Close out your Dev tunnel.
+1. Close out your Dev Box remote Session.
 2. Sign into Co-Pilot by authorizing VS Code (the pop-up will come up if you ask Co-Pilot to open terminal).
 3. Open your terminal and type 'az login' in the command line.
 4. Hit **'Enter'** if it asks for a subscription/ tenant.
-5. Login with the microsoft account 
-6. Open the GitHub Copilot chat in your local VS Code
-7. Switch Copilot to agent mode and select 'Claude 3.5' or 'Claude 3.7':
+5. Login with the microsoft account
+6.  In the 'Setup VS Code' window, select to setup Copilot and Signin
+   ![image](https://github.com/user-attachments/assets/ea1d183f-b660-4ab6-83b3-8242a23e975b)
+   ![image](https://github.com/user-attachments/assets/72e8eff6-f497-4a74-afd7-ac417cfa761b)
+
+7. Complete the signin by selecting 'Continue' on the 'Authorize Visual Studio Code' prompts
+   ![image](https://github.com/user-attachments/assets/9ca7ef86-245b-494f-b54e-59e9db83cbd8)
+   ![image](https://github.com/user-attachments/assets/e987a056-8f78-4394-83f5-f654f50cba36)
+   
+8. Copilot should now be setup and you can select to open VS Code
+
+9. Open the GitHub Copilot chat in your local VS Code
+10. Switch Copilot to agent mode and select 'Claude 3.5' or 'Claude 3.7':
 
    ![Switch to Agent Mode](InstructionImages/Build2025Images/MCPAgent.jpg)  
    *(Use the dropdown to select "Agent" mode)*
 
-8. Validate that the Dev Box MCP is running by clicking the tool icon:
+11. Validate that the Dev Box MCP is running by clicking the tool icon:
 
    ![Tool Icon](InstructionImages/Build2025Images/AddContext.jpg) 
 
@@ -103,20 +118,20 @@
    - `startDevBox`: Starts a Dev Box  
    - `stopDevBox`: Stops a Dev Box  
 
-9. **In your chat, ask Copilot to:**  
+10. **In your chat, ask Copilot to:**  
    _“List me all of my dev boxes”_  
 
    - This will show you a high-level view of your Dev Boxes. 
    - It may prompt you to authorize VS Code - please do so.
    - CoPilot may ask you to run certain commands. Please click on 'Continue'.
 
-10. **Now ask Copilot to:**  
+11. **Now ask Copilot to:**  
    _“Update my [DevBoxName] to use dark mode”_
 
-11. **Then ask Copilot to:**  
+12. **Then ask Copilot to:**  
    _“Connect and launch my [DevBoxName]”_
 
-12. **Recommended:**  
+13. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
 
