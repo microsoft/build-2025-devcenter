@@ -86,7 +86,7 @@ You can open any any folder or workspace on the remote Dev Box using File > Open
 3. Open your terminal and type 'az login' in the command line.
 4. Hit **'Enter'** if it asks for a subscription/ tenant.
 5. Login with the microsoft account
-6.  In the 'Setup VS Code' window, select to setup Copilot and Signin
+6.  In the **'Setup VS Code'** window, select to setup Copilot and Signin
    ![image](https://github.com/user-attachments/assets/ea1d183f-b660-4ab6-83b3-8242a23e975b)
    ![image](https://github.com/user-attachments/assets/72e8eff6-f497-4a74-afd7-ac417cfa761b)
 
