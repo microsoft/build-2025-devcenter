@@ -249,10 +249,11 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
     - **Repository**: `https://github.com/jylama/build-2025-devcenter.git`  
     - **Branch**: `main`  
     - **Folder path**: `catalog/image-definitions`  
-    - **Secret Identifier NOTE: you need to modify this URL using the first 6 characters in your subscription**: `https://keyvault-[first 6 characters of user subscription id].vault.azure.net/secrets/GitHubPAT`  This is where you can use those 6 characters you noted! You can also find the first 6 characters by going to your project, and clicking on 'overview'. 
+    - **Secret Identifier NOTE: you need to modify this URL using the first 6 characters in your subscription**: `https://keyvault-[first 6 characters of user subscription id].vault.azure.net/secrets/GitHubPAT`  This is where you can use those 6 characters you noted! You can also find the first 6 characters by going to your project, and clicking on 'overview'.
+5. Click 'Add'.
 
-5. Once the Catalog attach and sync are complete, click on the 'Manage' dropdown and select ‘image definitions’- you can see image definitions imported  
-    a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 4 as it loads. 
+6. Once the Catalog attach and sync are complete, click on the 'Manage' dropdown on the left panel and select ‘image definitions’- you can see image definitions imported  
+    a. [Optional] Choose one of the image definitions and select ‘Build’ - this action will generate a custom image to be used when creating dev boxes, thereby enhancing dev box creation times and achieving cost savings. This will take some time, so please move onto part 5 as it loads. 
 
 # Part 5: Explore Dev Box Snapshot and Restore
 ## Take a snapshot of your dev box to (later) restore
@@ -292,7 +293,7 @@ Attach your network connection to your Dev Center so it can later be used to cre
 
 ### Apply Dev Box limits to control the amount of Dev Boxes that can be created per project as a cost control.
 
-2. Select the check box to ‘Apply limits’. Set the limit field to 2 or larger.
+2. Select the check box to ‘Apply limits’. Set the limit field to 3 or larger.
 3. Click on ‘Apply’ to apply all of these project edits.
 
 ### Create a dev box pool to use your image definition
@@ -301,7 +302,8 @@ Attach your network connection to your Dev Center so it can later be used to cre
 5. Select a name, and in the dropdown you'll seeimage definitions - pick 'frontend-eng'.  
    Select 32 vCPU compute, and 2048 GB SSD for storage for the SKU. Later, when dev boxes are created in this pool, they'll be created based on the imageDefinition.yaml, which provides the base image and a set of customizations to apply.
 6. Leverage the custom network for your pool (if your network connection hasn’t finished loading, use the Microsoft Hosted Network and select the region that is best for you based on your current location for optimal latency). Leave all other options to their defaults.  
-   At the very end, click on the check-box for licensing.
+   At the very end, click on the check-box for licensing and then click on 'create'.
+   
 
 
 # Part 7: Manage your dev box in scale
