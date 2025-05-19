@@ -160,19 +160,19 @@
 ### Experience in the Dev Box VS Code Extension
 
 1. Create a new `imagedefinition.yaml` file inside the catalog\image-definitions folder. 
-2. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/backend/imagedefinition.yaml)  
-3. For example, to configure pre-installation of VS Code and configure environment variables, add the following to the `imagedefinition.yaml` file:
+2. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/frontend/imagedefinition.yaml)  
+3. For example, to configure pre-installation of Docker Desktop and node.js, add the following to the `imagedefinition.yaml` file:
 
     ```yaml
-    - name: '~/winget'
-      description: Install Visual Studio Code
-      parameters:
-        package: Microsoft.VisualStudioCode
+  - name: winget
+    description: Install Docker Desktop for containerization
+    parameters:
+      package: Docker.DockerDesktop
 
-    - name: '~/powershell'
-      parameters:
-        command: |
-          $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+  - name: winget
+    description: Install Node.js for frontend development and e2e tests
+    parameters:
+      package: OpenJS.NodeJS.LTS
     ```
 
 4. You could continue the process to configure more packages and tools as you like!
