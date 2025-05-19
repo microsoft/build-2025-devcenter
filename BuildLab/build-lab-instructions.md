@@ -177,9 +177,9 @@ You can open any any folder or workspace on the remote Dev Box using File > Open
 
 ### Experience in the Dev Box VS Code Extension
 
-1. Create a new `imagedefinition.yaml` file inside the catalog\image-definitions folder. 
-2. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/frontend/imagedefinition.yaml)  
-3. For example, to configure pre-installation of Docker Desktop and node.js, add the following to the `imagedefinition.yaml` file:
+1. Find the `imagedefinition.yaml` file inside the devcenter\catalog\image-definitions\frontend folder. 
+2. You should see the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/frontend/imagedefinition.yaml)  
+3. To configure pre-installation of Docker Desktop and node.js, add the following to the `imagedefinition.yaml` file:
 
      ```yaml
     - name: winget
@@ -201,7 +201,7 @@ You can open any any folder or workspace on the remote Dev Box using File > Open
 *To further simplify the experience of authoring the customization file, you can leverage the agentic workflow to directly generate an `imagedefinition.yaml` file through prompts and conversations.*
 
 5. Open Copilot Chat  
-    a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.5 Sonnet  
+    a. Select Agent mode on the bottom right of the Co-Pilot chat and choose the model Claude 3.7 Sonnet  
     b. Ensure Dev Box tools are pre-selected under Select Tools (Wrench icon bottom left of the Co-Pilot chat).
    ![image](https://github.com/user-attachments/assets/469d6afa-9e6f-4a96-bf6f-9c24fb54602d)
     ![image](https://github.com/user-attachments/assets/5b884791-dda2-4d17-9310-e4ee0ace2334)
@@ -214,9 +214,8 @@ You can open any any folder or workspace on the remote Dev Box using File > Open
 8. When prompted, select ‘Continue’ to configure the allowed [WinGet](#) packages and generate the `imagedefinition.yaml`  
     a. `imagedefinition.yaml` will include git cloning the specific repository onto the dev box  
 
-9. After the initial `imagedefinition.yaml` is generated, in the chat, conversationally ask to "Change Node.js version to 18 LTS"  
-10. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator. Copy and run the validation command in the Terminal  
-11.  Once validation completes, you can apply customizations on the current dev box
+9. After the `imagedefinition.yaml` is modified, select ‘Continue’ to run the Customization YAML Validator. Copy and run the validation command in the Terminal  
+10.  Once validation completes, you can apply customizations on the current dev box
     
     a. Open Command Palette(Ctrl+Shift+P)  
     b. Select 'Dev Box: Apply Customization Tasks'  
@@ -232,7 +231,7 @@ You can open any any folder or workspace on the remote Dev Box using File > Open
 ### To save time in uploading your `imageDefinition.yaml` go to the Azure Portal and attach a catalog 
 We have already pre-created an `imageDefinition.yaml` in a specific repo that you can use.
 
-1. Go to portal.azure.com. Search for 'Dev Center' in the search bar. After clicking on your Dev Center in the Azure Portal, scroll down to click on the blue button 'Create Project' and create a front-end project for the Dev Center. Select your Dev Center. Name it ‘front-end-project’.  
+1. Go to portal.azure.com. Search for 'Dev Center' in the search bar. After clicking on your Dev Center in the Azure Portal, scroll down to click on the blue button 'Create Project' and create a front-end project for the Dev Center. Select your Dev Center. Please Name it **‘front-end-project’**. ( The project will fail otherwise) 
 2. Follow the steps to finish creating your project.  
     a. On the ‘Dev box management’ tab for the project creation flow, you can set a limit for the number of dev boxes developers can own in the project. For example, I can limit to 2 dev boxes. Please set this field to 2 or larger. After this step, click ‘Next’  
     b. On the ‘Catalogs’ tab, do not change any defaults. Click ‘Next’  
@@ -258,9 +257,9 @@ We have already pre-created an `imageDefinition.yaml` in a specific repo that yo
 # Part 5: Explore Dev Box Snapshot and Restore
 ## Take a snapshot of your dev box to (later) restore
 
-To access the self-serve + use the Snapshot and Restore feature, follow these steps:
+To access the self-serve + use the Snapshot and Restore feature, follow these steps :
 
-1. Log in to the Developer Portal from here <a href="https://devportal.microsoft-ppe.com/?features=enabletakesnapshot">Microsoft developer portal</a>
+1. To Test out the Snapshot Feature, Log in to the Developer Portal from here <a href="https://devportal.microsoft-ppe.com/?features=enabletakesnapshot">Microsoft developer portal</a>
 2. Select the Dev Box you wish to take a snapshot of. Click on the elipses `...`
 3. Click on "Take Snapshot."
 4. A dialog will appear showing the timestamp of the manual snapshot.
