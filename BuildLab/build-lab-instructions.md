@@ -163,16 +163,16 @@
 2. Copy the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/frontend/imagedefinition.yaml)  
 3. For example, to configure pre-installation of Docker Desktop and node.js, add the following to the `imagedefinition.yaml` file:
 
-    ```yaml
-  - name: winget
-    description: Install Docker Desktop for containerization
-    parameters:
-      package: Docker.DockerDesktop
+     ```yaml
+    - name: winget
+       description: Install Docker Desktop for containerization
+       parameters:
+         package: Docker.DockerDesktop
 
-  - name: winget
-    description: Install Node.js for frontend development and e2e tests
-    parameters:
-      package: OpenJS.NodeJS.LTS
+    - name: winget
+       description: Install Node.js for frontend development and e2e tests
+       parameters:
+         package: OpenJS.NodeJS.LTS
     ```
 
 4. You could continue the process to configure more packages and tools as you like!
