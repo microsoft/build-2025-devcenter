@@ -15,8 +15,9 @@
 
 2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 
 
-3. Connect to your dev box by clicking on "Open in Windows App".
-4. You have now connected to your Dev Box!
+3. Connect to your dev box by clicking on "Open in RD Client". Then, click on 'Continue' and 'Open'.
+4. You will need to use the same credentials you used to log into the Developer Portal. 
+5. You have now connected to your Dev Box!
 
 ## 2. Connect to your Dev Box using a Dev Box Tunnel.
 
@@ -37,7 +38,7 @@
 ### Create and Enable the Dev Box Tunnel
 
 
-2. After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to.
+2. After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to. Click on the dropdown to see the Dev Box's tunnel. 
 
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
@@ -73,11 +74,11 @@
 
 ### PreRequisite
 
-1. Disconnect your Dev tunnel. 
-2. Open your terminal and type 'az login' in the command line. 
-3. Login with the microsoft account 
-4. Open the GitHub Copilot chat in your local VS Code
-5. Authorise the skillable lab to give access to github
+1. Close out your Dev tunnel.
+2. Sign into Co-Pilot by authorizing VS Code (the pop-up will come up if you ask Co-Pilot to open terminal).
+3. Open your terminal and type 'az login' in the command line. Hit 'enter' if it asks for a subscription/ tenant.
+4. Login with the microsoft account 
+5. Open the GitHub Copilot chat in your local VS Code
 6. Switch Copilot to agent mode and select 'Claude 3.5' or 'Claude 3.7':
 
    ![Switch to Agent Mode](InstructionImages/Build2025Images/MCPAgent.jpg)  
@@ -99,20 +100,20 @@
    - `startDevBox`: Starts a Dev Box  
    - `stopDevBox`: Stops a Dev Box  
 
-4. **In your chat, ask Copilot to:**  
+8. **In your chat, ask Copilot to:**  
    _“List me all of my dev boxes”_  
 
    - This will show you a high-level view of your Dev Boxes. 
    - It may prompt you to authorize VS Code - please do so.
    - CoPilot may ask you to run certain commands. Please click on 'Continue'.
 
-5. **Now ask Copilot to:**  
+9. **Now ask Copilot to:**  
    _“Update my [DevBoxName] to use dark mode”_
 
-6. **Then ask Copilot to:**  
+10. **Then ask Copilot to:**  
    _“Connect and launch my [DevBoxName]”_
 
-7. **Recommended:**  
+11. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
 
 
