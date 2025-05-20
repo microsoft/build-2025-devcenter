@@ -15,7 +15,7 @@
 
 2. You should see a Dev Box in your developer portal. If you do not see a Dev Box, click on '+New' to create one. 
 
-3. Connect to your dev box by clicking on "Open in RD Client". Then, click on 'Continue' and 'Open'.
+3. Connect to your dev box by clicking on "Open in Browser". Then, click on 'Continue' and 'Open'.
 4. You will need to use the same credentials you used to log into the Developer Portal. 
 5. You have now connected to your Dev Box!
 
