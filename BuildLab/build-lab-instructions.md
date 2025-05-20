@@ -29,6 +29,8 @@
 
 2. Open Extensions view in VS Code (`Ctrl+Shift+X`) and You should see the Dev Box Extension.
 3. You can update to the latest version of the DevBox Extension.
+ ![image](https://github.com/user-attachments/assets/de134c2b-bf39-4115-992f-79308eb00186)
+
 
 ## 3. Sign in to the Dev Box Extension
 
