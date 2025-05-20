@@ -25,9 +25,10 @@
 > *Before enabling the tunnel, you MUST log into the Dev Box at least once using any client (e.g., browser, Windows App, Remote Desktop client). This step is mandatory after each shutdown and restart to establish the required user session for setting up the tunnel. Once logged in, you can disconnect from the Dev Box.*
 > *You DO NOT need to log in every time you enable or connect to the tunnel — only after a shutdown or restart.*
 
-1. Close your Dev Box session. Open VS Code on your machine. 
+1. Close your Dev Box session. Open VS Code on your machine.
 
 2. Open Extensions view in VS Code (`Ctrl+Shift+X`) and You should see the Dev Box Extension.
+3. You can update to the latest version of the DevBox Extension.
 
 ## 3. Sign in to the Dev Box Extension
 
