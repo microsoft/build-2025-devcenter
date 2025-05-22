@@ -129,10 +129,10 @@ You can open any any folder or workspace on the remote Dev Box using File > Open
    - CoPilot may ask you to run certain commands. Please click on 'Continue'.
 
 11. **Now ask Copilot to:**  
-   _“Update my [DevBoxName] to use dark mode”_
+   _“Update my my-build-devbox to use dark mode”_
 
 12. **Then ask Copilot to:**  
-   _“Connect and launch my [DevBoxName]”_
+   _“Connect and launch my my-build-devbox”_
 
 13. **Recommended:**  
    Disconnect the browser Dev Box and reconnect with your Windows app now.
