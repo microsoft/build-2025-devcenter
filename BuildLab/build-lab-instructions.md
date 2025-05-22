@@ -41,7 +41,7 @@
 ### Create and Enable the Dev Box Tunnel
 
 
-2. After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to. Click on the dropdown to see the Dev Box's tunnel. 
+2. After signing in, you will see all the projects you have access to. Choose the project with the dev box already created for you, and select the Dev Box you want to connect to. Click on the dropdown to see the Dev Box's tunnel. For this lab, we have already created the Tunnel for you.
 
 ![Create Tunnel Screenshot](InstructionImages/Build2025Images/CreateTunnel.png)
 
@@ -53,9 +53,12 @@
 
 ### Connect to the Dev Box in VS Code
 
-4. Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Tunnel** button. A new VS Code Window should pop up.
- ![Connect to Tunnel Screenshot](InstructionImages/Build2025Images/ConnectTunnel.png)
-5. Choose the Account that you used to start the tunnel ( Select Microsoft in this case)
+4. Once everything is set up, you can open the Dev Box in VS Code by clicking the **Connect to Dev Box** button. A new VS Code Window should pop up.
+
+![image](https://github.com/user-attachments/assets/49a0cf4b-73a5-445a-8a81-fe86fb6146b5)
+
+
+6. Choose the Account that you used to start the tunnel ( Select Microsoft in this case)
 
 ![image](https://github.com/user-attachments/assets/6fd2d780-4a7f-4110-8bb9-b115aaf9bb83)
 
