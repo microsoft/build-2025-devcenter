@@ -183,7 +183,7 @@ You can open any any folder or workspace on the remote Dev Box using File > Open
 
 ### Experience in the Dev Box VS Code Extension
 
-1. Find the `imagedefinition.yaml` file inside the devcenter\catalog\image-definitions\frontend folder. 
+1. Find the `imagedefinition.yaml` file inside the `.devcenter\catalog\image-definitions\frontend` folder.
 2. You should see the contents from the [sample imagedefinition.yaml file](https://github.com/contoso-co/eShop/blob/main/.devcenter/catalog/image-definitions/frontend/imagedefinition.yaml)  
 3. To configure pre-installation of Docker Desktop and node.js, add the following to the `imagedefinition.yaml` file:
 
